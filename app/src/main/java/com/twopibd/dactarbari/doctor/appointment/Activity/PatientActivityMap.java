@@ -10,6 +10,7 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -54,29 +55,31 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class PatientActivityMap extends GPSOpenActivity implements ApiListener.drSearchListener, OnMapReadyCallback, ApiListener.locationReceiveListener{
     @BindView(R.id.profileImage)
     CircleImageView profileImage;
+
     @BindView(R.id.recycler_view)
     RecyclerView recycler_view;
     @BindView(R.id.tv_logout)
     TextView tv_logout;
-    Context context=this;
+    Context context = this;
     CustomDrawerButton customDrawerButton;
     DrawerLayout drawer;
     SessionManager sessionManager;
     String key;
     private GoogleMap mMap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_map);
-        sessionManager=new SessionManager(context);
-        key=sessionManager.getToken();
+        sessionManager = new SessionManager(context);
+        key = sessionManager.getToken();
         ButterKnife.bind(this);
-        profileImage.setOnClickListener((View v)->profileUpdate());
+        profileImage.setOnClickListener((View v) -> profileUpdate());
 
-        drawer= (DrawerLayout)findViewById(R.id.drawer_layout);
-        customDrawerButton = (CustomDrawerButton)findViewById(R.id.customDrawer);
-        customDrawerButton.setDrawerLayout( drawer );
-        customDrawerButton.getDrawerLayout().addDrawerListener( customDrawerButton );
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        customDrawerButton = (CustomDrawerButton) findViewById(R.id.customDrawer);
+        customDrawerButton.setDrawerLayout(drawer);
+        customDrawerButton.getDrawerLayout().addDrawerListener(customDrawerButton);
         customDrawerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,12 +87,14 @@ public class PatientActivityMap extends GPSOpenActivity implements ApiListener.d
             }
         });
         setUpDrayer();
-        tv_logout.setOnClickListener((View v)->logout());
+        tv_logout.setOnClickListener((View v) -> logout());
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
     }
+
     private void downloadDr() {
         Api.getInstance().searchDoctor(this);
     }
@@ -98,7 +103,7 @@ public class PatientActivityMap extends GPSOpenActivity implements ApiListener.d
         sessionManager.setLoggedIn(false);
         customDrawerButton.changeState();
         startActivity(new Intent(context, LoginActivity.class));
-        ((Activity)context).finishAffinity();
+        ((Activity) context).finishAffinity();
 
 
     }
@@ -113,7 +118,6 @@ public class PatientActivityMap extends GPSOpenActivity implements ApiListener.d
 
     @Override
     public void onSearchSuccess(List<SearchModel> data) {
-        Toast.makeText(context, ""+data.size(), Toast.LENGTH_SHORT).show();
 
         NearbyDrListAdapterPatient mAdapter = new NearbyDrListAdapterPatient(data);
         LinearLayoutManager layoutManager
@@ -124,9 +128,9 @@ public class PatientActivityMap extends GPSOpenActivity implements ApiListener.d
 
         recycler_view.setAdapter(mAdapter);
 
-        for (int i=0;i<data.size();i++){
-            if (data.get(i).getChamberLatitude()!=null && data.get(i).getChamberLongitude()!=null &&data.get(i).getChamberAddress()!=null){
-                LatLng latLng=new LatLng(Double.parseDouble(data.get(i).getChamberLatitude()),Double.parseDouble(data.get(i).getChamberLongitude()));
+        for (int i = 0; i < data.size(); i++) {
+            if (data.get(i).getChamberLatitude() != null && data.get(i).getChamberLongitude() != null && data.get(i).getChamberAddress() != null) {
+                LatLng latLng = new LatLng(Double.parseDouble(data.get(i).getChamberLatitude()), Double.parseDouble(data.get(i).getChamberLongitude()));
                 mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.doctor_color_red)).position(latLng).title(data.get(i).getName()).snippet(data.get(i).getChamberAddress()));
 
             }
@@ -159,12 +163,13 @@ public class PatientActivityMap extends GPSOpenActivity implements ApiListener.d
             @Override
             public void onCameraIdle() {
 
-                DataStore.selectedLocation=mMap.getCameraPosition().target;
+                DataStore.selectedLocation = mMap.getCameraPosition().target;
             }
         });
         downloadDr();
 
     }
+
     @Override
     public void onSearchFailed(String msg) {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
@@ -180,6 +185,7 @@ public class PatientActivityMap extends GPSOpenActivity implements ApiListener.d
         drawable.draw(canvas);
         return BitmapDescriptorFactory.fromBitmap(bitmap);
     }
+
     public void addOverlay(LatLng place) {
 
         GroundOverlay groundOverlay = mMap.addGroundOverlay(new
@@ -191,6 +197,7 @@ public class PatientActivityMap extends GPSOpenActivity implements ApiListener.d
 
         startOverlayAnimation(groundOverlay);
     }
+
     private Bitmap drawableToBitmap(Drawable drawable) {
         Bitmap bitmap = null;
 
@@ -257,4 +264,6 @@ public class PatientActivityMap extends GPSOpenActivity implements ApiListener.d
         Listener_.setLocationReceiveListener(this);
 
     }
+
+
 }
