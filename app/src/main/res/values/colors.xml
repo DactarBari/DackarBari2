@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#22b14c</color>
+    <color name="colorPrimaryDark">#1C8A3C</color>
+    <color name="colorAccent">#39ab99</color>
+    <color name="tColor">#22b14c</color>
+    <color name="texColor">#272727</color>
+    <color name="gray">#F9F9F9</color>
+    <color name="red">#FD0000</color>
+    <color name="grinish">#0522B14C</color>
+    <color name="white">#FFFFFF</color>
+
+</resources>

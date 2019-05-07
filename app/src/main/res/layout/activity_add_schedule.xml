@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f0f0f0"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_bar_height">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="@dimen/app_bar_height"
+                android:layout_height="@dimen/app_bar_height"
+                android:layout_marginLeft="15dp"
+                android:onClick="back"
+                android:padding="17dp"
+                android:src="@drawable/left_white" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+
+
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="140dp"
+                android:gravity="center_vertical"
+                android:text="Add Schedule"
+                android:textColor="@android:color/white"
+                android:textSize="15dp" />
+        </RelativeLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/stroke_transparent"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="@dimen/tv_width"
+                            android:layout_height="@dimen/tv_height"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:text="Start" />
+
+                        <RelativeLayout
+                            android:layout_width="150dp"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tv_start_time"
+                                android:layout_width="150dp"
+                                android:layout_height="@dimen/tv_height"
+                                android:background="@drawable/gray_gradient"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text="@string/click_to_select"
+                                android:textSize="12dp" />
+
+                            <ImageView
+                                android:layout_width="15dp"
+                                android:layout_height="@dimen/tv_height"
+                                android:layout_alignParentRight="true"
+
+                                android:layout_marginRight="@dimen/arrow_margin_right"
+                                android:background="@android:color/transparent"
+                                android:padding="3dp"
+                                android:src="@drawable/down_arrow" />
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="@dimen/tv_width"
+                            android:layout_height="@dimen/tv_height"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:text="End" />
+
+                        <RelativeLayout
+                            android:layout_width="150dp"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tv_end_date"
+                                android:layout_width="150dp"
+                                android:layout_height="@dimen/tv_height"
+                                android:background="@drawable/gray_gradient"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text="@string/click_to_select"
+
+                                android:textSize="12dp" />
+
+                            <ImageView
+                                android:layout_width="15dp"
+                                android:layout_height="@dimen/tv_height"
+                                android:layout_alignParentRight="true"
+
+                                android:layout_marginRight="@dimen/arrow_margin_right"
+                                android:background="@android:color/transparent"
+                                android:padding="3dp"
+                                android:src="@drawable/down_arrow" />
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="3dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="@dimen/tv_width"
+                            android:layout_height="@dimen/tv_height"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:text="No. of Patient" />
+
+                        <RelativeLayout
+                            android:layout_width="150dp"
+                            android:layout_height="match_parent">
+
+                            <EditText
+                                android:layout_width="150dp"
+                                android:layout_height="@dimen/tv_height"
+                                android:background="@android:color/white"
+                                android:hint="For Example 10"
+
+                                android:paddingLeft="10dp" />
+
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginLeft="10dp"
+                    android:background="#f0f0f0"
+                    android:text="Appointment time" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/stroke_transparent"
+                    android:orientation="vertical"
+                    android:paddingLeft="00dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="10dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="15dp"
+                        android:orientation="vertical">
+
+                        <RadioGroup
+                            android:id="@+id/radioGroup"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/radioDaily"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checked="true"
+                                android:text="Daily" />
+
+                            <RadioButton
+                                android:id="@+id/radioWeekly"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Weekly" />
+
+                            <RadioButton
+                                android:id="@+id/radioMonthly"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Monthly" />
+
+
+                        </RadioGroup>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@android:color/darker_gray" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_daily_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:text="Your appointment schedule will be set until the range of recurrence"
+                            android:visibility="visible" />
+
+                        <LinearLayout
+                            android:id="@+id/linerWeekDays"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.5"
+                                android:orientation="vertical">
+
+                                <CheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Sat" />
+
+                                <CheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Sun" />
+
+                                <CheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Mon" />
+
+                                <CheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Tue" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.5"
+                                android:orientation="vertical">
+
+
+                                <CheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Wed" />
+
+                                <CheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Thurs" />
+
+                                <CheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Thurs" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/linerMonthly"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_marginBottom="10dp"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/monthlyRadio1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:text="Day" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="@dimen/height_40"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginLeft="5dp"
+
+                                    android:layout_marginRight="5dp"
+
+                                    android:background="@android:color/white">
+
+                                    <EditText
+                                        android:layout_width="30dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginLeft="0dp"
+                                        android:layout_marginRight="0dp"
+                                        android:background="@android:color/white"
+                                        android:gravity="center"
+                                        android:text=""/>
+                                </LinearLayout>
+
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+
+                                    android:text="of every" />
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal"
+                                    android:layout_gravity="center_vertical"
+
+                                    android:paddingLeft="5dp">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="@dimen/height_40"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginLeft="5dp"
+                                        android:layout_marginRight="5dp"
+
+                                        android:background="@android:color/white">
+
+                                        <EditText
+                                            android:layout_width="30dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginLeft="0dp"
+                                            android:layout_marginRight="0dp"
+                                            android:background="@android:color/white"
+                                            android:gravity="center"
+                                            android:text="">
+
+
+                                        </EditText>
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:text="months(s)" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/monthlyRadio2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="5dp"
+                                    android:orientation="horizontal">
+
+                                    <RelativeLayout
+                                        android:layout_width="70dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginRight="10dp">
+
+                                        <Spinner
+                                            android:id="@+id/spinnerMonthly_2_1"
+                                            android:layout_width="150dp"
+                                            android:layout_height="@dimen/tv_height"
+                                            android:background="@drawable/gray_gradient" />
+
+                                        <ImageView
+                                            android:layout_width="15dp"
+                                            android:layout_height="@dimen/tv_height"
+                                            android:layout_alignParentRight="true"
+
+                                            android:layout_marginRight="@dimen/arrow_margin_right"
+                                            android:background="@android:color/transparent"
+                                            android:padding="3dp"
+                                            android:src="@drawable/down_arrow" />
+                                    </RelativeLayout>
+
+                                    <RelativeLayout
+                                        android:layout_width="70dp"
+                                        android:layout_height="match_parent">
+
+                                        <Spinner
+                                            android:id="@+id/spinnerMonthly_2_2"
+                                            android:layout_width="150dp"
+                                            android:layout_height="@dimen/tv_height"
+                                            android:background="@drawable/gray_gradient" />
+
+                                        <ImageView
+                                            android:layout_width="15dp"
+                                            android:layout_height="@dimen/tv_height"
+                                            android:layout_alignParentRight="true"
+
+                                            android:layout_marginRight="@dimen/arrow_margin_right"
+                                            android:background="@android:color/transparent"
+                                            android:padding="3dp"
+                                            android:src="@drawable/down_arrow" />
+                                    </RelativeLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="00dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="of every" />
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="@dimen/height_40"
+                                        android:layout_marginLeft="5dp"
+                                        android:layout_marginRight="5dp"
+
+                                        android:background="@android:color/white">
+
+                                        <EditText
+                                            android:layout_width="30dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginLeft="0dp"
+                                            android:layout_marginRight="0dp"
+                                            android:gravity="center"
+                                            android:text="">
+
+
+                                        </EditText>
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="months(s)" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginLeft="10dp"
+                    android:background="#f0f0f0"
+                    android:text="Recurrence pattern" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/stroke_transparent"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="3dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="@dimen/tv_width"
+                                android:layout_height="@dimen/tv_height"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center_vertical"
+                                android:text="Start" />
+
+                            <RelativeLayout
+                                android:layout_width="150dp"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:layout_width="150dp"
+                                    android:id="@+id/tv_startDate"
+                                    android:text="asdasdasd"
+                                    android:gravity="center_vertical"
+                                    android:paddingLeft="10dp"
+                                    android:layout_height="@dimen/tv_height"
+                                    android:background="@drawable/gray_gradient" />
+
+                                <ImageView
+                                    android:layout_width="15dp"
+                                    android:layout_height="@dimen/tv_height"
+                                    android:layout_alignParentRight="true"
+
+                                    android:layout_marginRight="@dimen/arrow_margin_right"
+                                    android:background="@android:color/transparent"
+                                    android:padding="3dp"
+                                    android:src="@drawable/down_arrow" />
+                            </RelativeLayout>
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <RadioGroup
+                                android:layout_width="@dimen/tv_width"
+                                android:layout_height="wrap_content">
+
+                                <RadioButton
+                                    android:layout_width="@dimen/tv_width"
+                                    android:layout_height="wrap_content"
+
+                                    android:text="No End Date" />
+
+                                <RadioButton
+                                    android:layout_width="@dimen/tv_width"
+                                    android:layout_height="wrap_content"
+                                    android:text="End After" />
+
+                                <RadioButton
+                                    android:layout_width="@dimen/tv_width"
+                                    android:layout_height="wrap_content"
+                                    android:text="End by" />
+                            </RadioGroup>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <RadioButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+
+                                    android:visibility="invisible">
+
+                                </RadioButton>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:paddingTop="0dp"
+                                    android:paddingBottom="2dp">
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="30dp"
+                                        android:layout_marginLeft="5dp"
+                                        android:layout_marginRight="5dp"
+
+                                        android:background="@android:color/white">
+
+                                        <EditText
+                                            android:layout_width="50dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginLeft="5dp"
+                                            android:layout_marginRight="5dp">
+
+
+                                        </EditText>
+                                    </LinearLayout>
+
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:text="occurance" />
+                                </LinearLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="150dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginTop="2dp">
+
+                                    <TextView
+                                        android:layout_width="150dp"
+                                        android:layout_height="@dimen/tv_height"
+                                        android:background="@drawable/gray_gradient"
+                                        android:gravity="center_vertical"
+                                        android:paddingLeft="10dp"
+
+                                        android:text="@string/click_to_select"
+
+                                        android:textSize="12dp" />
+
+                                    <ImageView
+                                        android:layout_width="15dp"
+                                        android:layout_height="@dimen/tv_height"
+                                        android:layout_alignParentRight="true"
+
+                                        android:layout_marginRight="@dimen/arrow_margin_right"
+                                        android:background="@android:color/transparent"
+                                        android:padding="3dp"
+                                        android:src="@drawable/down_arrow" />
+                                </RelativeLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginLeft="10dp"
+                    android:background="#f0f0f0"
+                    android:text="Range of recurrence" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

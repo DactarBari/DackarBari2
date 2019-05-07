@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ECECEC"
+    tools:context=".Activity.PatientHomeActivity">
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true">
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="0.33"
+            android:orientation="vertical"
+            android:id="@+id/linerShopButton"
+
+            android:gravity="center"
+
+            android:layout_height="match_parent">
+           <ImageView
+               android:layout_width="@dimen/patient_bottom_navigation_icon_size"
+               android:src="@drawable/cart_white"
+
+               android:id="@+id/img_one"
+               android:alpha="0.5"
+               android:layout_gravity="center"
+               android:layout_height="@dimen/patient_bottom_navigation_icon_size"
+               />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Shop"
+                android:paddingTop="0dp"
+                android:textSize="10dp"
+                android:id="@+id/tv_one"
+                android:layout_gravity="center"
+                android:textColor="@android:color/white"
+                android:layout_height="wrap_content"
+                android:alpha="0.5"
+
+                />
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="0.33"
+            android:orientation="vertical"
+            android:id="@+id/linerhomebutton"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="@dimen/patient_bottom_navigation_icon_size"
+                android:src="@drawable/home_white"
+                android:layout_gravity="center"
+                android:layout_height="@dimen/patient_bottom_navigation_icon_size"
+                android:id="@+id/img_two"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Home"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:paddingTop="0dp"
+                android:textSize="10dp"
+                android:textColor="@android:color/white"
+                android:id="@+id/tv_two"
+                />
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="0.33"
+            android:orientation="vertical"
+            android:id="@+id/linerAppointmentButton"
+
+            android:gravity="center"
+
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="@dimen/patient_bottom_navigation_icon_size"
+                android:src="@drawable/calender_white_"
+                android:layout_gravity="center"
+                android:layout_height="@dimen/patient_bottom_navigation_icon_size"
+                android:id="@+id/img_three"
+                android:alpha="0.5"
+
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Appointments"
+                android:id="@+id/tv_three"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:paddingTop="0dp"
+                android:textSize="10dp"
+                android:alpha="0.5"
+
+                />
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

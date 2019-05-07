@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    >
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_bar_height">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="@dimen/app_bar_height"
+                android:src="@drawable/left_white"
+                android:layout_marginLeft="15dp"
+                android:padding="17dp"
+                android:onClick="back"
+                android:layout_height="@dimen/app_bar_height"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Select User Type"
+                android:textSize="15dp"
+
+
+                android:textColor="@android:color/white"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="140dp"
+                android:layout_height="match_parent"
+                />
+        </RelativeLayout>
+
+    </android.support.design.widget.AppBarLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/bg_unselected"
+        android:layout_margin="5dp"
+
+        android:layout_height="wrap_content">
+        <Spinner
+            android:id="@+id/spinner"
+            android:padding="10dp"
+
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            />
+    </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

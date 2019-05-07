@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_bar_height">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="@dimen/app_bar_height"
+                android:src="@drawable/left_white"
+                android:layout_marginLeft="15dp"
+                android:padding="17dp"
+                android:onClick="back"
+                android:layout_height="@dimen/app_bar_height"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Chambers"
+                android:textSize="15dp"
+
+
+                android:textColor="@android:color/white"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="140dp"
+                android:layout_height="match_parent"
+                />
+        </RelativeLayout>
+
+    </android.support.design.widget.AppBarLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/menu_height"
+            android:layout_marginBottom="10dp"
+            android:onClick="ViewScheduleDr"
+            android:background="@drawable/bg_selected">
+
+            <RelativeLayout
+                android:layout_width="@dimen/menu_height"
+                android:layout_marginLeft="10dp"
+                android:layout_height="@dimen/menu_height">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:padding="12dp"
+                    android:src="@drawable/circle_stroke_primary" />
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Chamber List"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="View and edit old chamber schedule"
+
+                    android:textColor="@android:color/darker_gray" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/menu_height"
+            android:onClick="addScheduleDr"
+            android:background="@drawable/bg_selected">
+
+            <RelativeLayout
+                android:layout_width="@dimen/menu_height"
+                android:layout_marginLeft="10dp"
+
+                android:layout_height="@dimen/menu_height">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:padding="12dp"
+                    android:src="@drawable/circle_stroke_primary" />
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Add"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Create your new chamber"
+
+                    android:textColor="@android:color/darker_gray" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
