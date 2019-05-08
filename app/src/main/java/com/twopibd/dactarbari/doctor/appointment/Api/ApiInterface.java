@@ -43,6 +43,14 @@ import retrofit2.http.Query;
 
 public interface ApiInterface {
 
+
+
+
+    @GET("global/api/AppsLogin/{userName}/{password}")
+    Call<JsonElement> loginNishi(@Path("userName") String userName,@Path("password") String password);
+
+
+
     @FormUrlEncoded
     @POST("searchDoctor.php")
     Call<List<DoctorModel>> searchChamber(@Field("dr_name") String dr_name,
@@ -99,6 +107,10 @@ public interface ApiInterface {
 
     @POST("search-doctor")
     Call<List<SearchModel>> searchResults();
+
+    @FormUrlEncoded
+    @POST("search-doctor")
+    Call<List<SearchModel>> searchNameResults(@Field("doctor_name") String doctor_name);
 
 
     @FormUrlEncoded

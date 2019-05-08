@@ -200,7 +200,7 @@ public class HomeFragment extends Fragment implements ApiListener.drSearchListen
     }
 
     private void downloadDr() {
-        Api.getInstance().searchDoctor(this);
+       // Api.getInstance().searchDoctor(this);
     }
 
     private void logout() {

@@ -16,10 +16,13 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,12 +38,16 @@ import com.google.android.gms.maps.model.GroundOverlay;
 import com.google.android.gms.maps.model.GroundOverlayOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.JsonElement;
 import com.twopibd.dactarbari.doctor.appointment.Adapter.NearbyDrListAdapterPatient;
+import com.twopibd.dactarbari.doctor.appointment.Adapter.SearchAdapterDoctor;
 import com.twopibd.dactarbari.doctor.appointment.Api.Api;
+import com.twopibd.dactarbari.doctor.appointment.Api.ApiClient;
 import com.twopibd.dactarbari.doctor.appointment.Api.ApiListener;
 import com.twopibd.dactarbari.doctor.appointment.Api.Listener_;
 import com.twopibd.dactarbari.doctor.appointment.Data.Data;
 import com.twopibd.dactarbari.doctor.appointment.Data.DataStore;
+import com.twopibd.dactarbari.doctor.appointment.Model.DoctorModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.SearchModel;
 import com.twopibd.dactarbari.doctor.appointment.R;
 import com.twopibd.dactarbari.doctor.appointment.Utils.CustomDrawerButton;
@@ -51,15 +58,27 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class PatientActivityMap extends GPSOpenActivity implements ApiListener.drSearchListener, OnMapReadyCallback, ApiListener.locationReceiveListener{
+import static com.twopibd.dactarbari.doctor.appointment.Data.Data.USER_ID;
+
+public class PatientActivityMap extends GPSOpenActivity implements ApiListener.drSearchListener,
+        OnMapReadyCallback,
+        ApiListener.locationReceiveListener {
     @BindView(R.id.profileImage)
     CircleImageView profileImage;
 
     @BindView(R.id.recycler_view)
     RecyclerView recycler_view;
+
+    @BindView(R.id.ed_search)
+    TextView ed_search;
     @BindView(R.id.tv_logout)
     TextView tv_logout;
+    @BindView(R.id.recycler_viewSearch)
+    RecyclerView recycler_viewSearch;
     Context context = this;
     CustomDrawerButton customDrawerButton;
     DrawerLayout drawer;
@@ -92,11 +111,60 @@ public class PatientActivityMap extends GPSOpenActivity implements ApiListener.d
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        init_search();
+
 
     }
 
+    private void init_search() {
+        ed_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(PatientActivityMap.this,SearchDrActivity.class));
+            }
+        });
+//        ed_search.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//                String key = charSequence.toString();
+//                if (key.length()>0){
+//                    Api.getInstance().SearchByName(key, new ApiListener.drNameSearchListener() {
+//                        @Override
+//                        public void ondrNameSuccess(List<SearchModel> data) {
+//                            SearchAdapterDoctor  mAdapter = new SearchAdapterDoctor(data);
+//                            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
+//                            recycler_viewSearch.setLayoutManager(mLayoutManager);
+//                            recycler_viewSearch.setItemAnimator(new DefaultItemAnimator());
+//                            //searchDr_recycler.addItemDecoration(new DividerItemDecoration(context, LinearLayoutManager.VERTICAL));
+//
+//                            recycler_viewSearch.setAdapter(mAdapter);
+//                        }
+//
+//                        @Override
+//                        public void ondrNameFailed(String msg) {
+//                            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+//
+//                        }
+//                    });
+//
+//                }
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//
+//            }
+//        });
+    }
+
     private void downloadDr() {
-        Api.getInstance().searchDoctor(this);
+        Api.getInstance().allDoctor(this);
     }
 
     private void logout() {
@@ -135,7 +203,6 @@ public class PatientActivityMap extends GPSOpenActivity implements ApiListener.d
 
             }
         }
-
 
 
     }
@@ -264,6 +331,7 @@ public class PatientActivityMap extends GPSOpenActivity implements ApiListener.d
         Listener_.setLocationReceiveListener(this);
 
     }
+
 
 
 }

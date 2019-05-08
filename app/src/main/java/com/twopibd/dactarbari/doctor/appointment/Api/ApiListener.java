@@ -34,6 +34,10 @@ public class ApiListener {
         void ondrSchedulePostSuccess(StatusMessage data);
         void ondrSchedulePostFailed(String msg);
     }
+    public interface drNameSearchListener {
+        void ondrNameSuccess(List<SearchModel> data);
+        void ondrNameFailed(String msg);
+    }
     public interface drSearchListener {
         void onSearchSuccess(List<SearchModel> data);
         void onSearchFailed(String msg);

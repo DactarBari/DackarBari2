@@ -18,62 +18,82 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
+                android:id="@+id/linerColor"
                 android:background="@color/colorPrimary"
                 android:orientation="vertical">
 
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardCornerRadius="3dp">
-
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <com.twopibd.dactarbari.doctor.appointment.Utils.CustomDrawerButton
-                            android:id="@+id/customDrawer"
-                            android:layout_width="40dp"
-                            android:layout_height="35dp"
-                            android:layout_centerVertical="true"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="1dp"
-                            android:alpha="0.7"
-                            android:padding="10dp"
-                            android:src="@drawable/line_menu" />
-
-                        <TextView
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="45dp"
-                            android:layout_marginRight="40dp"
-                            android:fontFamily="@font/montserrat_regular"
-                            android:gravity="center_vertical"
-                            android:lines="1"
-                            android:paddingLeft="0dp"
-                            android:text="Doctor , medicine , symptom , disease"
-                            android:textSize="13dp" />
+                            android:layout_height="50dp"
+                            android:orientation="horizontal">
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/profileImage"
-                            android:layout_width="40dp"
-                            android:layout_height="35dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="1dp"
-                            android:layout_marginRight="10dp"
-                            android:alpha="0.7"
-                            android:padding="05dp"
-                            android:src="@drawable/doctor_avatar" />
+                            <com.twopibd.dactarbari.doctor.appointment.Utils.CustomDrawerButton
+                                android:id="@+id/customDrawer"
+                                android:layout_width="40dp"
+                                android:layout_height="35dp"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="1dp"
+                                android:alpha="0.7"
+                                android:padding="10dp"
+                                android:src="@drawable/line_menu" />
 
-                    </RelativeLayout>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="45dp"
+                                android:layout_marginRight="40dp"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:gravity="center_vertical"
+                                android:lines="1"
+                                android:id="@+id/ed_search"
+                                android:background="@android:color/white"
+
+                                android:paddingLeft="0dp"
+                                android:hint="Doctor name"
+                                android:textSize="13dp" />
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/profileImage"
+                                android:layout_width="40dp"
+                                android:layout_height="35dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="1dp"
+                                android:layout_marginRight="10dp"
+                                android:alpha="0.7"
+                                android:padding="05dp"
+                                android:src="@drawable/doctor_avatar" />
+
+                        </RelativeLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="@android:color/darker_gray"/>
+                        <android.support.v7.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:id="@+id/recycler_viewSearch"
+                            android:layout_height="wrap_content">
+
+                        </android.support.v7.widget.RecyclerView>
+                    </LinearLayout>
+
+
 
                 </android.support.v7.widget.CardView>
 
@@ -102,13 +122,7 @@
 
             </LinearLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="110dp">
 
-            </android.support.v7.widget.RecyclerView>
 
             <fragment xmlns:map="http://schemas.android.com/apk/res-auto"
                 xmlns:tools="http://schemas.android.com/tools"
@@ -117,7 +131,14 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/recycler_view" />
+                android:layout_below="@id/linerColor" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="110dp">
+
+            </android.support.v7.widget.RecyclerView>
 
 
         </RelativeLayout>

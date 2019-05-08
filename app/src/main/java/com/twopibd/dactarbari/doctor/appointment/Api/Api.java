@@ -453,7 +453,7 @@ public class Api {
 
     }
 
-    public void searchDoctor( final ApiListener.drSearchListener listener) {
+    public void allDoctor( final ApiListener.drSearchListener listener) {
         ApiClient.getApiInterface().searchResults().enqueue(new Callback<List<SearchModel>>() {
             @Override
             public void onResponse(Call<List<SearchModel>> call, Response<List<SearchModel>> response) {
@@ -469,7 +469,22 @@ public class Api {
         });
 
     }
+    public void SearchByName(String name, final ApiListener.drNameSearchListener listener) {
+        ApiClient.getApiInterface().searchNameResults(name).enqueue(new Callback<List<SearchModel>>() {
+            @Override
+            public void onResponse(Call<List<SearchModel>> call, Response<List<SearchModel>> response) {
+                listener.ondrNameSuccess(response.body());
 
+            }
+
+            @Override
+            public void onFailure(Call<List<SearchModel>> call, Throwable t) {
+                listener.ondrNameFailed(t.getLocalizedMessage());
+
+            }
+        });
+
+    }
     public void setDrSchedule(String key, String id, String address, String visit_fee, String days, String chamber_latitude, String chamber_longitude, final ApiListener.drSchedulePostListener listener) {
         ApiClient.getApiInterface().setDrSchedule(key, id, address, visit_fee, days, chamber_latitude, chamber_longitude).enqueue(new Callback<StatusMessage>() {
             @Override

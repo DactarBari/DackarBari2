@@ -3,10 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".Activity.SearchDrActivity">
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
+        android:background="@android:color/white"
         android:layout_height="@dimen/app_bar_height">
 
         <RelativeLayout
@@ -19,9 +21,9 @@
                 android:layout_marginLeft="15dp"
                 android:onClick="back"
                 android:padding="17dp"
-                android:src="@drawable/left_white" />
+                android:src="@drawable/left_back_black" />
 
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
@@ -30,11 +32,17 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="140dp"
                 android:gravity="center_vertical"
-                android:text="Search Doctor"
-                android:textColor="@android:color/white"
+                android:hint="Type doctor name"
+                android:id="@+id/ed_search"
                 android:textSize="15dp" />
         </RelativeLayout>
 
     </android.support.design.widget.AppBarLayout>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:id="@+id/recycler_view"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>
