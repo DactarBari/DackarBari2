@@ -5,48 +5,83 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.mukul.finddoctor.Activity.ChamberDetailActivity">
+    android:background="#1DCCCCCC"
+    tools:context="Activity.ChamberDetailActivity">
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_bar_height">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="@dimen/app_bar_height"
+                android:layout_height="@dimen/app_bar_height"
+                android:layout_marginLeft="15dp"
+                android:onClick="back"
+                android:padding="17dp"
+                android:src="@drawable/left_white" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/tv_name"
+
+
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="140dp"
+                android:gravity="center_vertical"
+                android:textColor="@android:color/white"
+                android:textSize="15dp" />
+        </RelativeLayout>
+
+    </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
+        android:layout_marginTop="@dimen/height_50"
         android:orientation="vertical">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/shadow"
             android:orientation="horizontal"
-            android:paddingBottom="20dp"
-            android:paddingTop="10dp">
+            android:background="@android:color/white"
+            android:paddingBottom="05dp"
+            android:paddingTop="5dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_marginLeft="00dp"
 
 
-                android:layout_weight=".7">
+                android:layout_weight=".8">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
                     android:background="@drawable/circle_shadow"
                     android:src="@drawable/doctor_avatar"
+                    android:id="@+id/profile_image"
                     app:civ_border_color="@android:color/white"
-                    app:civ_border_width="5dp" />
+                    app:civ_border_width="1dp" />
             </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_weight=".3"
+                android:layout_weight=".2"
                 android:orientation="vertical"
                 android:padding="10dp">
 
@@ -57,18 +92,7 @@
                     android:layout_height="wrap_content"
                     android:text="Eye Spacialist" />
 
-                <TextView
-                    android:id="@+id/tv_lastDegree"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="MBBS - Dhaka Medical College"
-                    android:textColor="@android:color/darker_gray" />
 
-                <TextView
-                    android:id="@+id/tv_hospitalName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Kumilla Gov Medical" />
 
                 <TextView
                     android:id="@+id/tv_address"
@@ -81,9 +105,8 @@
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
-            android:text="Schedule"
+            android:text="Chamber Sitting Schedule"
             android:layout_gravity="center_horizontal"
-            android:textSize="16dp"
             android:padding="10dp"
             android:layout_height="wrap_content"
             />

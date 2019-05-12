@@ -9,5 +9,6 @@
     <color name="red">#FD0000</color>
     <color name="grinish">#0522B14C</color>
     <color name="white">#FFFFFF</color>
+    <color name="gray_txt_clr">#A7A7A7</color>
 
 </resources>

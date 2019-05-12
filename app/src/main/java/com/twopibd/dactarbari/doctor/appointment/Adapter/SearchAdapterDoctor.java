@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 
 import com.squareup.picasso.Picasso;
+import com.twopibd.dactarbari.doctor.appointment.Activity.ChamberDetailActivity;
+import com.twopibd.dactarbari.doctor.appointment.Data.DataStore;
 import com.twopibd.dactarbari.doctor.appointment.Model.SearchModel;
 import com.twopibd.dactarbari.doctor.appointment.R;
 
@@ -78,6 +80,8 @@ public class SearchAdapterDoctor extends RecyclerView.Adapter<SearchAdapterDocto
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                DataStore.selectedSearchModel=movie;
+                context.startActivity(new Intent(context, ChamberDetailActivity.class));
 
 
             }

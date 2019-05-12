@@ -4,6 +4,7 @@ package com.twopibd.dactarbari.doctor.appointment.Api;
 import com.google.gson.JsonElement;
 import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentResponse;
 import com.twopibd.dactarbari.doctor.appointment.Model.BasicInfoModel;
+import com.twopibd.dactarbari.doctor.appointment.Model.ChamberInfo;
 import com.twopibd.dactarbari.doctor.appointment.Model.ChamberModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.CountryModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.DepartmentModel;
@@ -12,6 +13,7 @@ import com.twopibd.dactarbari.doctor.appointment.Model.HospitalModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.LoginResponse;
 import com.twopibd.dactarbari.doctor.appointment.Model.ProfileResponse;
 import com.twopibd.dactarbari.doctor.appointment.Model.SearchModel;
+import com.twopibd.dactarbari.doctor.appointment.Model.Slot;
 import com.twopibd.dactarbari.doctor.appointment.Model.StatusMessage;
 import com.twopibd.dactarbari.doctor.appointment.Model.StatusResponse;
 import com.twopibd.dactarbari.doctor.appointment.Model.Test;
@@ -111,6 +113,14 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("search-doctor")
     Call<List<SearchModel>> searchNameResults(@Field("doctor_name") String doctor_name);
+
+    @FormUrlEncoded
+    @POST("chamber-schedule-list")
+    Call<ChamberInfo> getChamberInfo(@Field("chamber_id") String chamber_id);
+
+    @FormUrlEncoded
+    @POST("get-doctor-slots")
+    Call<List<Slot>> getChamberSlots(@Field("schedule_id") String schedule_id,@Field("date") String date);
 
 
     @FormUrlEncoded

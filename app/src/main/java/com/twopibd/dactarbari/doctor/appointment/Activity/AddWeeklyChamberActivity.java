@@ -38,6 +38,7 @@ import com.twopibd.dactarbari.doctor.appointment.Widgets.MyProgressDialog;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -170,6 +171,8 @@ public class AddWeeklyChamberActivity extends AppCompatActivity implements ApiLi
         start_.add(day.getStart_time());
         end_.add(day.getEnd_time());
         capacity_.add(day.getPatient_capacity());
+        Calendar calendar=Calendar.getInstance();
+
 
 
 

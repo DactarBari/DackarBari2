@@ -2,6 +2,8 @@ package com.twopibd.dactarbari.doctor.appointment.Data;
 
 
 import com.google.android.gms.maps.model.LatLng;
+import com.twopibd.dactarbari.doctor.appointment.Model.ScheduleInfo;
+import com.twopibd.dactarbari.doctor.appointment.Model.SearchModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.photoModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.testSelectedModel;
 
@@ -19,6 +21,8 @@ import java.util.Map;
 
 public class DataStore {
     public  static LatLng selectedLocation=null;
+    public  static SearchModel selectedSearchModel=null;
+    public  static List<ScheduleInfo> seelctedscheduleInfo =null;
 
     public static List<String> getUserTypeList() {
         List<String> type = new ArrayList<String>();
@@ -63,6 +67,18 @@ public class DataStore {
         }
 
         SimpleDateFormat targetFormat = new SimpleDateFormat("MMM dd");
+        return targetFormat.format(sourceDate);
+    }
+    public static String changeDateformate1(String time) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        Date sourceDate = null;
+        try {
+            sourceDate = dateFormat.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        SimpleDateFormat targetFormat = new SimpleDateFormat("hh:mm a");
         return targetFormat.format(sourceDate);
     }
 

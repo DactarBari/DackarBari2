@@ -12,6 +12,7 @@ import com.twopibd.dactarbari.doctor.appointment.Api.Api;
 import com.twopibd.dactarbari.doctor.appointment.Api.ApiListener;
 import com.twopibd.dactarbari.doctor.appointment.Data.DataStore;
 import com.twopibd.dactarbari.doctor.appointment.Model.Day;
+import com.twopibd.dactarbari.doctor.appointment.Model.ScheduleInfo;
 import com.twopibd.dactarbari.doctor.appointment.Model.StatusResponse;
 import com.twopibd.dactarbari.doctor.appointment.R;
 import com.twopibd.dactarbari.doctor.appointment.Utils.MyDialog;
@@ -27,6 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.twopibd.dactarbari.doctor.appointment.Data.Data.singleDrModel;
+import static com.twopibd.dactarbari.doctor.appointment.Data.DataStore.seelctedscheduleInfo;
 
 
 public class SendBookingActivity extends AppCompatActivity implements ApiListener.appoinetmentPOstListener {
@@ -67,9 +69,9 @@ public class SendBookingActivity extends AppCompatActivity implements ApiListene
         month = calendar.getTime().getMonth();
         sessionManager = new SessionManager(this);
         weekDays.clear();
-        for (int i = 0; i < singleDrModel.getDays().size(); i++) {
-            List<Day> d = singleDrModel.getDays();
-            weekDays.add(Integer.parseInt(d.get(i).getDay()));
+        for (int i = 0; i < seelctedscheduleInfo.size(); i++) {
+            List<ScheduleInfo> d = seelctedscheduleInfo;
+            weekDays.add((d.get(i).getDay()-1));
 
         }
         tv_weekDay.setText(DataStore.convertToWeekDay(String.valueOf(calendar.getTime().getDay())));
@@ -82,8 +84,9 @@ public class SendBookingActivity extends AppCompatActivity implements ApiListene
     }
 
     private void previousDate() {
+        calendar.add(Calendar.DAY_OF_MONTH, -1);
         if (calendar.after(todayCalender)) {
-            calendar.add(Calendar.DAY_OF_MONTH, -1);
+
             MinusCheck();
         }else {
             Toast.makeText(this, "Cannot appoint for previousday", Toast.LENGTH_SHORT).show();
@@ -113,6 +116,9 @@ public class SendBookingActivity extends AppCompatActivity implements ApiListene
             //  Toast.makeText(this, "Dr is available today", Toast.LENGTH_SHORT).show();
             appointmentDate=""+2019+"-"+ String.valueOf(calendar.getTime().getMonth()+1)+"-"+calendar.getTime().getDate()+" "+"00:00:00";
             //Toast.makeText(this, appointmentDate, Toast.LENGTH_LONG).show();
+            String date=""+Calendar.getInstance().get(Calendar.YEAR)+"-"+doubleDigit(calendar.getTime().getMonth()+1)+"-"+doubleDigit(calendar.getTime().getDate());
+            Toast.makeText(this, date, Toast.LENGTH_LONG).show();
+
 
         } else {
             calendar.add(Calendar.DAY_OF_MONTH, 1);
@@ -122,6 +128,13 @@ public class SendBookingActivity extends AppCompatActivity implements ApiListene
 
 
     }
+    private String doubleDigit(int value) {
+
+        String s1 = "0" + value;
+        String s2 = "" + value;
+        return value < 10 ? s1 : s2;
+    }
+
     private void MinusCheck() {
 
         date = calendar.getTime().getDate();
@@ -137,6 +150,10 @@ public class SendBookingActivity extends AppCompatActivity implements ApiListene
         if (isAvailable) {
             //  Toast.makeText(this, "Dr is available today", Toast.LENGTH_SHORT).show();
             appointmentDate=""+2019+"-"+ String.valueOf(calendar.getTime().getMonth()+1)+"-"+calendar.getTime().getDate()+" "+"00:00:00";
+            Toast.makeText(this, ""+calendar.getTime().getYear()+"-"+calendar.getTime().getMonth()+"-"+calendar.getTime().getDate(), Toast.LENGTH_LONG).show();
+            String date=""+Calendar.getInstance().get(Calendar.YEAR)+"-"+doubleDigit(calendar.getTime().getMonth()+1)+"-"+doubleDigit(calendar.getTime().getDate());
+            Toast.makeText(this, date, Toast.LENGTH_LONG).show();
+
 
         } else {
             calendar.add(Calendar.DAY_OF_MONTH, -1);
@@ -209,5 +226,9 @@ public class SendBookingActivity extends AppCompatActivity implements ApiListene
                 .autoDismiss(false)
                 .showMsgOnly();
 
+    }
+
+    public void back(View view) {
+        onBackPressed();
     }
 }

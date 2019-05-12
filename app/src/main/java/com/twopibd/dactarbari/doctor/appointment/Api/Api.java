@@ -7,6 +7,7 @@ import com.twopibd.dactarbari.doctor.appointment.Activity.DrSignUpActivity;
 import com.twopibd.dactarbari.doctor.appointment.Activity.PatientProfileUpdateActivity;
 import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentResponse;
 import com.twopibd.dactarbari.doctor.appointment.Model.BasicInfoModel;
+import com.twopibd.dactarbari.doctor.appointment.Model.ChamberInfo;
 import com.twopibd.dactarbari.doctor.appointment.Model.ChamberModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.CountryModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.DepartmentModel;
@@ -15,6 +16,7 @@ import com.twopibd.dactarbari.doctor.appointment.Model.HospitalModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.LoginResponse;
 import com.twopibd.dactarbari.doctor.appointment.Model.ProfileResponse;
 import com.twopibd.dactarbari.doctor.appointment.Model.SearchModel;
+import com.twopibd.dactarbari.doctor.appointment.Model.Slot;
 import com.twopibd.dactarbari.doctor.appointment.Model.StatusMessage;
 import com.twopibd.dactarbari.doctor.appointment.Model.StatusResponse;
 import com.twopibd.dactarbari.doctor.appointment.Model.Test;
@@ -453,7 +455,7 @@ public class Api {
 
     }
 
-    public void allDoctor( final ApiListener.drSearchListener listener) {
+    public void allDoctor(final ApiListener.drSearchListener listener) {
         ApiClient.getApiInterface().searchResults().enqueue(new Callback<List<SearchModel>>() {
             @Override
             public void onResponse(Call<List<SearchModel>> call, Response<List<SearchModel>> response) {
@@ -469,6 +471,7 @@ public class Api {
         });
 
     }
+
     public void SearchByName(String name, final ApiListener.drNameSearchListener listener) {
         ApiClient.getApiInterface().searchNameResults(name).enqueue(new Callback<List<SearchModel>>() {
             @Override
@@ -485,6 +488,41 @@ public class Api {
         });
 
     }
+
+    public void chamberDetails(String chamber_id, final ApiListener.ChamberDetailsDownloadListener listener) {
+        ApiClient.getApiInterface().getChamberInfo(chamber_id).enqueue(new Callback<ChamberInfo>() {
+            @Override
+            public void onResponse(Call<ChamberInfo> call, Response<ChamberInfo> response) {
+                listener.onChamberDetailsDownloadSuccess(response.body());
+
+            }
+
+            @Override
+            public void onFailure(Call<ChamberInfo> call, Throwable t) {
+                listener.onChamberDetailsDownloadFailed(t.getLocalizedMessage());
+
+            }
+        });
+
+    }
+
+    public void getScheduleSlot(String schedule_id, String date, final ApiListener.chamberSlotListener listener) {
+        ApiClient.getApiInterface().getChamberSlots(schedule_id, date).enqueue(new Callback<List<Slot>>() {
+            @Override
+            public void onResponse(Call<List<Slot>> call, Response<List<Slot>> response) {
+                listener.onchamberSlotSuccess(response.body());
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Slot>> call, Throwable t) {
+                listener.onchamberSlotFailed(t.getLocalizedMessage());
+
+            }
+        });
+
+    }
+
     public void setDrSchedule(String key, String id, String address, String visit_fee, String days, String chamber_latitude, String chamber_longitude, final ApiListener.drSchedulePostListener listener) {
         ApiClient.getApiInterface().setDrSchedule(key, id, address, visit_fee, days, chamber_latitude, chamber_longitude).enqueue(new Callback<StatusMessage>() {
             @Override

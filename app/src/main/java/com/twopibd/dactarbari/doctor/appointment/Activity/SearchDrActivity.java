@@ -60,7 +60,7 @@ public class SearchDrActivity extends AppCompatActivity {
                             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
                             recycler_view.setLayoutManager(mLayoutManager);
                             recycler_view.setItemAnimator(new DefaultItemAnimator());
-                            recycler_view.addItemDecoration(new DividerItemDecoration(context, LinearLayoutManager.VERTICAL, false));
+                           // recycler_view.addItemDecoration(new DividerItemDecoration(context, LinearLayoutManager.VERTICAL, false));
 
 
                             recycler_view.setAdapter(mAdapter);

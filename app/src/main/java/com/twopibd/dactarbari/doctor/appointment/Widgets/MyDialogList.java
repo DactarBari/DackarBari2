@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 
 import com.twopibd.dactarbari.doctor.appointment.Activity.AddWeeklyChamberActivity;
@@ -26,6 +27,7 @@ import com.twopibd.dactarbari.doctor.appointment.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import static com.twopibd.dactarbari.doctor.appointment.Data.DataStore.selectedTestIds;
@@ -49,6 +51,8 @@ public class MyDialogList {
     private int mYear, mMonth, mDay, mHour, mMinute;
     TextView tv_start_time;
     TextView tv_end_time;
+    int startTime = 0, endTime = 0;
+    int capacity = 0;
 
     public static MyDialogList getInstance() {
 
@@ -120,7 +124,7 @@ public class MyDialogList {
 
     }
 
-    private void showPicker(TextView textView,  int TYPE) {
+    private void showPicker(TextView textView, int TYPE) {
         final Calendar c = Calendar.getInstance();
         mHour = c.get(Calendar.HOUR_OF_DAY);
         mMinute = c.get(Calendar.MINUTE);
@@ -133,13 +137,19 @@ public class MyDialogList {
                     public void onTimeSet(TimePicker view, int hourOfDay,
                                           int minute) {
                         String formatedTime = formateDate(hourOfDay, minute);
-                        if (TYPE == TYPE_START)
+                        if (TYPE == TYPE_START) {
                             day.setStart_time(doubleDigit(hourOfDay) + ":" + doubleDigit(minute));
-                        else
-                        day.setEnd_time(doubleDigit(hourOfDay) + ":" + doubleDigit(minute));
+                            startTime = (hourOfDay * 60) + minute;
+
+                        } else {
+                            day.setEnd_time(doubleDigit(hourOfDay) + ":" + doubleDigit(minute));
+                            endTime = (hourOfDay * 60) + minute;
 
 
-                        textView.setText(formatedTime);
+                        }
+
+
+                        textView.setText(doubleDigit(hourOfDay) + ":" + doubleDigit(minute));
                     }
                 }, mHour, mMinute, false);
         timePickerDialog.show();
@@ -149,6 +159,9 @@ public class MyDialogList {
         String newHour = doubleDigit(hourOfDay % 12);
         String newMinute = doubleDigit(minute);
         String am_pm = amPm(hourOfDay);
+        if (am_pm.equals("AM") && newHour.equals("00")) {
+            newHour = "12";
+        }
         return (newHour + " : " + newMinute + " " + am_pm);
     }
 
@@ -181,16 +194,16 @@ public class MyDialogList {
         tv_end_time = (TextView) dialog.findViewById(R.id.tv_end_time);
         tv_start_time.setText("Select time");
         tv_end_time.setText("Select time");
-        List<String> list=DataStore.sevenDays();
+        List<String> list = DataStore.sevenDays();
 
 
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(activity, android.R.layout.simple_spinner_item,list );
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(activity, android.R.layout.simple_spinner_item, list);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerDays.setAdapter(dataAdapter);
         spinnerDays.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                day.setDay(""+(Integer.parseInt(DataStore.convertDayToNmber(list.get(i)))+1));
+                day.setDay("" + (Integer.parseInt(DataStore.convertDayToNmber(list.get(i))) + 1));
             }
 
             @Override
@@ -198,12 +211,6 @@ public class MyDialogList {
 
             }
         });
-
-
-
-
-
-
 
 
         tv_start_time.setOnClickListener(new View.OnClickListener() {
@@ -222,11 +229,31 @@ public class MyDialogList {
         tv_done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                day.setPatient_capacity(ed_capacity.getText().toString().trim());
-                scheduleDialogListener.onYesDialogClicked(true, day);
+                capacity = Integer.parseInt(ed_capacity.getText().toString().trim());
+                if (endTime > startTime) {
+                    if (((endTime - startTime) % capacity) == 0) {
+                        day.setPatient_capacity(ed_capacity.getText().toString().trim());
+                        scheduleDialogListener.onYesDialogClicked(true, day);
+                        dialog.dismiss();
+                    } else {
+
+                        int timeToLeft = ((endTime - startTime) % capacity);
+                        int timetoAdd = capacity - timeToLeft;
+                        endTime += timetoAdd;
+                        int newHour = Integer.parseInt(convertTime(endTime));
+                        int newMinute = endTime - (newHour * 60);
+
+                        String formatedTime = formateDate(newHour, newMinute);
+                        day.setEnd_time("" + newHour + ":" + doubleDigit(newMinute));
+
+                        tv_end_time.setText("" + newHour + ":" + doubleDigit(newMinute));
+
+                    }
+                } else {
+                    Toast.makeText(activity, "You cannot select end time less than start time", Toast.LENGTH_SHORT).show();
+                }
 
 
-                dialog.dismiss();
             }
         });
         tv_cancel.setOnClickListener(new View.OnClickListener() {
@@ -240,6 +267,13 @@ public class MyDialogList {
         });
 
 
+    }
+
+    public String convertTime(int time) {
+        String ti = "";
+        int v = time / 60;
+        ti = doubleDigit(v);
+        return ti;
     }
 
     public void showTestList(testSelectedListener listener) {

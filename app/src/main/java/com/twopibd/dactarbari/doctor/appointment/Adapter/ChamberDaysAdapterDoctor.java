@@ -1,5 +1,6 @@
 package com.twopibd.dactarbari.doctor.appointment.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,7 +19,9 @@ import com.twopibd.dactarbari.doctor.appointment.Model.ChamberModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.ScheduleInfo;
 import com.twopibd.dactarbari.doctor.appointment.Model.StatusMessage;
 import com.twopibd.dactarbari.doctor.appointment.R;
+import com.twopibd.dactarbari.doctor.appointment.Utils.MyDialog;
 import com.twopibd.dactarbari.doctor.appointment.Utils.SessionManager;
+import com.twopibd.dactarbari.doctor.appointment.Widgets.MyDialogList;
 import com.twopibd.dactarbari.doctor.appointment.Widgets.MyProgressDialog;
 
 import java.util.ArrayList;
@@ -32,10 +35,12 @@ import static com.twopibd.dactarbari.doctor.appointment.Data.DataStore.photoMode
  */
 
 
-public class ChamberDaysAdapterDoctor extends RecyclerView.Adapter<ChamberDaysAdapterDoctor.MyViewHolder> {
+public class ChamberDaysAdapterDoctor extends RecyclerView.Adapter<ChamberDaysAdapterDoctor.MyViewHolder>  {
     List<ScheduleInfo> list=new ArrayList<>();
 
     Context context;
+
+
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView tv_day, tv_start, tv_end, tv_capacity;
@@ -87,26 +92,36 @@ public class ChamberDaysAdapterDoctor extends RecyclerView.Adapter<ChamberDaysAd
             @Override
             public void onClick(View view) {
                 MyProgressDialog.with(context);
-                Api.getInstance().deleteSchedule(key, "" + movie.getId(), new ApiListener.drScheduleDeleteListener() {
+                MyDialogList.getInstance().with((Activity)context).yesNoConfirmation(new MyDialogList.confirmListener() {
                     @Override
-                    public void onScheduleDeleteSuccess(StatusMessage data) {
-                        MyProgressDialog.destroy();
-                        if (data.getStatus()){
-                            Toast.makeText(context, data.getMessage(), Toast.LENGTH_SHORT).show();
-                            list.remove(position);
-                            notifyItemRemoved(position);
-                            notifyItemRangeChanged(position,list.size());
+                    public void onDialogClicked(boolean result) {
+                        if (result){
+                            Api.getInstance().deleteSchedule(key, "" + movie.getId(), new ApiListener.drScheduleDeleteListener() {
+                                @Override
+                                public void onScheduleDeleteSuccess(StatusMessage data) {
+                                    MyProgressDialog.destroy();
+                                    if (data.getStatus()){
+                                        Toast.makeText(context, data.getMessage(), Toast.LENGTH_SHORT).show();
+                                        list.remove(position);
+                                        notifyItemRemoved(position);
+                                        notifyItemRangeChanged(position,list.size());
+                                    }
+
+                                }
+
+                                @Override
+                                public void onScheduleDeleteFailed(String msg) {
+                                    MyProgressDialog.destroy();
+                                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+
+                                }
+                            });
+                        }else {
+                            Toast.makeText(context, "Canceled", Toast.LENGTH_SHORT).show();
                         }
-
                     }
+                }, "Do you really want to delete this schedule?");
 
-                    @Override
-                    public void onScheduleDeleteFailed(String msg) {
-                        MyProgressDialog.destroy();
-                        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-
-                    }
-                });
 
             }
         });

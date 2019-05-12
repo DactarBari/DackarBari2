@@ -112,6 +112,7 @@ public class PatientActivityMap extends GPSOpenActivity implements ApiListener.d
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         init_search();
+        Toast.makeText(context, sessionManager.getUserId(), Toast.LENGTH_SHORT).show();
 
 
     }
