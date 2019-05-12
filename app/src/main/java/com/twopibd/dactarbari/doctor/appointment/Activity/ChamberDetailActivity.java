@@ -114,6 +114,7 @@ public class ChamberDetailActivity extends AppCompatActivity implements ApiListe
         recycler_view.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL,false));
 
         recycler_view.setAdapter(mAdapter);
+        //Toast.makeText(context, ""+DataStore.seelctedscheduleInfo.size(), Toast.LENGTH_SHORT).show();
 
     }
 
