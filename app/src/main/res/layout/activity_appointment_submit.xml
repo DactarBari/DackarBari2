@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@android:color/white"
-    tools:context=".Activity.SendBookingActivity">
+    tools:context=".Activity.AppointmentSubmitActivity">
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_height">
@@ -23,7 +21,7 @@
                 />
             <TextView
                 android:layout_width="match_parent"
-                android:text="Pick date and time"
+                android:text="Booking"
                 android:textSize="15dp"
 
 
@@ -39,39 +37,34 @@
     </android.support.design.widget.AppBarLayout>
     <ScrollView
         android:layout_width="match_parent"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
         android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/height_50"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
 
-            android:orientation="vertical">
-            <com.github.badoualy.datepicker.DatePickerTimeline
+            <EditText
                 android:layout_width="match_parent"
-                android:id="@+id/dateTimeline"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:text="Available Slots"
-                android:paddingLeft="10dp"
-                android:paddingBottom="10dp"
-                android:layout_gravity="center"
-                android:layout_height="wrap_content"
+                android:background="@drawable/ed_selector"
+                android:hint="Appointment for"
+                android:padding="10dp"
+                android:textSize="12dp"
+                android:layout_height="@dimen/ed_height"
                 />
-            <android.support.v7.widget.RecyclerView
+            <EditText
                 android:layout_width="match_parent"
-                android:id="@+id/recycler_view"
-                android:layout_height="wrap_content">
-
-            </android.support.v7.widget.RecyclerView>
-
-
-
-
-
-
+                android:background="@drawable/ed_selector"
+                android:hint="Current problems"
+                android:padding="10dp"
+                android:textSize="12dp"
+                android:layout_height="@dimen/ed_height"
+                />
 
         </LinearLayout>
     </ScrollView>
 
-
-</LinearLayout>
+</RelativeLayout>

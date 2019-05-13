@@ -21,7 +21,14 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.DepartmentListActivityPatient"></activity>
+        <activity android:name=".Activity.AppointmentSubmitActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity.DepartmentListActivityPatient" />
         <activity android:name=".Activity.PatientActivityMap" />
         <activity android:name=".Activity.AddWeeklyChamber2" />
         <!--
@@ -87,11 +94,7 @@
             android:name=".Activity.LoginActivity"
             android:label="Login"
             android:windowSoftInputMode="stateHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Activity.SignUpActivity"

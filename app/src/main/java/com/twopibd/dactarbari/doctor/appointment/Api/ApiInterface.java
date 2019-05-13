@@ -110,6 +110,7 @@ public interface ApiInterface {
     @POST("search-doctor")
     Call<List<SearchModel>> searchResults();
 
+
     @FormUrlEncoded
     @POST("search-doctor")
     Call<List<SearchModel>> searchNameResults(@Field("doctor_name") String doctor_name);
