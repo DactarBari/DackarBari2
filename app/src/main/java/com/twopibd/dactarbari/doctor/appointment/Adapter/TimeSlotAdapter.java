@@ -1,6 +1,7 @@
 package com.twopibd.dactarbari.doctor.appointment.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,7 +11,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.twopibd.dactarbari.doctor.appointment.Activity.AppointmentSubmitActivity;
+import com.twopibd.dactarbari.doctor.appointment.Activity.SendBookingActivity;
 import com.twopibd.dactarbari.doctor.appointment.Data.DataStore;
 import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.Slot;
@@ -78,7 +82,7 @@ public class TimeSlotAdapter extends RecyclerView.Adapter<TimeSlotAdapter.MyView
         final Slot movie = list.get(position);
         context = holder.tv_time.getContext();
         holder.tv_time.setText(DataStore.changeDateformate1(movie.getTime().substring(0, 7)) + "-" + DataStore.changeDateformate1(movie.getTime().substring(9, 16)));
-        if (movie.getIsAvailable()) {
+        if (true) {
             holder.tv_time.setTextColor(context.getResources().getColor(R.color.colorPrimary));
             final int sdk = android.os.Build.VERSION.SDK_INT;
             if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
@@ -98,7 +102,15 @@ public class TimeSlotAdapter extends RecyclerView.Adapter<TimeSlotAdapter.MyView
             }
 
         }
+        holder.itemView.setOnClickListener((View v) -> slotClicked(position));
 
+
+    }
+
+    private void slotClicked(int position) {
+        Toast.makeText(context, "Sloat ID : " + list.get(position).getSchedule_id(), Toast.LENGTH_SHORT).show();
+        DataStore.selectedSloat = list.get(position);
+        context.startActivity(new Intent(context, AppointmentSubmitActivity.class));
 
     }
 

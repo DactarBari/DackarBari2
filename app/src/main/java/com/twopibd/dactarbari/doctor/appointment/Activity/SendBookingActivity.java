@@ -100,6 +100,7 @@ public class SendBookingActivity extends AppCompatActivity implements ApiListene
        if (scheduleList.get((calendar1.getTime().getDay() + 1))!=null){
            String id = scheduleList.get((calendar1.getTime().getDay() + 1)).toString();
            MyProgressDialog.with(context);
+           Toast.makeText(this, "schedule is is "+id, Toast.LENGTH_SHORT).show();
            Api.getInstance().getScheduleSlot(id, date, this);
        }
 
@@ -137,6 +138,8 @@ public class SendBookingActivity extends AppCompatActivity implements ApiListene
                     String date = String.valueOf(year) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(day);
                     //Toast.makeText(SendBookingActivity.this, id+"\n"+date, Toast.LENGTH_LONG).show();
                     MyProgressDialog.with(context);
+                    Toast.makeText(context, "schedule is is "+id, Toast.LENGTH_SHORT).show();
+
                     Api.getInstance().getScheduleSlot(id, date, new ApiListener.chamberSlotListener() {
                         public void onchamberSlotSuccess(List<Slot> data) {
                             MyProgressDialog.destroy();

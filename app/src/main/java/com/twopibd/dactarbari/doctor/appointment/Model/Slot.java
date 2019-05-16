@@ -8,9 +8,10 @@ public class Slot {
 @SerializedName("time")
 @Expose
 private String time;
-@SerializedName("isAvailable")
+@SerializedName("schedule_id")
 @Expose
-private Boolean isAvailable;
+private String schedule_id;
+
 
 public String getTime() {
 return time;
@@ -20,12 +21,12 @@ public void setTime(String time) {
 this.time = time;
 }
 
-public Boolean getIsAvailable() {
-return isAvailable;
-}
 
-public void setIsAvailable(Boolean isAvailable) {
-this.isAvailable = isAvailable;
-}
+    public String getSchedule_id() {
+        return schedule_id;
+    }
 
+    public void setSchedule_id(String schedule_id) {
+        this.schedule_id = schedule_id;
+    }
 }

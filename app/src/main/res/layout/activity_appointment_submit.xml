@@ -46,7 +46,36 @@
             android:layout_marginTop="@dimen/height_50"
             android:orientation="vertical"
             android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Appointment With "
+                android:fontFamily="@font/montserrat_regular"
+                android:paddingLeft="5dp"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Dr Dipon Deb Nath"
+                android:paddingLeft="5dp"
+                android:id="@+id/tv_drName"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Appointment Date and time"
+                android:paddingLeft="5dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
 
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="7:10 AM to 7:20 AM Mon \n21 August 2019"
+                android:paddingLeft="5dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/tv_time"
+                />
             <EditText
                 android:layout_width="match_parent"
                 android:background="@drawable/ed_selector"
