@@ -21,9 +21,6 @@ private String createdAt;
 @SerializedName("updated_at")
 @Expose
 private String updatedAt;
-@SerializedName("prescription_info")
-@Expose
-private List<PrescriptionInfo> prescriptionInfo = null;
 
 public Integer getId() {
 return id;
@@ -65,12 +62,6 @@ public void setUpdatedAt(String updatedAt) {
 this.updatedAt = updatedAt;
 }
 
-public List<PrescriptionInfo> getPrescriptionInfo() {
-return prescriptionInfo;
-}
 
-public void setPrescriptionInfo(List<PrescriptionInfo> prescriptionInfo) {
-this.prescriptionInfo = prescriptionInfo;
-}
 
 }

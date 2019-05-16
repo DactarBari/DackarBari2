@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -109,10 +110,12 @@ public class ChamberDetailActivity extends AppCompatActivity implements ApiListe
         recycler_view = (RecyclerView) findViewById(R.id.recycler_view);
         mAdapter = new ScheduleAdapter(data.getScheduleInfo());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
-        recycler_view.setLayoutManager(mLayoutManager);
+        StaggeredGridLayoutManager _sGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+
+        recycler_view.setLayoutManager(_sGridLayoutManager);
         recycler_view.setItemAnimator(new DefaultItemAnimator());
         //recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-        recycler_view.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL,false));
+        //recycler_view.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL,false));
 
         recycler_view.setAdapter(mAdapter);
         //Toast.makeText(context, ""+data.getScheduleInfo().get(0).getDay(), Toast.LENGTH_SHORT).show();

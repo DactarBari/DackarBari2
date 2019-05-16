@@ -23,6 +23,7 @@ import java.util.Map;
 
 public class DataStore {
     public  static LatLng selectedLocation=null;
+    public  static String selectedDate=null;
     public  static SearchModel selectedSearchModel=null;
     public  static Slot selectedSloat=null;
     public  static ChamberInfo chamberInfo=null;

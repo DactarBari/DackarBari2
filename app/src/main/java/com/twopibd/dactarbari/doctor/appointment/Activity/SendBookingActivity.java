@@ -63,6 +63,7 @@ public class SendBookingActivity extends AppCompatActivity implements ApiListene
     Context context = this;
     List<Slot> dataList = new ArrayList<>();
     TimeSlotAdapter mAdapter;
+    String selectedAppointmentDate;
 
 
     @Override
@@ -97,13 +98,14 @@ public class SendBookingActivity extends AppCompatActivity implements ApiListene
         }
         Calendar calendar1 = Calendar.getInstance();
         String date = calendar.get(Calendar.YEAR) + "-" + String.valueOf(calendar.get(Calendar.MONTH) + 1) + "-" + String.valueOf(calendar.get(Calendar.DATE));
-       if (scheduleList.get((calendar1.getTime().getDay() + 1))!=null){
-           String id = scheduleList.get((calendar1.getTime().getDay() + 1)).toString();
-           MyProgressDialog.with(context);
-           Toast.makeText(this, "schedule is is "+id, Toast.LENGTH_SHORT).show();
-           Api.getInstance().getScheduleSlot(id, date, this);
-       }
-
+        selectedAppointmentDate=date;
+        DataStore.selectedDate=selectedAppointmentDate;
+        if (scheduleList.get((calendar1.getTime().getDay() + 1)) != null) {
+            String id = scheduleList.get((calendar1.getTime().getDay() + 1)).toString();
+            MyProgressDialog.with(context);
+            Toast.makeText(this, "schedule is is " + id, Toast.LENGTH_SHORT).show();
+            Api.getInstance().getScheduleSlot(id, date, this);
+        }
 
 
         //  Toast.makeText(this, date, Toast.LENGTH_SHORT).show();
@@ -138,7 +140,10 @@ public class SendBookingActivity extends AppCompatActivity implements ApiListene
                     String date = String.valueOf(year) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(day);
                     //Toast.makeText(SendBookingActivity.this, id+"\n"+date, Toast.LENGTH_LONG).show();
                     MyProgressDialog.with(context);
-                    Toast.makeText(context, "schedule is is "+id, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "schedule is is " + id, Toast.LENGTH_SHORT).show();
+                    selectedAppointmentDate=date;
+                    DataStore.selectedDate=selectedAppointmentDate;
+
 
                     Api.getInstance().getScheduleSlot(id, date, new ApiListener.chamberSlotListener() {
                         public void onchamberSlotSuccess(List<Slot> data) {

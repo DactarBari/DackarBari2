@@ -201,9 +201,10 @@ public class PatientProfileUpdateActivity extends AppCompatActivity implements A
                 ed_postCode.setText(response.getUserInfo().getPostcode());
                 ed_streetNo.setText(response.getUserInfo().getStreetAddress());
                 ed_houseNo.setText(response.getUserInfo().getHouseNo());
+                String TYPE="patient";
 
 
-                Api.getInstance().getProfile(key, sessionManager.getUserId(), this);
+                Api.getInstance().getProfile(key, sessionManager.getUserId(),TYPE, this);
 
             } else {
                 MyProgressDialog.destroy();
@@ -284,7 +285,6 @@ public class PatientProfileUpdateActivity extends AppCompatActivity implements A
                         //Toast.makeText(context, userInfo.getCountry(), Toast.LENGTH_SHORT).show();
                         initCountrySpinner(response1.getCountryInfo(), userInfo.getCountry());
                         ed_name.setText(sessionManager.getUserName());
-                        setUpPrescriptions(response1.getPatientInfo().getPrescriptionInfo());
                     }
 
                 } else {
@@ -358,7 +358,7 @@ public class PatientProfileUpdateActivity extends AppCompatActivity implements A
 
     @Override
     public void onProfileFailed(String msg) {
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Error    ::::   "+msg, Toast.LENGTH_SHORT).show();
 
     }
 
@@ -420,5 +420,9 @@ public class PatientProfileUpdateActivity extends AppCompatActivity implements A
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
 
 
+    }
+
+    public void back(View view) {
+        onBackPressed();
     }
 }

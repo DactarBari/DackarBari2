@@ -83,8 +83,8 @@ public class Api {
 
     }
 
-    public void getProfile(String key, String id, final ApiListener.profileGet listener) {
-        ApiClient.getApiInterface().getProfileInfo(key, id).enqueue(new Callback<JsonElement>() {
+    public void getProfile(String key, String id,String user_type, final ApiListener.profileGet listener) {
+        ApiClient.getApiInterface().getProfileInfo(key, id,user_type).enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                 //listener.onProfileSuccess(response.body().toString());
@@ -522,6 +522,22 @@ public class Api {
         });
 
     }
+    public void postAppointment(String token,String schedule_id, String slot_start_time,String slot_end_time, String patient_id, String appointment_for, String current_problems, String date,  final ApiListener.appointmentPostListener listener) {
+        ApiClient.getApiInterface().postAppointmentPatient(token,schedule_id, slot_start_time,slot_end_time,patient_id,appointment_for,current_problems,date).enqueue(new Callback<StatusMessage>() {
+            @Override
+            public void onResponse(Call<StatusMessage> call, Response<StatusMessage> response) {
+                listener.onAppointmentPostSuccess(response.body());
+
+            }
+
+            @Override
+            public void onFailure(Call<StatusMessage> call, Throwable t) {
+                listener.onAppointmentPostFailed(t.getLocalizedMessage());
+
+            }
+        });
+
+    }
 
     public void setDrSchedule(String key, String id, String address, String visit_fee, String days, String chamber_latitude, String chamber_longitude, final ApiListener.drSchedulePostListener listener) {
         ApiClient.getApiInterface().setDrSchedule(key, id, address, visit_fee, days, chamber_latitude, chamber_longitude).enqueue(new Callback<StatusMessage>() {
@@ -576,24 +592,24 @@ public class Api {
         });
     }
 
-    public void postAppointment(String patient_id, String chamber_id, String dr_id, String appointment_for, String phone, String problems, String date, final ApiListener.appoinetmentPOstListener listener) {
-
-        ApiClient.getApiInterface().postAppointment(patient_id, chamber_id, dr_id, appointment_for, phone, problems, date).enqueue(new Callback<StatusResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<StatusResponse> call, @NonNull Response<StatusResponse> response) {
-                if (response != null) {
-                    listener.onAppointmentPostSuccess(response.body());
-
-                }
-
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<StatusResponse> call, @NonNull Throwable t) {
-                listener.onAppointmentPostFailed(t.getLocalizedMessage());
-            }
-        });
-    }
+//    public void postAppointment(String patient_id, String chamber_id, String dr_id, String appointment_for, String phone, String problems, String date, final ApiListener.appoinetmentPOstListener listener) {
+//
+//        ApiClient.getApiInterface().postAppointment(patient_id, chamber_id, dr_id, appointment_for, phone, problems, date).enqueue(new Callback<StatusResponse>() {
+//            @Override
+//            public void onResponse(@NonNull Call<StatusResponse> call, @NonNull Response<StatusResponse> response) {
+//                if (response != null) {
+//                    listener.onAppointmentPostSuccess(response.body());
+//
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(@NonNull Call<StatusResponse> call, @NonNull Throwable t) {
+//                listener.onAppointmentPostFailed(t.getLocalizedMessage());
+//            }
+//        });
+//    }
 
     public void postRecommendationTest(String appointment_id, String test_id, final ApiListener.recomendationTestPostListener listener) {
 

@@ -77,20 +77,11 @@
                                 android:layout_marginTop="1dp"
                                 android:layout_marginRight="10dp"
                                 android:alpha="0.7"
-                                android:padding="05dp"
+                                android:padding="00dp"
                                 android:src="@drawable/doctor_avatar" />
 
                         </RelativeLayout>
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="0.5dp"
-                            android:background="@android:color/darker_gray"/>
-                        <android.support.v7.widget.RecyclerView
-                            android:layout_width="match_parent"
-                            android:id="@+id/recycler_viewSearch"
-                            android:layout_height="wrap_content">
 
-                        </android.support.v7.widget.RecyclerView>
                     </LinearLayout>
 
 
@@ -108,7 +99,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Nearby Doctor"
+                        android:text="What are you looking for"
                         android:textColor="@android:color/white" />
 
                     <TextView

@@ -539,8 +539,10 @@ public class DrPersonalInfoActivity extends AppCompatActivity implements ApiList
                 ed_streetNo.setText(response.getUserInfo().getStreetAddress());
                 ed_houseNo.setText(response.getUserInfo().getHouseNo());
 
+                String TYPE="doctor";
 
-                Api.getInstance().getProfile(key, sessionManager.getUserId(), this);
+
+                Api.getInstance().getProfile(key, sessionManager.getUserId(),TYPE, this);
 
             } else {
                 MyProgressDialog.destroy();
@@ -582,5 +584,9 @@ public class DrPersonalInfoActivity extends AppCompatActivity implements ApiList
 
 
 
+    }
+
+    public void back(View view) {
+        onBackPressed();
     }
 }

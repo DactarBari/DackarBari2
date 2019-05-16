@@ -2,23 +2,44 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/bg_selected"
+    android:background="@drawable/bg_unselected"
     android:padding="10dp"
+    android:orientation="vertical"
     android:id="@+id/linerBody"
-    android:layout_height="50dp">
+    android:layout_height="wrap_content">
     <TextView
         android:layout_width="150dp"
-        android:text="15:08:00-15:10:00"
+        android:text="15:08 PM"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:gravity="center"
-        android:id="@+id/tv_time"
+        android:id="@+id/tv_timeStart"
         android:textSize="14dp"
         android:fontFamily="@font/montserrat_regular"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
-        android:textColor="@color/colorPrimary"
         android:layout_height="match_parent"
         />
+    <TextView
+        android:layout_width="150dp"
+        android:text="to"
+        android:gravity="center"
+        android:textSize="14dp"
+        android:fontFamily="@font/montserrat_regular"
 
+        android:layout_height="match_parent"
+        />
+    <TextView
+        android:layout_width="150dp"
+        android:text="15:08 AM"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:gravity="center"
+        android:id="@+id/tv_timeEnd"
+        android:textSize="14dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_height="match_parent"
+        />
 </LinearLayout>

@@ -35,12 +35,19 @@ public class ApiListener {
         void ondrSchedulePostSuccess(StatusMessage data);
         void ondrSchedulePostFailed(String msg);
     }
+    public interface appointmentPostListener {
+        void onAppointmentPostSuccess(StatusMessage data);
+        void onAppointmentPostFailed(String msg);
+    }
     public interface chamberSlotListener {
         void onchamberSlotSuccess(List<Slot> data);
+
         void onchamberSlotFailed(String msg);
     }
+
     public interface ChamberDetailsDownloadListener {
         void onChamberDetailsDownloadSuccess(ChamberInfo data);
+
         void onChamberDetailsDownloadFailed(String msg);
     }
 

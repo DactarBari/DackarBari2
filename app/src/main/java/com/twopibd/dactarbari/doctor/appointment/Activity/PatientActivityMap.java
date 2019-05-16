@@ -41,18 +41,22 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.JsonElement;
 import com.twopibd.dactarbari.doctor.appointment.Adapter.NearbyDrListAdapterPatient;
 import com.twopibd.dactarbari.doctor.appointment.Adapter.SearchAdapterDoctor;
+import com.twopibd.dactarbari.doctor.appointment.Adapter.WhatYouAreLookingAdapterPatient;
 import com.twopibd.dactarbari.doctor.appointment.Api.Api;
 import com.twopibd.dactarbari.doctor.appointment.Api.ApiClient;
 import com.twopibd.dactarbari.doctor.appointment.Api.ApiListener;
 import com.twopibd.dactarbari.doctor.appointment.Api.Listener_;
 import com.twopibd.dactarbari.doctor.appointment.Data.Data;
 import com.twopibd.dactarbari.doctor.appointment.Data.DataStore;
+import com.twopibd.dactarbari.doctor.appointment.Model.DepartmentModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.DoctorModel;
+import com.twopibd.dactarbari.doctor.appointment.Model.FeatureType;
 import com.twopibd.dactarbari.doctor.appointment.Model.SearchModel;
 import com.twopibd.dactarbari.doctor.appointment.R;
 import com.twopibd.dactarbari.doctor.appointment.Utils.CustomDrawerButton;
 import com.twopibd.dactarbari.doctor.appointment.Utils.SessionManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -66,7 +70,8 @@ import static com.twopibd.dactarbari.doctor.appointment.Data.Data.USER_ID;
 
 public class PatientActivityMap extends GPSOpenActivity implements ApiListener.drSearchListener,
         OnMapReadyCallback,
-        ApiListener.locationReceiveListener {
+        ApiListener.locationReceiveListener ,
+        ApiListener.DepartmentListDownlaodListener{
     @BindView(R.id.profileImage)
     CircleImageView profileImage;
 
@@ -77,8 +82,7 @@ public class PatientActivityMap extends GPSOpenActivity implements ApiListener.d
     TextView ed_search;
     @BindView(R.id.tv_logout)
     TextView tv_logout;
-    @BindView(R.id.recycler_viewSearch)
-    RecyclerView recycler_viewSearch;
+
     Context context = this;
     CustomDrawerButton customDrawerButton;
     DrawerLayout drawer;
@@ -112,8 +116,26 @@ public class PatientActivityMap extends GPSOpenActivity implements ApiListener.d
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         init_search();
-        Toast.makeText(context, sessionManager.getUserId(), Toast.LENGTH_SHORT).show();
+        init_lookingFor();
 
+
+    }
+
+    private void init_lookingFor() {
+        List<FeatureType> list = new ArrayList<>();
+        list.add(new FeatureType("Doctor","Book","appointment",R.drawable.doctor_female));
+        list.add(new FeatureType("Medicines ","Buy","health product",R.drawable.doctor_female));
+        list.add(new FeatureType("Diagonostics","Book health","test",R.drawable.doctor_female));
+
+
+        WhatYouAreLookingAdapterPatient mAdapter = new WhatYouAreLookingAdapterPatient(list);
+        LinearLayoutManager layoutManager
+                = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+        recycler_view.setLayoutManager(layoutManager);
+        recycler_view.setItemAnimator(new DefaultItemAnimator());
+        //recycler_view.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL,false));
+
+        recycler_view.setAdapter(mAdapter);
 
     }
 
@@ -121,7 +143,7 @@ public class PatientActivityMap extends GPSOpenActivity implements ApiListener.d
         ed_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(PatientActivityMap.this,SearchDrActivity.class));
+                startActivity(new Intent(PatientActivityMap.this, SearchDrActivity.class));
             }
         });
 //        ed_search.addTextChangedListener(new TextWatcher() {
@@ -234,8 +256,14 @@ public class PatientActivityMap extends GPSOpenActivity implements ApiListener.d
                 DataStore.selectedLocation = mMap.getCameraPosition().target;
             }
         });
-        downloadDr();
+        //downloadDr();
+        downloadDepartments();
 
+
+    }
+
+    private void downloadDepartments() {
+        Api.getInstance().downloadDepartments(this);
     }
 
     @Override
@@ -334,5 +362,14 @@ public class PatientActivityMap extends GPSOpenActivity implements ApiListener.d
     }
 
 
+    @Override
+    public void onDepartmentLisDownloadSuccess(List<DepartmentModel> data) {
+        Toast.makeText(context, ""+data.size(), Toast.LENGTH_SHORT).show();
+    }
 
+    @Override
+    public void onDepartmentLisDownloadFailed(String msg) {
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+
+    }
 }

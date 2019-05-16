@@ -46,11 +46,8 @@ import retrofit2.http.Query;
 public interface ApiInterface {
 
 
-
-
     @GET("global/api/AppsLogin/{userName}/{password}")
-    Call<JsonElement> loginNishi(@Path("userName") String userName,@Path("password") String password);
-
+    Call<JsonElement> loginNishi(@Path("userName") String userName, @Path("password") String password);
 
 
     @FormUrlEncoded
@@ -91,7 +88,7 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("view-account-info")
-    Call<JsonElement> getProfileInfo(@Header("Authorization") String token, @Field("id") String id);
+    Call<JsonElement> getProfileInfo(@Header("Authorization") String token, @Field("id") String id, @Field("patient") String patient);
 
     @FormUrlEncoded
     @POST("delete-doctor-chamber")
@@ -104,7 +101,6 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("delete-doctor-schedule")
     Call<StatusMessage> deleteScheduleDay(@Header("Authorization") String token, @Field("schedule_id") String schedule_id);
-
 
 
     @POST("search-doctor")
@@ -121,7 +117,18 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("get-doctor-slots")
-    Call<List<Slot>> getChamberSlots(@Field("schedule_id") String schedule_id,@Field("date") String date);
+    Call<List<Slot>> getChamberSlots(@Field("schedule_id") String schedule_id, @Field("date") String date);
+
+    @FormUrlEncoded
+    @POST("book-an-appointment")
+    Call<StatusMessage> postAppointmentPatient(@Header("Authorization") String token,
+                                             @Field("schedule_id") String schedule_id,
+                                               @Field("slot_start_time") String slot_start_time,
+                                               @Field("slot_end_time") String slot_end_time,
+                                               @Field("patient_id") String patient_id,
+                                               @Field("appointment_for") String appointment_for,
+                                               @Field("current_problems") String current_problems,
+                                               @Field("date") String date);
 
 
     @FormUrlEncoded
@@ -134,6 +141,7 @@ public interface ApiInterface {
                                       @Field("chamber_latitude") String chamber_latitude,
                                       @Field("chamber_longitude") String chamber_longitude
     );
+
     @POST("add-prescription-photo/9")
     Call<StatusMessage> addPrescription(@Header("Authorization") String token, @Body RequestBody image);
 
@@ -171,7 +179,6 @@ public interface ApiInterface {
                                      @Field("department") String department,
                                      @Field("previous_hospital") String previous_hospital,
                                      @Path("id") String id);
-
 
 
     @FormUrlEncoded

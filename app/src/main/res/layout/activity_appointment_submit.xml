@@ -83,16 +83,43 @@
                 android:padding="10dp"
                 android:textSize="12dp"
                 android:layout_height="@dimen/ed_height"
+                android:id="@+id/ed_appointmentFor"
                 />
             <EditText
                 android:layout_width="match_parent"
                 android:background="@drawable/ed_selector"
                 android:hint="Current problems"
                 android:padding="10dp"
+                android:id="@+id/ed_currentProblems"
                 android:textSize="12dp"
                 android:layout_height="@dimen/ed_height"
                 />
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="10dp"
+                android:onClick="submit"
 
+
+                android:layout_marginRight="70dp"
+                app:cardBackgroundColor="@color/colorPrimary"
+                app:cardCornerRadius="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingLeft="50dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="50dp"
+                    android:paddingBottom="10dp"
+                    android:text="Submit"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white" />
+            </android.support.v7.widget.CardView>
         </LinearLayout>
     </ScrollView>
 
