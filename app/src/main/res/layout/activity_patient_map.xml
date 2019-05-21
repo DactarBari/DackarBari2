@@ -19,6 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:id="@+id/linerColor"
+                android:visibility="gone"
                 android:background="@color/colorPrimary"
                 android:orientation="vertical">
 
@@ -27,6 +28,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
+                    android:visibility="gone"
                     android:layout_marginRight="10dp"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardCornerRadius="3dp">
@@ -93,6 +95,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="15dp"
                     android:paddingTop="20dp"
+                    android:visibility="gone"
                     android:paddingRight="15dp"
                     android:paddingBottom="10dp">
 
@@ -127,6 +130,7 @@
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:layout_marginTop="110dp">
 
             </android.support.v7.widget.RecyclerView>

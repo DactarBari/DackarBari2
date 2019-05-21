@@ -4,6 +4,7 @@ package com.twopibd.dactarbari.doctor.appointment.Api;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.JsonElement;
 import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentModel;
+import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentModels;
 import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentResponse;
 import com.twopibd.dactarbari.doctor.appointment.Model.BasicInfoModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.ChamberInfo;
@@ -31,9 +32,14 @@ public class ApiListener {
         void onPicked(boolean isPicked);
     }
 
+
     public interface drSchedulePostListener {
         void ondrSchedulePostSuccess(StatusMessage data);
         void ondrSchedulePostFailed(String msg);
+    }
+    public interface AppintmentChangeListener {
+        void onAppintmentChangeSuccess(StatusMessage data);
+        void onAppintmentChangeFailed(String msg);
     }
     public interface appointmentPostListener {
         void onAppointmentPostSuccess(StatusMessage data);
@@ -194,7 +200,7 @@ public class ApiListener {
     }
 
     public interface appoinetmentsDownloadListener {
-        void onAppointmentDownloadSuccess(AppointmentResponse status);
+        void onAppointmentDownloadSuccess(List<AppointmentModels> status);
 
         void onAppointmentDownloadFailed(String msg);
     }

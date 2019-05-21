@@ -146,6 +146,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:onClick="openConfirmed"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -169,7 +170,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/montserrat_bold"
-                                    android:text="05"
+                                    android:id="@+id/tv_confirmed"
                                     android:textColor="@color/colorPrimary"
                                     android:textSize="14dp" />
 
@@ -177,7 +178,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/montserrat_light"
-                                    android:text="Today"
+                                    android:text="Confirmed"
                                     android:textSize="10dp" />
                             </LinearLayout>
 
@@ -208,6 +209,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
+                        android:onClick="pendingActivity"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -231,7 +233,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/montserrat_bold"
-                                    android:text="12"
+                                    android:id="@+id/tv_pending"
                                     android:textColor="@color/colorPrimary"
 
                                     android:textSize="14dp" />
@@ -608,129 +610,8 @@
                 android:orientation="vertical"
                 android:padding="10dp">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
 
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/menu_height"
-                        android:layout_marginBottom="10dp"
-                        android:background="@drawable/bg_selected"
-                        android:onClick="openCalender">
-
-
-                        <RelativeLayout
-                            android:layout_width="@dimen/menu_height"
-                            android:layout_height="@dimen/menu_height"
-                            android:layout_marginLeft="10dp">
-
-                            <ImageView
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:padding="12dp"
-                                android:src="@drawable/circle_stroke_primary" />
-
-
-                        </RelativeLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/montserrat_bold"
-                                android:text="Patient"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="12dp" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Quick search for a Patient"
-                                android:fontFamily="@font/montserrat_light"
-
-                                android:textSize="12dp" />
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_alignParentRight="true"
-                        android:padding="18dp"
-                        android:src="@drawable/right_green" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/menu_height"
-                        android:layout_marginBottom="10dp"
-                        android:background="@drawable/bg_selected"
-                        android:onClick="ViewScheduleDr">
-
-
-                        <RelativeLayout
-                            android:layout_width="@dimen/menu_height"
-                            android:layout_height="@dimen/menu_height"
-                            android:layout_marginLeft="10dp">
-
-                            <ImageView
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:padding="12dp"
-                                android:src="@drawable/circle_stroke_primary" />
-
-
-                        </RelativeLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/montserrat_bold"
-                                android:text="Medicine"
-                                android:textColor="@color/colorPrimary"
-                                android:textSize="14dp" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Quick search for a Medicine"
-                                android:textColor="@android:color/darker_gray"
-                                android:fontFamily="@font/montserrat_light"
-                                android:textSize="12dp" />
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_alignParentRight="true"
-                        android:padding="18dp"
-                        android:src="@drawable/right_green" />
-                </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">

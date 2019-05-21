@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import com.google.gson.JsonElement;
 import com.twopibd.dactarbari.doctor.appointment.Activity.DrSignUpActivity;
 import com.twopibd.dactarbari.doctor.appointment.Activity.PatientProfileUpdateActivity;
+import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentModels;
 import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentResponse;
 import com.twopibd.dactarbari.doctor.appointment.Model.BasicInfoModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.ChamberInfo;
@@ -83,8 +84,8 @@ public class Api {
 
     }
 
-    public void getProfile(String key, String id,String user_type, final ApiListener.profileGet listener) {
-        ApiClient.getApiInterface().getProfileInfo(key, id,user_type).enqueue(new Callback<JsonElement>() {
+    public void getProfile(String key, String id, String user_type, final ApiListener.profileGet listener) {
+        ApiClient.getApiInterface().getDoctorProfileInfo(key, id).enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
                 //listener.onProfileSuccess(response.body().toString());
@@ -292,17 +293,15 @@ public class Api {
                               String gender,
                               String password,
                               String mobile,
-                              String email,
                               String country,
                               String house,
                               String street,
                               String area,
                               String city,
                               String post_code,
-                              String problems,
-                              MultipartBody photo,
+                              String email,
                               final ApiListener.patientSignUpListener listener) {
-        ApiClient.getApiInterface().signUpPatient(user_type, pa_name, gender, password, mobile, email, country, house, street, area, city, post_code, problems, photo).enqueue(new Callback<StatusMessage>() {
+        ApiClient.getApiInterface().signUpPatient(user_type, pa_name, gender, password, mobile,  country, house, street, area, city, post_code,email).enqueue(new Callback<StatusMessage>() {
             @Override
             public void onResponse(Call<StatusMessage> call, Response<StatusMessage> response) {
                 listener.onPatientSignUpPostSuccess(response.body());
@@ -472,6 +471,71 @@ public class Api {
 
     }
 
+    public void searchByDepartmentDoctor(String token, String departmentid, final ApiListener.drSearchListener listener) {
+        ApiClient.getApiInterface().searchDepartmentDoctors(token, departmentid).enqueue(new Callback<List<SearchModel>>() {
+            @Override
+            public void onResponse(Call<List<SearchModel>> call, Response<List<SearchModel>> response) {
+                listener.onSearchSuccess(response.body());
+
+            }
+
+            @Override
+            public void onFailure(Call<List<SearchModel>> call, Throwable t) {
+                listener.onSearchFailed(t.getLocalizedMessage());
+
+            }
+        });
+
+    }
+    public void searchByHospitalDoctor(String token, String hospitalID, final ApiListener.drSearchListener listener) {
+        ApiClient.getApiInterface().searchHospitalDoctors(token, hospitalID).enqueue(new Callback<List<SearchModel>>() {
+            @Override
+            public void onResponse(Call<List<SearchModel>> call, Response<List<SearchModel>> response) {
+                listener.onSearchSuccess(response.body());
+
+            }
+
+            @Override
+            public void onFailure(Call<List<SearchModel>> call, Throwable t) {
+                listener.onSearchFailed(t.getLocalizedMessage());
+
+            }
+        });
+
+    }
+    public void getAppointmentsByDoctor(String token, String id,String user_type,String  status, final ApiListener.appoinetmentsDownloadListener listener) {
+        ApiClient.getApiInterface().getMyAppointments(token, id,user_type,status).enqueue(new Callback<List<AppointmentModels>>() {
+            @Override
+            public void onResponse(Call<List<AppointmentModels>> call, Response<List<AppointmentModels>> response) {
+                listener.onAppointmentDownloadSuccess(response.body());
+
+            }
+
+            @Override
+            public void onFailure(Call<List<AppointmentModels>> call, Throwable t) {
+                listener.onAppointmentDownloadFailed(t.getLocalizedMessage());
+
+            }
+        });
+
+    }
+    public void changeAppintmentStatus(String token, String id,String  status, final ApiListener.AppintmentChangeListener listener) {
+        ApiClient.getApiInterface().changeAppintmentStatus(token, id,status).enqueue(new Callback<StatusMessage>() {
+            @Override
+            public void onResponse(Call<StatusMessage> call, Response<StatusMessage> response) {
+                listener.onAppintmentChangeSuccess(response.body());
+
+            }
+
+            @Override
+            public void onFailure(Call<StatusMessage> call, Throwable t) {
+                listener.onAppintmentChangeFailed(t.getLocalizedMessage());
+
+            }
+        });
+
+    }
+
     public void SearchByName(String name, final ApiListener.drNameSearchListener listener) {
         ApiClient.getApiInterface().searchNameResults(name).enqueue(new Callback<List<SearchModel>>() {
             @Override
@@ -522,8 +586,9 @@ public class Api {
         });
 
     }
-    public void postAppointment(String token,String schedule_id, String slot_start_time,String slot_end_time, String patient_id, String appointment_for, String current_problems, String date,  final ApiListener.appointmentPostListener listener) {
-        ApiClient.getApiInterface().postAppointmentPatient(token,schedule_id, slot_start_time,slot_end_time,patient_id,appointment_for,current_problems,date).enqueue(new Callback<StatusMessage>() {
+
+    public void postAppointment(String token, String schedule_id, String slot_start_time, String slot_end_time, String patient_id, String appointment_for, String current_problems, String date, final ApiListener.appointmentPostListener listener) {
+        ApiClient.getApiInterface().postAppointmentPatient(token, schedule_id, slot_start_time, slot_end_time, patient_id, appointment_for, current_problems, date).enqueue(new Callback<StatusMessage>() {
             @Override
             public void onResponse(Call<StatusMessage> call, Response<StatusMessage> response) {
                 listener.onAppointmentPostSuccess(response.body());
@@ -630,42 +695,11 @@ public class Api {
         });
     }
 
-    public void getAppointmentsByDoctor(String dr_id, final ApiListener.appoinetmentsDownloadListener listener) {
 
-        ApiClient.getApiInterface().myAppointmentsbyDoctor(dr_id).enqueue(new Callback<AppointmentResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<AppointmentResponse> call, @NonNull Response<AppointmentResponse> response) {
-                if (response != null) {
-                    listener.onAppointmentDownloadSuccess(response.body());
-
-                }
-
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<AppointmentResponse> call, @NonNull Throwable t) {
-                listener.onAppointmentDownloadFailed(t.getLocalizedMessage());
-            }
-        });
-    }
 
     public void getAppointmentsBypatient(String id, final ApiListener.appoinetmentsDownloadListener listener) {
 
-        ApiClient.getApiInterface().myAppointmentsbyPatient(id).enqueue(new Callback<AppointmentResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<AppointmentResponse> call, @NonNull Response<AppointmentResponse> response) {
-                if (response != null) {
-                    listener.onAppointmentDownloadSuccess(response.body());
 
-                }
-
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<AppointmentResponse> call, @NonNull Throwable t) {
-                listener.onAppointmentDownloadFailed(t.getLocalizedMessage());
-            }
-        });
     }
 
     public void changeStatus(String id, String status, final ApiListener.appointmentStateChangeListener listener) {

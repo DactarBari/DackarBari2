@@ -21,9 +21,18 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.AppointmentSubmitActivity">
-
-        </activity>
+        <activity android:name=".Activity.DrListByHospitalActivity"></activity>
+        <activity android:name=".Activity.DoctorConfirmedActivity" />
+        <activity android:name=".Activity.ConfirmedAppointmentsPatientActivity" />
+        <activity android:name=".Activity.PendingAppointmentsPatientActivity" />
+        <activity android:name=".Activity.PatientAppointmentListActivity" />
+        <activity android:name=".Activity.DrPendingAppointments" />
+        <activity android:name=".Activity.DrListByDepartmentActivity" />
+        <activity android:name=".Activity.DrDepartmentsActivity" />
+        <activity
+            android:name=".Activity.PatientNewActivity"
+            android:theme="@style/NoTitleBar" />
+        <activity android:name=".Activity.AppointmentSubmitActivity" />
         <activity android:name=".Activity.DepartmentListActivityPatient" />
         <activity android:name=".Activity.PatientActivityMap" />
         <activity android:name=".Activity.AddWeeklyChamber2" />
@@ -95,7 +104,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".Activity.SignUpActivity"

@@ -3,6 +3,8 @@ package com.twopibd.dactarbari.doctor.appointment.Data;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.twopibd.dactarbari.doctor.appointment.Model.ChamberInfo;
+import com.twopibd.dactarbari.doctor.appointment.Model.DepartmentModel;
+import com.twopibd.dactarbari.doctor.appointment.Model.HospitalModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.ScheduleInfo;
 import com.twopibd.dactarbari.doctor.appointment.Model.SearchModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.Slot;
@@ -23,6 +25,8 @@ import java.util.Map;
 
 public class DataStore {
     public  static LatLng selectedLocation=null;
+    public  static DepartmentModel departmentID=null;
+    public  static HospitalModel hospitalID=null;
     public  static String selectedDate=null;
     public  static SearchModel selectedSearchModel=null;
     public  static Slot selectedSloat=null;

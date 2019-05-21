@@ -49,12 +49,12 @@ public class AppointmentsListFragment extends Fragment implements ApiListener.da
 
     @Override
     public void onDownloaded(List<AppointmentModel> status) {
-        mAdapter = new ConfirmedAppointmentAdapterDoctor(status);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
-        recycler_view.setLayoutManager(mLayoutManager);
-        recycler_view.setItemAnimator(new DefaultItemAnimator());
-        //recycler_view.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
-
-        recycler_view.setAdapter(mAdapter);
+//        mAdapter = new ConfirmedAppointmentAdapterDoctor(status);
+//        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+//        recycler_view.setLayoutManager(mLayoutManager);
+//        recycler_view.setItemAnimator(new DefaultItemAnimator());
+//        //recycler_view.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
+//
+//        recycler_view.setAdapter(mAdapter);
     }
 }

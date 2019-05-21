@@ -141,7 +141,6 @@ public class DrPersonalInfoActivity extends AppCompatActivity implements ApiList
         sessionManager = new SessionManager(this);
         setTitle(sessionManager.getUserName());
 
-        Toast.makeText(context, sessionManager.getUserId(), Toast.LENGTH_SHORT).show();
 
         key = sessionManager.getToken();
         user_id=sessionManager.getUserId();

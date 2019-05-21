@@ -2,6 +2,7 @@ package com.twopibd.dactarbari.doctor.appointment.Api;
 
 
 import com.google.gson.JsonElement;
+import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentModels;
 import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentResponse;
 import com.twopibd.dactarbari.doctor.appointment.Model.BasicInfoModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.ChamberInfo;
@@ -91,6 +92,10 @@ public interface ApiInterface {
     Call<JsonElement> getProfileInfo(@Header("Authorization") String token, @Field("id") String id, @Field("patient") String patient);
 
     @FormUrlEncoded
+    @POST("doctor-account-info")
+    Call<JsonElement> getDoctorProfileInfo(@Header("Authorization") String token, @Field("id") String id);
+
+    @FormUrlEncoded
     @POST("delete-doctor-chamber")
     Call<StatusMessage> deleteChamber(@Header("Authorization") String token, @Field("chamber_id") String chamber_id);
 
@@ -105,6 +110,13 @@ public interface ApiInterface {
 
     @POST("search-doctor")
     Call<List<SearchModel>> searchResults();
+
+    @FormUrlEncoded
+    @POST("search-doctor")
+    Call<List<SearchModel>> searchDepartmentDoctors(@Header("Authorization") String token, @Field("department_id") String department_id);
+    @FormUrlEncoded
+    @POST("search-doctor")
+    Call<List<SearchModel>> searchHospitalDoctors(@Header("Authorization") String token, @Field("hospital_id") String department_id);
 
 
     @FormUrlEncoded
@@ -122,13 +134,25 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("book-an-appointment")
     Call<StatusMessage> postAppointmentPatient(@Header("Authorization") String token,
-                                             @Field("schedule_id") String schedule_id,
+                                               @Field("schedule_id") String schedule_id,
                                                @Field("slot_start_time") String slot_start_time,
                                                @Field("slot_end_time") String slot_end_time,
                                                @Field("patient_id") String patient_id,
                                                @Field("appointment_for") String appointment_for,
                                                @Field("current_problems") String current_problems,
                                                @Field("date") String date);
+
+    @FormUrlEncoded
+    @POST("appointment-list")
+    Call<List<AppointmentModels>> getMyAppointments(@Header("Authorization") String token,
+                                                    @Field("id") String id,
+                                                    @Field("user_type") String user_type,
+                                                    @Field("status") String status);
+    @FormUrlEncoded
+    @POST("update-appointment-status")
+    Call<StatusMessage> changeAppintmentStatus(@Header("Authorization") String token,
+                                                    @Field("appointment_id") String appointment_id,
+                                                    @Field("status") String status);
 
 
     @FormUrlEncoded
@@ -213,15 +237,13 @@ public interface ApiInterface {
                                       @Query("gender") String gender,
                                       @Query("password") String password,
                                       @Query("mobile") String mobile,
-                                      @Query("email") String email,
                                       @Query("country") String country,
                                       @Query("house_no") String house_no,
                                       @Query("street_address") String street,
                                       @Query("area") String area,
                                       @Query("city") String city,
                                       @Query("postcode") String post_code,
-                                      @Query("current_problems") String qualitifcation,
-                                      @Body RequestBody image);
+                                      @Query("email") String email);
 
 
     @Multipart

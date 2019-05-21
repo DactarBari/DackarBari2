@@ -54,8 +54,7 @@ import static com.twopibd.dactarbari.doctor.appointment.Data.DataStore.photoMode
 public class PatientSignupActivity extends AppCompatActivity implements ApiListener.patientSignUpListener {
     @BindView(R.id.spinnerCountry)
     Spinner spinnerCountry;
-    @BindView(R.id.photo_recyclerview)
-    RecyclerView photo_recyclerview;
+
     @BindView(R.id.spinnerGender)
     Spinner spinnerGender;
     Context context = this;
@@ -79,8 +78,7 @@ public class PatientSignupActivity extends AppCompatActivity implements ApiListe
     EditText ed_area;
     @BindView(R.id.ed_postCode)
     EditText ed_postCode;
-    @BindView(R.id.ed_currentProblems)
-    EditText ed_currentProblems;
+
 
 
     ProgressDialog progressDialog;
@@ -244,21 +242,8 @@ public class PatientSignupActivity extends AppCompatActivity implements ApiListe
         String street = ed_street.getText().toString().trim();
         String city = ed_city.getText().toString().trim();
         String postCode = ed_postCode.getText().toString().trim();
-        String problems = ed_currentProblems.getText().toString().trim();
-
-        if (photoModelList.size() > 0) {
-            MultipartBody.Builder builder = new MultipartBody.Builder();
-            builder.setType(MultipartBody.FORM);
 
 
-            for (int j = 0; j < photoModelList.size(); j++) {
-                File file = new File(photoModelList.get(j).getPhotoLink());
-
-                RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-                builder.addFormDataPart("prescription[]", file.getName(), requestFile);
-            }
-
-            MultipartBody requestBody = builder.build();
 
 
             if (!name.isEmpty()) {
@@ -292,7 +277,6 @@ public class PatientSignupActivity extends AppCompatActivity implements ApiListe
                                                                 Api.getInstance().signUpPatient(TYPE,
                                                                         name,
                                                                         gender,
-                                                                        email,
                                                                         password,
                                                                         mobile,
                                                                         selectedCountry,
@@ -300,10 +284,7 @@ public class PatientSignupActivity extends AppCompatActivity implements ApiListe
                                                                         street,
                                                                         area,
                                                                         city,
-                                                                        postCode,
-                                                                        problems,
-                                                                        requestBody,
-                                                                        this);
+                                                                        postCode,  email,this);
                                                             } catch (Exception e) {
                                                                 Toast.makeText(context, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                                                             }
@@ -357,12 +338,11 @@ public class PatientSignupActivity extends AppCompatActivity implements ApiListe
                 MyDialog.getInstance().with(PatientSignupActivity.this).autoBack(false).autoDismiss(false).message("password").show();
 
             }
-        } else {
-            MyDialog.getInstance().with(PatientSignupActivity.this).autoBack(false).autoDismiss(false).message("No photo").show();
-
         }
 
-    }
+
+
+
 
 
     private RequestBody c_m_b(String aThis) {
@@ -413,9 +393,10 @@ public class PatientSignupActivity extends AppCompatActivity implements ApiListe
             try {
                 PhotoAdapter mAdapter = new PhotoAdapter();
                 StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
-                photo_recyclerview.setLayoutManager(staggeredGridLayoutManager);
+              /*  photo_recyclerview.setLayoutManager(staggeredGridLayoutManager);
                 photo_recyclerview.setItemAnimator(new DefaultItemAnimator());
                 photo_recyclerview.setAdapter(mAdapter);
+                */
             } catch (Exception e) {
                 Toast.makeText(context, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
@@ -426,12 +407,11 @@ public class PatientSignupActivity extends AppCompatActivity implements ApiListe
     @Override
     public void onPatientSignUpPostSuccess(StatusMessage data) {
         Gson gson=new Gson();
-        Toast.makeText(context, gson.toJson(data), Toast.LENGTH_LONG).show();
 
 
         progressDialog.dismiss();
         try {
-            MyDialog.getInstance().with(PatientSignupActivity.this).autoBack(false).autoDismiss(false).message(gson.toJson(data)).show();
+            MyDialog.getInstance().with(PatientSignupActivity.this).autoBack(true).autoDismiss(false).message(data.getMessage()).show();
 
         } catch (Exception e) {
            // Toast.makeText(context,"Error from here" , Toast.LENGTH_LONG).show();
@@ -448,4 +428,7 @@ public class PatientSignupActivity extends AppCompatActivity implements ApiListe
     }
 
 
+    public void back(View view) {
+        onBackPressed();
+    }
 }

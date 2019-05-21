@@ -19,10 +19,11 @@ public class ScheduleMenuActivity extends BaseActivity {
     }
 
     public void addScheduleDr(View view) {
-        startActivity(new Intent(this,AddScheduleDrActivityBigMenu.class));
+        startActivity(new Intent(this, AddScheduleDrActivityBigMenu.class));
     }
- public void ViewScheduleDr(View view) {
-        startActivity(new Intent(this,ChamberListActivityDr.class));
+
+    public void ViewScheduleDr(View view) {
+        startActivity(new Intent(this, ChamberListActivityDr.class));
     }
 
 

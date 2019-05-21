@@ -84,7 +84,7 @@ public class AppointmentSubmitActivity extends AppCompatActivity implements ApiL
     public void onAppointmentPostSuccess(StatusMessage data) {
         MyProgressDialog.destroy();
         Toast.makeText(context, data.getMessage(), Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(this,PatientActivityMap.class));
+        startActivity(new Intent(this,PatientNewActivity.class));
         finishAffinity();
     }
 

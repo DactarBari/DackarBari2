@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="2.5dp"
+    android:layout_marginBottom="2.5dp"
+    android:background="@drawable/curve_rectangle"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+
+    <RelativeLayout
+        android:layout_width="@dimen/height_50"
+        android:layout_height="@dimen/height_50">
+        <ImageView
+            android:layout_width="@dimen/height_50"
+            android:src="@drawable/circle_lite"
+            android:layout_height="@dimen/height_50"
+            />
+        <ImageView
+            android:layout_width="@dimen/height_50"
+            android:src="@drawable/stet_white"
+            android:padding="10dp"
+            android:layout_height="@dimen/height_50"
+            />
+    </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Child Specialist"
+        android:id="@+id/tv_name"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:layout_height="wrap_content"
+        />
+
+
+
+
+</LinearLayout>

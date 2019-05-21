@@ -1,6 +1,7 @@
 package com.twopibd.dactarbari.doctor.appointment.Activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
@@ -20,8 +21,11 @@ import com.applikeysolutions.cosmocalendar.dialog.OnDaysSelectionListener;
 import com.applikeysolutions.cosmocalendar.model.Day;
 import com.google.android.gms.maps.model.LatLng;
 import com.squareup.picasso.Picasso;
+import com.twopibd.dactarbari.doctor.appointment.Api.Api;
+import com.twopibd.dactarbari.doctor.appointment.Api.ApiListener;
 import com.twopibd.dactarbari.doctor.appointment.Data.Constants;
 import com.twopibd.dactarbari.doctor.appointment.Fragments.HomeFragment;
+import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentModels;
 import com.twopibd.dactarbari.doctor.appointment.R;
 import com.twopibd.dactarbari.doctor.appointment.Utils.SessionManager;
 
@@ -32,12 +36,21 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class HomeActivityDoctor extends AppCompatActivity {
+public class HomeActivityDoctor extends AppCompatActivity implements ApiListener.appoinetmentsDownloadListener{
     @BindView(R.id.tv_name)
     TextView tv_name;
+    @BindView(R.id.tv_pending)
+    TextView tv_pending;
+    @BindView(R.id.tv_confirmed)
+    TextView tv_confirmed;
     @BindView(R.id.profile_image)
     CircleImageView profile_image;
     SessionManager sessionManager;
+    String USER_ID,key;
+    Context context=this;
+    public  static  List<AppointmentModels> PENDING_LIST=new ArrayList<>();
+    public  static  List<AppointmentModels> CONFIRMED_LIST=new ArrayList<>();
+    int state= 0;
 
 
     @Override
@@ -46,7 +59,11 @@ public class HomeActivityDoctor extends AppCompatActivity {
         setContentView(R.layout.activity_home_doctor);
         ButterKnife.bind(this);
         sessionManager=new SessionManager(this);
+        Toast.makeText(this, sessionManager.getUserId(), Toast.LENGTH_SHORT).show();
         init_display();
+        USER_ID=sessionManager.getUserId();
+        key=sessionManager.getToken();
+        Api.getInstance().getAppointmentsByDoctor(key,USER_ID,"doctor","0",this);
 
 
 
@@ -83,15 +100,7 @@ public class HomeActivityDoctor extends AppCompatActivity {
         startActivity(new Intent(this,ScheduleMenuActivity.class));
     }
 
-    public void openCalender(View view) {
-        new CalendarDialog(this, new OnDaysSelectionListener() {
-            @Override
-            public void onDaysSelected(List<Day> selectedDays) {
-                Toast.makeText(HomeActivityDoctor.this, ""+selectedDays.size()+" days selected", Toast.LENGTH_SHORT).show();
 
-            }
-        }).show();
-    }
 
     public void OpenProfile(View view) {
         openDrPersonalInfoActivity();
@@ -101,5 +110,36 @@ public class HomeActivityDoctor extends AppCompatActivity {
         sessionManager.setLoggedIn(false);
         startActivity(new Intent(this,LoginActivity.class));
         finishAffinity();
+    }
+
+    public void pendingActivity(View view) {
+        startActivity(new Intent(this,DrPendingAppointments.class));
+    }
+
+    public void openConfirmed(View view) {
+        startActivity(new Intent(this,DoctorConfirmedActivity.class));
+
+    }
+
+    @Override
+    public void onAppointmentDownloadSuccess(List<AppointmentModels> data) {
+        if (state==0){
+            PENDING_LIST=data;
+            state++;
+            tv_pending.setText(""+data.size());
+            Api.getInstance().getAppointmentsByDoctor(key,USER_ID,"doctor","1",this);
+
+        }else if (state==1){
+            tv_confirmed.setText(""+data.size());
+            CONFIRMED_LIST=data;
+            state=0;
+        }
+
+    }
+
+    @Override
+    public void onAppointmentDownloadFailed(String msg) {
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+
     }
 }

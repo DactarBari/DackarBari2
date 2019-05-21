@@ -1,14 +1,17 @@
 package com.twopibd.dactarbari.doctor.appointment.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.twopibd.dactarbari.doctor.appointment.Activity.DrDepartmentsActivity;
 import com.twopibd.dactarbari.doctor.appointment.Data.Constants;
 import com.twopibd.dactarbari.doctor.appointment.Model.FeatureType;
 import com.twopibd.dactarbari.doctor.appointment.Model.SearchModel;
@@ -31,8 +34,9 @@ public class WhatYouAreLookingAdapterPatient extends RecyclerView.Adapter<WhatYo
     Context context;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView tv_name, tv_address, tv_time, tv_lastDegree, tv_department;
+        public TextView tv_name, tv_address, tv_time, tv_lastDegree, tv_type;
         CircleImageView profile_image;
+        ImageView photo;
 
         RelativeLayout relative_container;
 
@@ -40,6 +44,8 @@ public class WhatYouAreLookingAdapterPatient extends RecyclerView.Adapter<WhatYo
         public MyViewHolder(View view) {
             super(view);
             tv_name = (TextView) view.findViewById(R.id.tv_name);
+            tv_type = (TextView) view.findViewById(R.id.tv_type);
+            photo = (ImageView) view.findViewById(R.id.photo);
 
 
         }
@@ -64,6 +70,16 @@ public class WhatYouAreLookingAdapterPatient extends RecyclerView.Adapter<WhatYo
         final FeatureType movie = list.get(position);
         context = holder.tv_name.getContext();
         holder.tv_name.setText(movie.getName());
+        holder.tv_type.setText(movie.getType());
+        Picasso.with(context).load(movie.getPhoto()).into(holder.photo);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (position==0){
+                    context.startActivity(new Intent(context, DrDepartmentsActivity.class));
+                }
+            }
+        });
 
 
     }

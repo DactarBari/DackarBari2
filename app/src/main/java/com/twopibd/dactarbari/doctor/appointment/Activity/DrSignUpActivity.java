@@ -661,4 +661,8 @@ public class DrSignUpActivity extends AppCompatActivity implements SelectedHospi
     public void onStringPostFailed(String msg) {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
     }
+
+    public void back(View view) {
+        onBackPressed();
+    }
 }

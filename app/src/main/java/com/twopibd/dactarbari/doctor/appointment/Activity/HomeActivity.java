@@ -30,7 +30,7 @@ import static com.twopibd.dactarbari.doctor.appointment.Data.ListenerPatientsDat
 import static com.twopibd.dactarbari.doctor.appointment.Data.ListenerPatientsData.PatientNotificationDataDownloadListener;
 
 
-public class HomeActivity extends AppCompatActivity implements ApiListener.appoinetmentsDownloadListener{
+public class HomeActivity extends AppCompatActivity {
     SessionManager sessionManager;
     TabLayout tabLayout;
     ViewPager viewPager;
@@ -50,7 +50,7 @@ public class HomeActivity extends AppCompatActivity implements ApiListener.appoi
         tabLayout.setTabTextColors(Color.parseColor("#E6E6E6"), Color.WHITE);
         tabLayout.setSelectedTabIndicatorHeight(5);
         tabLayout.setupWithViewPager(viewPager);
-        Api.getInstance().getAppointmentsBypatient(sessionManager.getUserId(),this);
+        //Api.getInstance().getAppointmentsBypatient(sessionManager.getUserId(),this);
         drawer= (DrawerLayout)findViewById(R.id.drawer_layout);
         customDrawerButton = (CustomDrawerButton)findViewById(R.id.customDrawer);
         customDrawerButton.setDrawerLayout( drawer );
@@ -74,23 +74,11 @@ public class HomeActivity extends AppCompatActivity implements ApiListener.appoi
         startActivity(new Intent(this, FindDoctorActivity.class));
     }
 
-    @Override
-    public void onAppointmentDownloadSuccess(AppointmentResponse status) {
-        PatientALLDataDownloadListener.onDownloaded(status);
-        PatientNotificationDataDownloadListener.onNotificationDownloaded(status.getNotification());
-      //  Toast.makeText(this, ""+status.getNotification().size(), Toast.LENGTH_SHORT).show();
 
-
-
-    }
     public void logout(View view) {
         sessionManager.setLoggedIn(false);
         startActivity(new Intent(this, LoginActivity.class));
         finishAffinity();
-    }
-    @Override
-    public void onAppointmentDownloadFailed(String msg) {
-
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {

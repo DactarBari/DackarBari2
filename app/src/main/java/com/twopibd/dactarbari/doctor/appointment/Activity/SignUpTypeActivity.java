@@ -138,4 +138,13 @@ public class SignUpTypeActivity extends BaseActivity implements
     }
 
 
+    public void openPatientSignUP(View view) {
+        startActivity(new Intent(context,PatientSignupActivity.class));
+
+    }
+
+    public void doctorSignup(View view) {
+        startActivity(new Intent(context,DrSignUpActivity.class));
+
+    }
 }

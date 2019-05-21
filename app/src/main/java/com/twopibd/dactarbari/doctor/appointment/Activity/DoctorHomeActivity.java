@@ -33,7 +33,7 @@ import static com.twopibd.dactarbari.doctor.appointment.Data.lis.Confirmedlisten
 import static com.twopibd.dactarbari.doctor.appointment.Data.lis.Pendinglistener;
 
 
-public class DoctorHomeActivity extends AppCompatActivity implements ApiListener.appoinetmentsDownloadListener{
+public class DoctorHomeActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
     CustomDrawerButton customDrawerButton;
@@ -73,7 +73,7 @@ public class DoctorHomeActivity extends AppCompatActivity implements ApiListener
 
 
 
-        Api.getInstance().getAppointmentsByDoctor(sessionManager.getUserId(),this);
+        //Api.getInstance().getAppointmentsByDoctor(sessionManager.getUserId(),this);
     }
 
 
@@ -91,26 +91,7 @@ public class DoctorHomeActivity extends AppCompatActivity implements ApiListener
 
     }
 
-    @Override
-    public void onAppointmentDownloadSuccess(AppointmentResponse status) {
-        tabLayout.getTabAt(0).setText("Confirmed ("+status.getConfirmed().size()+")");
-        tabLayout.getTabAt(1).setText("Pending ("+status.getNotConfirmed().size()+")");
-        Confirmedlistener.onDownloaded(status.getConfirmed());
-        Pendinglistener.onDownloaded(status.getNotConfirmed());
 
-
-
-    }
-
-    @Override
-    public void onAppointmentDownloadFailed(String msg) {
-        MyDialog.getInstance().with(DoctorHomeActivity.this)
-                .message("Techinal error.Try again later")
-                .autoBack(false)
-                .autoDismiss(false)
-                .showMsgOnly();
-
-    }
 
     public void logout(View view) {
         sessionManager.setLoggedIn(false);

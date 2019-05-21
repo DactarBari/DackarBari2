@@ -14,10 +14,13 @@ import android.widget.Toast;
 import com.twopibd.dactarbari.doctor.appointment.Api.Api;
 import com.twopibd.dactarbari.doctor.appointment.Api.ApiListener;
 import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentModel;
+import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentModels;
+import com.twopibd.dactarbari.doctor.appointment.Model.StatusMessage;
 import com.twopibd.dactarbari.doctor.appointment.Model.StatusResponse;
 import com.twopibd.dactarbari.doctor.appointment.R;
 import com.twopibd.dactarbari.doctor.appointment.Utils.MyDialog;
 import com.twopibd.dactarbari.doctor.appointment.Utils.MyProgressBar;
+import com.twopibd.dactarbari.doctor.appointment.Utils.SessionManager;
 import com.twopibd.dactarbari.doctor.appointment.Widgets.MyDialogList;
 
 import java.util.ArrayList;
@@ -30,19 +33,20 @@ import java.util.List;
 
 
 public class PendingAppointmentAdapterDoctor extends RecyclerView.Adapter<PendingAppointmentAdapterDoctor.MyViewHolder> implements ApiListener.appointmentStateChangeListener {
-    List<AppointmentModel> list = new ArrayList<>();
+    List<AppointmentModels> list = new ArrayList<>();
 
     Context context;
     int triggeredItem = 0;
     List<String> TestList = new ArrayList<>();
     int pos;
+    String KEY;
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView tv_name, tv_problem, tv_date;
         ImageView circleImageView;
         RelativeLayout relative_container;
-        TextView cardPrescribeTest;
+        ImageView tv_confirm, tv_cancel;
 
 
         public MyViewHolder(View view) {
@@ -50,14 +54,15 @@ public class PendingAppointmentAdapterDoctor extends RecyclerView.Adapter<Pendin
             tv_name = (TextView) view.findViewById(R.id.tv_name);
             tv_problem = (TextView) view.findViewById(R.id.tv_problem);
             tv_date = (TextView) view.findViewById(R.id.tv_date);
-            cardPrescribeTest = (TextView) view.findViewById(R.id.cardPrescribeTest);
+            tv_confirm = (ImageView) view.findViewById(R.id.tv_confirm);
+            tv_cancel = (ImageView) view.findViewById(R.id.tv_cancel);
 
 
         }
     }
 
 
-    public PendingAppointmentAdapterDoctor(List<AppointmentModel> lists) {
+    public PendingAppointmentAdapterDoctor(List<AppointmentModels> lists) {
         this.list = lists;
 
     }
@@ -72,34 +77,71 @@ public class PendingAppointmentAdapterDoctor extends RecyclerView.Adapter<Pendin
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-        final AppointmentModel movie = list.get(position);
+        final AppointmentModels movie = list.get(position);
         context = holder.tv_name.getContext();
         holder.tv_name.setText(movie.getAppointmentFor());
-        holder.tv_problem.setText(movie.getProblems());
+        holder.tv_problem.setText(movie.getCurrentProblems());
         holder.tv_date.setText(movie.getDate());
 
-        holder.itemView.setOnClickListener((View v) -> changeState(movie.getAppointment_id(), position));
-        holder.cardPrescribeTest.setOnClickListener(new View.OnClickListener() {
+//        holder.itemView.setOnClickListener((View v) -> changeState(movie.getAppointment_id(), position));
+//        holder.cardPrescribeTest.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                MyDialogList.getInstance().with((Activity) context).showTestList(new MyDialogList.testSelectedListener() {
+//                    @Override
+//                    public void onDialogCloased(List<String> selectedTest) {
+//                        TestList.clear();
+//                        TestList.addAll(selectedTest);
+//
+//                        if (TestList.size() > 0) {
+//                            pos=position;
+//                            MyProgressBar.with(context).show();
+//                            addRecommendTest(movie.getAppointment_id(), TestList.get(0), 0);
+//
+//                        }
+//
+//                    }
+//                });
+//            }
+//        });
+        holder.tv_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MyDialogList.getInstance().with((Activity) context).showTestList(new MyDialogList.testSelectedListener() {
+                MyDialogList.getInstance().with((Activity) context).yesNoConfirmation(new MyDialogList.confirmListener() {
                     @Override
-                    public void onDialogCloased(List<String> selectedTest) {
-                        TestList.clear();
-                        TestList.addAll(selectedTest);
-
-                        if (TestList.size() > 0) {
-                            pos=position;
-                            MyProgressBar.with(context).show();
-                            addRecommendTest(movie.getAppointment_id(), TestList.get(0), 0);
-
+                    public void onDialogClicked(boolean result) {
+                        if (result) {
+                            SessionManager sessionManager = new SessionManager(context);
+                            KEY = sessionManager.getToken();
+                            changeState(KEY, "" + movie.getId(), position, "1");
+                        } else {
+//                            SessionManager sessionManager=new SessionManager(context);
+//                            KEY=sessionManager.getToken();
+//                            changeState(KEY,""+movie.getId(), position,"2");
                         }
-
                     }
-                });
+                }, "Do you want to canfirm this appointment?");
             }
         });
-
+        holder.tv_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MyDialogList.getInstance().with((Activity) context).yesNoConfirmation(new MyDialogList.confirmListener() {
+                    @Override
+                    public void onDialogClicked(boolean result) {
+                        if (result) {
+                            SessionManager sessionManager = new SessionManager(context);
+                            KEY = sessionManager.getToken();
+                            changeState(KEY, "" + movie.getId(), position, "2");
+                        } else {
+//                            SessionManager sessionManager=new SessionManager(context);
+//                            KEY=sessionManager.getToken();
+//                            changeState(KEY,""+movie.getId(), position,"2");
+                        }
+                    }
+                }, "Do you want to cancel this appointment?");
+            }
+        });
     }
 
     private void addRecommendTest(String appointment_id, String s, int index) {
@@ -130,12 +172,31 @@ public class PendingAppointmentAdapterDoctor extends RecyclerView.Adapter<Pendin
     }
 
 
-    public void changeState(String appointment_id, int pos) {
+    public void changeState(String KEY, String appointment_id, int pos, String status) {
         MyProgressBar.with(context);
         triggeredItem = pos;
-        Api.getInstance().changeStatus(appointment_id, "1", this);
+        //Api.getInstance().changeStatus(appointment_id, "1", this);
+        Api.getInstance().changeAppintmentStatus(KEY, appointment_id, status, new ApiListener.AppintmentChangeListener() {
+            @Override
+            public void onAppintmentChangeSuccess(StatusMessage data) {
+                MyProgressBar.dismiss();
+                Toast.makeText(context, data.getMessage(), Toast.LENGTH_SHORT).show();
+                if (removeItem(pos)) {
+                    notifyItemRemoved(pos);
+                    notifyItemRangeChanged(pos, getItemCount());
+                }
+            }
+
+            @Override
+            public void onAppintmentChangeFailed(String msg) {
+                MyProgressBar.dismiss();
+                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
     }
+
     public void changeToRecommended(String appointment_id, int pos) {
         MyProgressBar.with(context);
         triggeredItem = pos;

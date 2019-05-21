@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity implements ApiListener.Logi
                 startActivity(new Intent(this,HomeActivityDoctor.class));
                 finish();
             }else  if (sessionManager.getUserType().equals(Constants.TYPE_PATIENT)){
-                startActivity(new Intent(this,PatientActivityMap.class));
+                startActivity(new Intent(this,PatientNewActivity.class));
                 finish();
             }
         }
@@ -120,7 +120,7 @@ public class LoginActivity extends AppCompatActivity implements ApiListener.Logi
                     finish();
 
                 }else {
-                    startActivity(new Intent(this, PatientActivityMap.class));
+                    startActivity(new Intent(this, PatientNewActivity.class));
                     finish();
                 }
 

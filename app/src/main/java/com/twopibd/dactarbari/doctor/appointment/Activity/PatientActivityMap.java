@@ -209,6 +209,7 @@ public class PatientActivityMap extends GPSOpenActivity implements ApiListener.d
 
     @Override
     public void onSearchSuccess(List<SearchModel> data) {
+        Toast.makeText(context, ""+data.size(), Toast.LENGTH_SHORT).show();
 
         NearbyDrListAdapterPatient mAdapter = new NearbyDrListAdapterPatient(data);
         LinearLayoutManager layoutManager
@@ -256,8 +257,8 @@ public class PatientActivityMap extends GPSOpenActivity implements ApiListener.d
                 DataStore.selectedLocation = mMap.getCameraPosition().target;
             }
         });
-        //downloadDr();
-        downloadDepartments();
+        downloadDr();
+        //downloadDepartments();
 
 
     }

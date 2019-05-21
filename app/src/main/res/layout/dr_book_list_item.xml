@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Dr Ripon Deb Nath"
+        android:id="@+id/tv_name"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Dermatologist"
+        android:id="@+id/tv_department"
+        android:fontFamily="@font/montserrat_regular"
+        android:layout_height="wrap_content"
+        />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="50dp"
+            android:src="#cccccc"
+            android:id="@+id/image"
+            android:layout_height="50dp"
+            />
+
+      <android.support.v7.widget.CardView
+          android:layout_width="wrap_content"
+          app:cardBackgroundColor="@color/colorPrimary"
+          android:layout_alignParentRight="true"
+          android:id="@+id/cardBook"
+          android:layout_centerVertical="true"
+          android:layout_height="wrap_content">
+          <TextView
+              android:layout_width="wrap_content"
+              android:text="Book"
+              android:textColor="@android:color/white"
+              android:paddingTop="8dp"
+              android:paddingBottom="8dp"
+              android:paddingLeft="25dp"
+              android:paddingRight="25dp"
+              android:layout_height="wrap_content"
+              />
+
+      </android.support.v7.widget.CardView>
+    </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Chamber Address"
+        android:textSize="10dp"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="23/5, Farmgate, Dhaka-1209"
+        android:textSize="10dp"
+        android:id="@+id/tv_address"
+        android:layout_height="wrap_content"
+        />
+</LinearLayout>
