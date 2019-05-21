@@ -47,7 +47,7 @@ public class PendingAppointmentsPatientActivity extends AppCompatActivity implem
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
         recycler_view.setLayoutManager(mLayoutManager);
         recycler_view.setItemAnimator(new DefaultItemAnimator());
-        recycler_view.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL, false));
+       // recycler_view.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL, false));
         recycler_view.setAdapter(mAdapter);
 
     }

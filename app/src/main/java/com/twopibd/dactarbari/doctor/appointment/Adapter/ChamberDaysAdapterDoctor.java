@@ -91,11 +91,12 @@ public class ChamberDaysAdapterDoctor extends RecyclerView.Adapter<ChamberDaysAd
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MyProgressDialog.with(context);
+
                 MyDialogList.getInstance().with((Activity)context).yesNoConfirmation(new MyDialogList.confirmListener() {
                     @Override
                     public void onDialogClicked(boolean result) {
                         if (result){
+                            MyProgressDialog.with(context);
                             Api.getInstance().deleteSchedule(key, "" + movie.getId(), new ApiListener.drScheduleDeleteListener() {
                                 @Override
                                 public void onScheduleDeleteSuccess(StatusMessage data) {
@@ -117,7 +118,7 @@ public class ChamberDaysAdapterDoctor extends RecyclerView.Adapter<ChamberDaysAd
                                 }
                             });
                         }else {
-                            Toast.makeText(context, "Canceled", Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(context, "Canceled", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }, "Do you really want to delete this schedule?");

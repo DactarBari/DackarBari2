@@ -8,10 +8,30 @@
     android:layout_height="wrap_content">
     <TextView
         android:layout_width="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingTop="00dp"
+        android:paddingRight="10dp"
+        android:text="Address"
+        android:textColor="@android:color/darker_gray"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:layout_width="wrap_content"
         android:id="@+id/tv_address"
         android:paddingLeft="10dp"
-        android:paddingTop="10dp"
+        android:paddingTop="00dp"
         android:paddingRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingBottom="00dp"
+        android:paddingRight="10dp"
+        android:text="Days"
+        android:textColor="@android:color/darker_gray"
+
         android:layout_height="wrap_content"
         />
     <TextView

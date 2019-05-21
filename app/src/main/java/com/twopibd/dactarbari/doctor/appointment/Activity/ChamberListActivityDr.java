@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.Toast;
 
@@ -51,7 +52,9 @@ public class ChamberListActivityDr extends AppCompatActivity implements ApiListe
         MyProgressDialog.destroy();
         ChamberListAdapterDoctor  mAdapter = new ChamberListAdapterDoctor(data);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recycler_view.setLayoutManager(mLayoutManager);
+        StaggeredGridLayoutManager   _sGridLayoutManager = new StaggeredGridLayoutManager(2,
+                StaggeredGridLayoutManager.VERTICAL);
+        recycler_view.setLayoutManager(_sGridLayoutManager);
         recycler_view.setItemAnimator(new DefaultItemAnimator());
         //recycler_view.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL,false));
 

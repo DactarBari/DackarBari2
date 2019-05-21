@@ -85,7 +85,7 @@ public class AddWeeklyChamberActivity extends AppCompatActivity implements ApiLi
         locationPickListener.setlocationPickerListener(new ApiListener.LocationPicked() {
             @Override
             public void onPicked(boolean isPicked) {
-                Toast.makeText(AddWeeklyChamberActivity.this, "locaton picked", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(AddWeeklyChamberActivity.this, "locaton picked", Toast.LENGTH_SHORT).show();
                 address=Data.getAddress(context,DataStore.selectedLocation);
                 tv_locationPicked.setText(address);
                 ed_address.setText(address);
@@ -138,7 +138,7 @@ public class AddWeeklyChamberActivity extends AppCompatActivity implements ApiLi
     public void ondrSchedulePostFailed(String msg) {
         MyProgressDialog.destroy();
 
-        Toast.makeText(this, "error here " + msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Error occured.Try again later", Toast.LENGTH_SHORT).show();
         onBackPressed();
 
 
