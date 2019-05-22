@@ -6,6 +6,7 @@ import com.google.gson.JsonElement;
 import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentModels;
 import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentResponse;
+import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentSearchModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.BasicInfoModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.ChamberInfo;
 import com.twopibd.dactarbari.doctor.appointment.Model.ChamberModel;
@@ -36,6 +37,22 @@ public class ApiListener {
     public interface drSchedulePostListener {
         void ondrSchedulePostSuccess(StatusMessage data);
         void ondrSchedulePostFailed(String msg);
+    }
+    public interface drTrackIdListener {
+        void onTrackIdSuccess(List<AppointmentSearchModel> data);
+        void onTrackIdFailed(String msg);
+    }
+    public interface servePostListener {
+        void onservePostSuccess(StatusMessage data);
+        void onservePostFailed(String msg);
+    }
+    public interface drChamberStatusChangeListener {
+        void onChamberStatusChangeSuccess(StatusMessage data);
+        void onChamberStatusChangeFailed(String msg);
+    }
+    public interface drCheckChamberStatusListener {
+        void onCheckChamberStatusSuccess(StatusMessage data);
+        void onCheckChamberStatusFailed(String msg);
     }
     public interface AppintmentChangeListener {
         void onAppintmentChangeSuccess(StatusMessage data);

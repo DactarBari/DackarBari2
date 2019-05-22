@@ -58,7 +58,13 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:padding="12dp"
+                    android:visibility="gone"
                     android:src="@drawable/circle_stroke_primary" />
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:padding="13dp"
+                    android:src="@drawable/list_green_" />
 
 
             </RelativeLayout>
@@ -81,6 +87,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="View and edit old chamber schedule"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:lines="1"
 
                     android:textColor="@android:color/darker_gray" />
             </LinearLayout>
@@ -104,7 +112,13 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:padding="12dp"
+                    android:visibility="gone"
                     android:src="@drawable/circle_stroke_primary" />
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:padding="13dp"
+                    android:src="@drawable/plus_green" />
 
 
             </RelativeLayout>
@@ -127,6 +141,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Create your new chamber"
+                    android:fontFamily="@font/montserrat_regular"
 
                     android:textColor="@android:color/darker_gray" />
             </LinearLayout>

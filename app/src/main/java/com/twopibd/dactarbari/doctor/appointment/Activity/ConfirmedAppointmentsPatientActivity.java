@@ -7,6 +7,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.twopibd.dactarbari.doctor.appointment.Adapter.ConfirmedAppointmentAdapterPatient;
@@ -29,6 +30,8 @@ public class ConfirmedAppointmentsPatientActivity extends AppCompatActivity impl
     SessionManager sessionManager;
     String USER_ID,key;
     Context context=this;
+    @BindView(R.id.liner_no_item)
+    LinearLayout liner_no_item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +50,14 @@ public class ConfirmedAppointmentsPatientActivity extends AppCompatActivity impl
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
         recycler_view.setLayoutManager(mLayoutManager);
         recycler_view.setItemAnimator(new DefaultItemAnimator());
-        recycler_view.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL, false));
+        //recycler_view.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL, false));
         recycler_view.setAdapter(mAdapter);
+        if (data.size()>0){
+            liner_no_item.setVisibility(View.GONE);
+        }else {
+            liner_no_item.setVisibility(View.VISIBLE);
+
+        }
 
     }
 

@@ -46,6 +46,8 @@
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
                         android:id="@+id/tv_back"
+                        android:fontFamily="@font/montserrat_regular"
+
                         android:text="Back" />
 
                 </LinearLayout>

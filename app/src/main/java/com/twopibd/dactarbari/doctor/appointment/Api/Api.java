@@ -7,6 +7,7 @@ import com.twopibd.dactarbari.doctor.appointment.Activity.DrSignUpActivity;
 import com.twopibd.dactarbari.doctor.appointment.Activity.PatientProfileUpdateActivity;
 import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentModels;
 import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentResponse;
+import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentSearchModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.BasicInfoModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.ChamberInfo;
 import com.twopibd.dactarbari.doctor.appointment.Model.ChamberModel;
@@ -63,6 +64,82 @@ public class Api {
             @Override
             public void onFailure(@NonNull Call<JsonElement> call, @NonNull Throwable t) {
                 loginUserListener.onUserLoginFailed(t.getLocalizedMessage());
+            }
+        });
+    }
+
+    public void chamberStatusChange(String token, String chamber_id, String status, final ApiListener.drChamberStatusChangeListener loginUserListener) {
+
+        ApiClient.getApiInterface().changeChamberStatus(token, chamber_id, status).enqueue(new Callback<StatusMessage>() {
+            @Override
+            public void onResponse(@NonNull Call<StatusMessage> call, @NonNull Response<StatusMessage> response) {
+                if (response != null) {
+                    loginUserListener.onChamberStatusChangeSuccess(response.body());
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<StatusMessage> call, @NonNull Throwable t) {
+                loginUserListener.onChamberStatusChangeFailed(t.getLocalizedMessage());
+            }
+        });
+    }
+
+    public void getChamberStatus(String token, String chamber_id, final ApiListener.drCheckChamberStatusListener loginUserListener) {
+
+        ApiClient.getApiInterface().CheckChamberStatus(token, chamber_id).enqueue(new Callback<StatusMessage>() {
+            @Override
+            public void onResponse(@NonNull Call<StatusMessage> call, @NonNull Response<StatusMessage> response) {
+                if (response != null) {
+                    loginUserListener.onCheckChamberStatusSuccess(response.body());
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<StatusMessage> call, @NonNull Throwable t) {
+                loginUserListener.onCheckChamberStatusFailed(t.getLocalizedMessage());
+            }
+        });
+    }
+
+    public void track(String token, String track_id, final ApiListener.drTrackIdListener listener) {
+
+        ApiClient.getApiInterface().searchAppointments(token, track_id).enqueue(new Callback<List<AppointmentSearchModel>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<AppointmentSearchModel>> call, @NonNull Response<List<AppointmentSearchModel>> response) {
+                if (response != null) {
+                    listener.onTrackIdSuccess(response.body());
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<AppointmentSearchModel>> call, @NonNull Throwable t) {
+                listener.onTrackIdFailed(t.getLocalizedMessage());
+            }
+        });
+    }
+
+    public void postServeInfo(String token,String appointment_id, String comment,String fee, final ApiListener.servePostListener listener) {
+
+        ApiClient.getApiInterface().postServeInfo(token,appointment_id, comment,fee).enqueue(new Callback<StatusMessage>() {
+            @Override
+            public void onResponse(@NonNull Call<StatusMessage> call, @NonNull Response<StatusMessage> response) {
+                if (response != null) {
+                    listener.onservePostSuccess(response.body());
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<StatusMessage> call, @NonNull Throwable t) {
+                listener.onservePostFailed(t.getLocalizedMessage());
             }
         });
     }
@@ -301,7 +378,7 @@ public class Api {
                               String post_code,
                               String email,
                               final ApiListener.patientSignUpListener listener) {
-        ApiClient.getApiInterface().signUpPatient(user_type, pa_name, gender, password, mobile,  country, house, street, area, city, post_code,email).enqueue(new Callback<StatusMessage>() {
+        ApiClient.getApiInterface().signUpPatient(user_type, pa_name, gender, password, mobile, country, house, street, area, city, post_code, email).enqueue(new Callback<StatusMessage>() {
             @Override
             public void onResponse(Call<StatusMessage> call, Response<StatusMessage> response) {
                 listener.onPatientSignUpPostSuccess(response.body());
@@ -487,6 +564,7 @@ public class Api {
         });
 
     }
+
     public void searchByHospitalDoctor(String token, String hospitalID, final ApiListener.drSearchListener listener) {
         ApiClient.getApiInterface().searchHospitalDoctors(token, hospitalID).enqueue(new Callback<List<SearchModel>>() {
             @Override
@@ -503,8 +581,9 @@ public class Api {
         });
 
     }
-    public void getAppointmentsByDoctor(String token, String id,String user_type,String  status, final ApiListener.appoinetmentsDownloadListener listener) {
-        ApiClient.getApiInterface().getMyAppointments(token, id,user_type,status).enqueue(new Callback<List<AppointmentModels>>() {
+
+    public void getAppointmentsByDoctor(String token, String id, String user_type, String status, final ApiListener.appoinetmentsDownloadListener listener) {
+        ApiClient.getApiInterface().getMyAppointments(token, id, user_type, status).enqueue(new Callback<List<AppointmentModels>>() {
             @Override
             public void onResponse(Call<List<AppointmentModels>> call, Response<List<AppointmentModels>> response) {
                 listener.onAppointmentDownloadSuccess(response.body());
@@ -519,8 +598,9 @@ public class Api {
         });
 
     }
-    public void changeAppintmentStatus(String token, String id,String  status, final ApiListener.AppintmentChangeListener listener) {
-        ApiClient.getApiInterface().changeAppintmentStatus(token, id,status).enqueue(new Callback<StatusMessage>() {
+
+    public void changeAppintmentStatus(String token, String id, String status, final ApiListener.AppintmentChangeListener listener) {
+        ApiClient.getApiInterface().changeAppintmentStatus(token, id, status).enqueue(new Callback<StatusMessage>() {
             @Override
             public void onResponse(Call<StatusMessage> call, Response<StatusMessage> response) {
                 listener.onAppintmentChangeSuccess(response.body());
@@ -694,7 +774,6 @@ public class Api {
             }
         });
     }
-
 
 
     public void getAppointmentsBypatient(String id, final ApiListener.appoinetmentsDownloadListener listener) {

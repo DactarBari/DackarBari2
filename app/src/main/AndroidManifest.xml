@@ -21,7 +21,8 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.DrListByHospitalActivity"></activity>
+        <activity android:name=".Activity.ServingActivityDr"></activity>
+        <activity android:name=".Activity.DrListByHospitalActivity" />
         <activity android:name=".Activity.DoctorConfirmedActivity" />
         <activity android:name=".Activity.ConfirmedAppointmentsPatientActivity" />
         <activity android:name=".Activity.PendingAppointmentsPatientActivity" />

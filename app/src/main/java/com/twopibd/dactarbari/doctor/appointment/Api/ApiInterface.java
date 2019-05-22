@@ -4,6 +4,7 @@ package com.twopibd.dactarbari.doctor.appointment.Api;
 import com.google.gson.JsonElement;
 import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentModels;
 import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentResponse;
+import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentSearchModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.BasicInfoModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.ChamberInfo;
 import com.twopibd.dactarbari.doctor.appointment.Model.ChamberModel;
@@ -63,6 +64,22 @@ public interface ApiInterface {
     @POST("getMyAppointmentsDoctor.php")
     Call<AppointmentResponse> myAppointmentsbyDoctor(@Field("dr_id") String dr_id);
 
+    @FormUrlEncoded
+    @POST("update-chamber-status")
+    Call<StatusMessage> changeChamberStatus(@Header("Authorization") String token,@Field("chamber_id") String chamber_id,@Field("status") String status);
+
+    @FormUrlEncoded
+    @POST("check-chamber-status")
+    Call<StatusMessage> CheckChamberStatus(@Header("Authorization") String token,@Field("chamber_id") String chamber_id);
+
+    @FormUrlEncoded
+    @POST("view-patient-appointment-details-via-track-id")
+    Call<List<AppointmentSearchModel>> searchAppointments(@Header("Authorization") String token, @Field("track_id") String track_id);
+
+    @FormUrlEncoded
+    @POST("add-doctor-serve-info")
+    Call<StatusMessage> postServeInfo(@Header("Authorization") String token, @Field("appointment_id") String appointment_id, @Field("comment") String comment, @Field("fee") String fee);
+
 
     @GET("country-list")
     Call<List<CountryModel>> getCountryList();
@@ -114,6 +131,7 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("search-doctor")
     Call<List<SearchModel>> searchDepartmentDoctors(@Header("Authorization") String token, @Field("department_id") String department_id);
+
     @FormUrlEncoded
     @POST("search-doctor")
     Call<List<SearchModel>> searchHospitalDoctors(@Header("Authorization") String token, @Field("hospital_id") String department_id);
@@ -148,11 +166,12 @@ public interface ApiInterface {
                                                     @Field("id") String id,
                                                     @Field("user_type") String user_type,
                                                     @Field("status") String status);
+
     @FormUrlEncoded
     @POST("update-appointment-status")
     Call<StatusMessage> changeAppintmentStatus(@Header("Authorization") String token,
-                                                    @Field("appointment_id") String appointment_id,
-                                                    @Field("status") String status);
+                                               @Field("appointment_id") String appointment_id,
+                                               @Field("status") String status);
 
 
     @FormUrlEncoded

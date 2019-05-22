@@ -1,5 +1,6 @@
 package com.twopibd.dactarbari.doctor.appointment.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +8,8 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,11 +34,14 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ChamberDetailsActivityDr extends AppCompatActivity implements ApiListener.drChamberDeleteListener,
+public class ChamberDetailsActivityDr extends AppCompatActivity implements
         MyDialogList.ScheduleDialogListener,
-        ApiListener.drScheduleAddListener {
+        ApiListener.drScheduleAddListener,
+        ApiListener.drCheckChamberStatusListener{
     @BindView(R.id.tv_address)
     TextView tv_address;
+    @BindView(R.id.chamber_switch)
+    Switch chamber_switch;
     @BindView(R.id.tv_fees)
     TextView tv_fees;
     @BindView(R.id.recycler_view)
@@ -45,6 +51,10 @@ public class ChamberDetailsActivityDr extends AppCompatActivity implements ApiLi
     SessionManager sessionManager;
     ChamberDaysAdapterDoctor mAdapter;
     Day addeedDay = null;
+    Context context=this;
+    String USER_ID,KEY,CHAMBER_ID;
+    String STATUS_ON="1";
+    String STATUS_OFF="0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +62,16 @@ public class ChamberDetailsActivityDr extends AppCompatActivity implements ApiLi
         setContentView(R.layout.activity_chamber_details_dr);
         ButterKnife.bind(this);
         sessionManager = new SessionManager(this);
+        USER_ID=sessionManager.getToken();
+        KEY=sessionManager.getToken();
         ChamberModel dataModel = Data.chamberModel;
+        CHAMBER_ID=""+dataModel.getId();
         chamber_id = "" + dataModel.getId();
         key = sessionManager.getToken();
         tv_address.setText(dataModel.getChamberAddress());
         tv_fees.setText("" + dataModel.getFee());
+        Api.getInstance().getChamberStatus(KEY,CHAMBER_ID,this);
+
 
         setUpRecycler(dataModel.getScheduleInfo());
     }
@@ -76,24 +91,36 @@ public class ChamberDetailsActivityDr extends AppCompatActivity implements ApiLi
     }
 
     public void deleteChamber(View view) {
-        MyProgressDialog.with(this);
-        Api.getInstance().deleteChamber(key, chamber_id, this);
+        MyDialogList.getInstance().with(ChamberDetailsActivityDr.this).yesNoConfirmation(new MyDialogList.confirmListener() {
+            @Override
+            public void onDialogClicked(boolean result) {
+                if (result){
+                    MyProgressDialog.with(context);
+                    Api.getInstance().deleteChamber(key, chamber_id, new ApiListener.drChamberDeleteListener() {
+                        @Override
+                        public void onChamberDeleteSuccess(StatusMessage data) {
+                            MyProgressDialog.destroy();
+                            Toast.makeText(context, data.getMessage(), Toast.LENGTH_SHORT).show();
+                            onBackPressed();
+
+                        }
+
+                        @Override
+                        public void onChamberDeleteFailed(String msg) {
+                            MyProgressDialog.destroy();
+                            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+                            onBackPressed();
+
+                        }
+                    });
+                }
+
+            }
+        },"Do you want to delete this chamber completely?");
+
     }
 
-    @Override
-    public void onChamberDeleteSuccess(StatusMessage data) {
-        MyProgressDialog.destroy();
-        Toast.makeText(this, data.getMessage(), Toast.LENGTH_SHORT).show();
-        onBackPressed();
-    }
 
-    @Override
-    public void onChamberDeleteFailed(String msg) {
-        MyProgressDialog.destroy();
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-        onBackPressed();
-
-    }
 
     public void addDialog(View view) {
         MyDialogList.getInstance().with(ChamberDetailsActivityDr.this).addScheduleDialog(this);
@@ -109,7 +136,7 @@ public class ChamberDetailsActivityDr extends AppCompatActivity implements ApiLi
 
     @Override
     public void onNoDialogClicked(boolean result) {
-        Toast.makeText(this, "canceled", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Canceled", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -125,6 +152,46 @@ public class ChamberDetailsActivityDr extends AppCompatActivity implements ApiLi
     public void ondrScheduleAddFailed(String msg) {
         MyProgressDialog.destroy();
 
+
+    }
+
+
+    @Override
+    public void onCheckChamberStatusSuccess(StatusMessage data) {
+        if (data.getStatus()){
+            chamber_switch.setChecked(true);
+
+        }else {
+            chamber_switch.setChecked(false);
+        }
+        ApiListener.drChamberStatusChangeListener listener=new ApiListener.drChamberStatusChangeListener() {
+            @Override
+            public void onChamberStatusChangeSuccess(StatusMessage data) {
+                Toast.makeText(context, data.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onChamberStatusChangeFailed(String msg) {
+                Toast.makeText(context, "Network error.Try again later", Toast.LENGTH_SHORT).show();
+
+            }
+        };
+        chamber_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    Api.getInstance().chamberStatusChange(KEY,CHAMBER_ID,STATUS_ON,listener);
+                }else {
+                    Api.getInstance().chamberStatusChange(KEY,CHAMBER_ID,STATUS_OFF,listener);
+                }
+            }
+        });
+
+    }
+
+    @Override
+    public void onCheckChamberStatusFailed(String msg) {
+        Toast.makeText(context, "Network Error,Try again", Toast.LENGTH_SHORT).show();
 
     }
 }

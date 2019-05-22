@@ -25,6 +25,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/darker_gray"
+
             android:layout_weight=".7"
             android:text="Name" />
 
@@ -47,6 +49,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight=".7"
+            android:textColor="@android:color/darker_gray"
+
             android:text="Date" />
 
         <TextView
@@ -68,6 +72,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/darker_gray"
+
             android:text="Problem" />
 
         <TextView
@@ -93,9 +99,9 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginRight="10dp"
-                android:padding="10dp"
+                android:padding="12dp"
                 android:id="@+id/tv_cancel"
-                android:src="@drawable/delete"
+                android:src="@drawable/reject"
                 android:gravity="center"
 
                 android:text="Cancel"

@@ -44,7 +44,7 @@ public class ChamberDaysAdapterDoctor extends RecyclerView.Adapter<ChamberDaysAd
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView tv_day, tv_start, tv_end, tv_capacity;
-        ImageView circleImageView;
+        ImageView img_delete;
         RelativeLayout relative_container;
 
 
@@ -54,6 +54,7 @@ public class ChamberDaysAdapterDoctor extends RecyclerView.Adapter<ChamberDaysAd
             tv_start = (TextView) view.findViewById(R.id.tv_start);
             tv_end = (TextView) view.findViewById(R.id.tv_end);
             tv_capacity = (TextView) view.findViewById(R.id.tv_capacity);
+            img_delete = (ImageView) view.findViewById(R.id.img_delete);
 
 
         }
@@ -85,10 +86,10 @@ public class ChamberDaysAdapterDoctor extends RecyclerView.Adapter<ChamberDaysAd
         SessionManager sessionManager=new SessionManager(context);
         String key=sessionManager.getToken();
         holder.tv_day.setText(DataStore.convertToWeekDay(""+(movie.getDay()-1)));
-        holder.tv_start.setText(movie.getStartTime());
-        holder.tv_end.setText(movie.getEndTime());
+        holder.tv_start.setText(DataStore.changeDateformate1(movie.getStartTime()));
+        holder.tv_end.setText(DataStore.changeDateformate1(movie.getEndTime()));
         holder.tv_capacity.setText(""+movie.getPatientCapacity());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.img_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 

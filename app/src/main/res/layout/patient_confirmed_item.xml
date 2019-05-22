@@ -3,27 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/bg_unselected"
     android:orientation="vertical"
-    android:padding="15dp">
+    android:paddingTop="15dp"
+    android:paddingLeft="5dp">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="5dp">
+            android:padding="0dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight=".7"
-                android:text="Ref ID" />
+                android:text="Ref ID"
+
+                android:textColor="@android:color/darker_gray" />
 
             <TextView
                 android:id="@+id/tv_refID"
@@ -34,17 +39,20 @@
                 android:text="asdfasd cadsas"
                 android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="5dp">
+            android:padding="0dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight=".7"
-                android:text="Name" />
+                android:text="Name"
+
+                android:textColor="@android:color/darker_gray" />
 
             <TextView
                 android:id="@+id/tv_name"
@@ -60,13 +68,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="5dp">
+            android:padding="0dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight=".7"
-                android:text="Date" />
+                android:text="Date"
+
+                android:textColor="@android:color/darker_gray" />
 
             <TextView
                 android:id="@+id/tv_date"
@@ -77,17 +87,20 @@
                 android:text="asdfasd cadsas"
                 android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="5dp">
+            android:padding="0dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight=".7"
-                android:text="Time" />
+                android:text="Time"
+
+                android:textColor="@android:color/darker_gray" />
 
             <TextView
                 android:id="@+id/tv_time"
@@ -98,17 +111,20 @@
                 android:text="asdfasd cadsas"
                 android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="5dp">
+            android:padding="0dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight=".7"
-                android:text="Address" />
+                android:text="Address"
+
+                android:textColor="@android:color/darker_gray" />
 
             <TextView
                 android:id="@+id/tv_address"
@@ -119,45 +135,51 @@
                 android:text="asdfasd cadsas"
                 android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="5dp">
+            android:padding="0dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Problem" />
+                android:text="Problem"
+
+                android:textColor="@android:color/darker_gray" />
 
             <TextView
                 android:id="@+id/tv_problem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
 
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#cccccc"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_marginRight="20dp"
+        android:gravity="right"
         android:orientation="horizontal">
 
-
-
         <ImageView
+            android:id="@+id/img_delete"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:alpha="0.5"
             android:padding="10dp"
-            android:id="@+id/img_delete"
             android:src="@drawable/delete" />
-
-
-
+        />
 
 
     </LinearLayout>
+
 </LinearLayout>

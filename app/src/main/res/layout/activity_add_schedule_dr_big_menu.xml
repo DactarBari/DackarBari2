@@ -59,7 +59,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:padding="12dp"
-                    android:src="@drawable/circle_stroke_primary" />
+                    android:src="@drawable/calender_365" />
 
 
             </RelativeLayout>
@@ -82,6 +82,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Setup your schedule in daily pattern"
+                    android:fontFamily="@font/montserrat_regular"
 
                     android:textColor="@android:color/darker_gray" />
             </LinearLayout>
@@ -105,7 +106,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:padding="12dp"
-                    android:src="@drawable/circle_stroke_primary" />
+                    android:src="@drawable/seven_day" />
 
 
             </RelativeLayout>
@@ -128,6 +129,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Setup your schedule in weekly pattern"
+                    android:fontFamily="@font/montserrat_regular"
 
                     android:textColor="@android:color/darker_gray" />
             </LinearLayout>
@@ -150,7 +152,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:padding="12dp"
-                    android:src="@drawable/circle_stroke_primary" />
+                    android:src="@drawable/monthly_12" />
 
 
             </RelativeLayout>
@@ -173,6 +175,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Setup your schedule in monthly pattern"
+                    android:fontFamily="@font/montserrat_regular"
 
                     android:textColor="@android:color/darker_gray" />
             </LinearLayout>
