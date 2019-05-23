@@ -46,7 +46,7 @@ import butterknife.ButterKnife;
 
 import static com.twopibd.dactarbari.doctor.appointment.Data.Data.newSchedulelist;
 
-public class AddWeeklyChamberActivity extends AppCompatActivity implements ApiListener.drSchedulePostListener , MyDialogList.ScheduleDialogListener {
+public class AddWeeklyChamberActivity extends AppCompatActivity implements ApiListener.drSchedulePostListener, MyDialogList.ScheduleDialogListener {
 
 
     @BindView(R.id.ed_address)
@@ -62,17 +62,18 @@ public class AddWeeklyChamberActivity extends AppCompatActivity implements ApiLi
     public static List<DaysTimeModel> Dayslist = new ArrayList<>();
     SessionManager sessionManager;
     String key = "";
-    Context context=this;
-    String chamber_latitude="";
-    String chamber_longitude="";
-    String address="";
-    List<Day>daysToAdd=new ArrayList<>();
-    String dd="";
+    Context context = this;
+    String chamber_latitude = "";
+    String chamber_longitude = "";
+    String address = "";
+    public static List<Day> daysToAdd = new ArrayList<>();
+    String dd = "";
     NewScheduleAddAdapterDoctor mAdapter;
-    List<String>day_=new ArrayList<>();
-    List<String>start_=new ArrayList<>();
-    List<String>end_=new ArrayList<>();
-    List<String>capacity_=new ArrayList<>();
+    public static List<String> day_ = new ArrayList<>();
+    public static List<String> start_ = new ArrayList<>();
+    public static List<String> end_ = new ArrayList<>();
+    public static List<String> capacity_ = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,11 +87,11 @@ public class AddWeeklyChamberActivity extends AppCompatActivity implements ApiLi
             @Override
             public void onPicked(boolean isPicked) {
                 //Toast.makeText(AddWeeklyChamberActivity.this, "locaton picked", Toast.LENGTH_SHORT).show();
-                address=Data.getAddress(context,DataStore.selectedLocation);
+                address = Data.getAddress(context, DataStore.selectedLocation);
                 tv_locationPicked.setText(address);
                 ed_address.setText(address);
-                chamber_latitude=""+DataStore.selectedLocation.latitude;
-                chamber_longitude=""+DataStore.selectedLocation.longitude;
+                chamber_latitude = "" + DataStore.selectedLocation.latitude;
+                chamber_longitude = "" + DataStore.selectedLocation.longitude;
             }
         });
 
@@ -116,12 +117,19 @@ public class AddWeeklyChamberActivity extends AppCompatActivity implements ApiLi
 
 
         Gson gson = new Gson();
-        List<Day>okokok=new ArrayList<>();
-        for (int i=0;i<day_.size();i++){
-            okokok.add(new Day(day_.get(i),start_.get(i),end_.get(i),capacity_.get(i)));
+        List<Day> okokok = new ArrayList<>();
+        for (int i = 0; i < day_.size(); i++) {
+            okokok.add(new Day(day_.get(i), start_.get(i), end_.get(i), capacity_.get(i)));
         }
-       Api.getInstance().setDrSchedule(key, sessionManager.getUserId(), address, fees, gson.toJson(okokok),chamber_latitude,chamber_longitude, this);
-       // Toast.makeText(context,gson.toJson(daysToAdd) , Toast.LENGTH_LONG).show();
+        String lat=null;
+        String log=null;
+        if (chamber_latitude!=null && chamber_longitude!=null){
+            lat=chamber_latitude;
+            log=chamber_longitude;
+
+        }
+        Api.getInstance().setDrSchedule(key, sessionManager.getUserId(), address, fees, gson.toJson(okokok), lat, log, this);
+        // Toast.makeText(context,gson.toJson(daysToAdd) , Toast.LENGTH_LONG).show();
 
     }
 
@@ -154,8 +162,9 @@ public class AddWeeklyChamberActivity extends AppCompatActivity implements ApiLi
     }
 
     public void openMap(View view) {
-        startActivity(new Intent(this,MapsActivity3.class));
+        startActivity(new Intent(this, MapsActivity3.class));
     }
+
     public void openAddDialog(View view) {
         MyDialogList.getInstance().with(AddWeeklyChamberActivity.this).addScheduleDialog(this);
 
@@ -165,16 +174,10 @@ public class AddWeeklyChamberActivity extends AppCompatActivity implements ApiLi
     public void onYesDialogClicked(boolean result, Day day) {
         mAdapter.addToAdapter(day);
         daysToAdd.add(day);
-        Gson gson=new Gson();
-        dd+=day.getDay()+"\n";
         day_.add(day.getDay());
         start_.add(day.getStart_time());
         end_.add(day.getEnd_time());
         capacity_.add(day.getPatient_capacity());
-        Calendar calendar=Calendar.getInstance();
-
-
-
 
 
     }

@@ -171,7 +171,8 @@ public interface ApiInterface {
     @POST("update-appointment-status")
     Call<StatusMessage> changeAppintmentStatus(@Header("Authorization") String token,
                                                @Field("appointment_id") String appointment_id,
-                                               @Field("status") String status);
+                                               @Field("status") String status,
+                                               @Field("inserted_by") String inserted_by);
 
 
     @FormUrlEncoded

@@ -81,7 +81,7 @@ public class MapsActivity3 extends GPSOpenActivity implements OnMapReadyCallback
     }
     @Override
     public void onLocationRetriveSuccess(LatLng latLng) {
-        Toast.makeText(this, latLng.toString(), Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, latLng.toString(), Toast.LENGTH_SHORT).show();
         LatLng sydney = new LatLng(-34, 151);
       //  mMap.addMarker(new MarkerOptions().position(latLng).title("Marker in Sydney"));
       //  mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));

@@ -47,6 +47,7 @@
                         android:layout_marginLeft="10dp"
                         android:id="@+id/tv_back"
                         android:fontFamily="@font/montserrat_regular"
+                        android:textSize="10dp"
 
                         android:text="Back" />
 

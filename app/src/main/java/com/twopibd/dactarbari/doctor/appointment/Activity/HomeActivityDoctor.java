@@ -46,6 +46,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static com.twopibd.dactarbari.doctor.appointment.Data.DataStore.KEY;
+import static com.twopibd.dactarbari.doctor.appointment.Data.DataStore.USER_ID;
+
 public class HomeActivityDoctor extends AppCompatActivity implements ApiListener.appoinetmentsDownloadListener {
     @BindView(R.id.tv_name)
     TextView tv_name;
@@ -62,12 +65,11 @@ public class HomeActivityDoctor extends AppCompatActivity implements ApiListener
     @BindView(R.id.profile_image)
     CircleImageView profile_image;
     SessionManager sessionManager;
-    String USER_ID, key;
+
     Context context = this;
     public static List<AppointmentModels> PENDING_LIST = new ArrayList<>();
     public static List<AppointmentModels> CONFIRMED_LIST = new ArrayList<>();
     int state = 0;
-    String TOKEN;
     AppointmentSearchDrAdapter mAdapter;
     List<AppointmentSearchModel> searchModelList = new ArrayList<>();
 
@@ -78,13 +80,13 @@ public class HomeActivityDoctor extends AppCompatActivity implements ApiListener
         setContentView(R.layout.activity_home_doctor);
         ButterKnife.bind(this);
         sessionManager = new SessionManager(this);
-        Toast.makeText(this, sessionManager.getUserId(), Toast.LENGTH_SHORT).show();
+        KEY=sessionManager.getToken();
+        USER_ID=sessionManager.getUserId();
         init_display();
-        USER_ID = sessionManager.getUserId();
-        key = sessionManager.getToken();
-        Api.getInstance().getAppointmentsByDoctor(key, USER_ID, "doctor", "0", this);
+        Api.getInstance().getAppointmentsByDoctor(KEY, USER_ID, "doctor", "0", this);
         initRecycler();
         init_search();
+        //Toast.makeText(context, sessionManager.getUserId(), Toast.LENGTH_SHORT).show();
 
 
     }
@@ -109,10 +111,10 @@ public class HomeActivityDoctor extends AppCompatActivity implements ApiListener
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 String track_id = charSequence.toString();
                 if (track_id.length() > 0) {
-                    Api.getInstance().track(key, track_id, new ApiListener.drTrackIdListener() {
+                    Api.getInstance().track(KEY, track_id, new ApiListener.drTrackIdListener() {
                         @Override
                         public void onTrackIdSuccess(List<AppointmentSearchModel> data) {
-                            Toast.makeText(context, ""+data.size(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(context, ""+data.size(), Toast.LENGTH_SHORT).show();
 
                             if (data.size() > 0) {
                                 searchModelList.clear();
@@ -207,23 +209,27 @@ public class HomeActivityDoctor extends AppCompatActivity implements ApiListener
 
     @Override
     public void onAppointmentDownloadSuccess(List<AppointmentModels> data) {
-        if (state == 0) {
+        if (data!=null&& state == 0) {
             PENDING_LIST = data;
             state++;
             tv_pending.setText("" + data.size());
-            Api.getInstance().getAppointmentsByDoctor(key, USER_ID, "doctor", "1", this);
+            Api.getInstance().getAppointmentsByDoctor(KEY, USER_ID, "doctor", "1", this);
 
-        } else if (state == 1) {
+        } else if (data!=null&& state == 1) {
             tv_confirmed.setText("" + data.size());
             CONFIRMED_LIST = data;
             state = 0;
+        }else if (data==null){
+            tv_pending.setText("0");
+            tv_confirmed.setText("0");
+
         }
 
     }
 
     @Override
     public void onAppointmentDownloadFailed(String msg) {
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context,"here 1"+ msg, Toast.LENGTH_SHORT).show();
 
     }
 }

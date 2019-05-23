@@ -23,7 +23,7 @@
                 />
             <TextView
                 android:layout_width="match_parent"
-                android:text="Pick date and time"
+                android:text="Available Slots"
                 android:textSize="15dp"
 
 
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"/>
             <TextView
                 android:layout_width="wrap_content"
-                android:text="Available Slots"
+                android:text="Pick a slot"
                 android:paddingLeft="10dp"
                 android:paddingBottom="10dp"
                 android:layout_gravity="center"

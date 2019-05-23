@@ -25,16 +25,17 @@ import java.util.Map;
  */
 
 public class DataStore {
-    public  static LatLng selectedLocation=null;
-    public  static AppointmentSearchModel selectedSearchAppointmentModel=null;
-    public  static DepartmentModel departmentID=null;
-    public  static HospitalModel hospitalID=null;
-    public  static String selectedDate=null;
-    public  static SearchModel selectedSearchModel=null;
-    public  static Slot selectedSloat=null;
-    public  static ChamberInfo chamberInfo=null;
-    public  static int  clickedSlotPosition;
-    public  static List<ScheduleInfo> seelctedscheduleInfo =null;
+    public static String USER_ID, KEY;
+    public static LatLng selectedLocation = null;
+    public static AppointmentSearchModel selectedSearchAppointmentModel = null;
+    public static DepartmentModel departmentID = null;
+    public static HospitalModel hospitalID = null;
+    public static String selectedDate = null;
+    public static SearchModel selectedSearchModel = null;
+    public static Slot selectedSloat = null;
+    public static ChamberInfo chamberInfo = null;
+    public static int clickedSlotPosition;
+    public static List<ScheduleInfo> seelctedscheduleInfo = null;
 
     public static List<String> getUserTypeList() {
         List<String> type = new ArrayList<String>();
@@ -57,6 +58,16 @@ public class DataStore {
         return days.get(day);
     }
 
+    public static String convertAppointmentStatus(String flag) {
+        Map<String, String> status = new HashMap<>();
+        status.put("0", "Pending");
+        status.put("1", "Confirmed");
+        status.put("2", "Canceled");
+        status.put("3", "Rejected");
+        status.put("4", "Served");
+        return status.get(flag);
+    }
+
     public static String convertDayToNmber(String day) {
         Map<String, String> days = new HashMap<>();
         days.put("Sat", "6");
@@ -69,6 +80,7 @@ public class DataStore {
 
         return days.get(day);
     }
+
     public static String changeDateformate(String time) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date sourceDate = null;
@@ -81,6 +93,7 @@ public class DataStore {
         SimpleDateFormat targetFormat = new SimpleDateFormat("MMM dd");
         return targetFormat.format(sourceDate);
     }
+
     public static String changeDateformate1(String time) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         Date sourceDate = null;
@@ -106,6 +119,7 @@ public class DataStore {
 
         return days;
     }
+
     public static List<String> getWeekDays() {
         List<String> days = new ArrayList<>();
         days.add("Sat");

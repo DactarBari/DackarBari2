@@ -26,6 +26,8 @@ import com.twopibd.dactarbari.doctor.appointment.Widgets.MyDialogList;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.twopibd.dactarbari.doctor.appointment.Data.DataStore.USER_ID;
+
 
 /**
  * Created by mukul on 3/10/2019.
@@ -176,7 +178,7 @@ public class PendingAppointmentAdapterDoctor extends RecyclerView.Adapter<Pendin
         MyProgressBar.with(context);
         triggeredItem = pos;
         //Api.getInstance().changeStatus(appointment_id, "1", this);
-        Api.getInstance().changeAppintmentStatus(KEY, appointment_id, status, new ApiListener.AppintmentChangeListener() {
+        Api.getInstance().changeAppintmentStatus(KEY, appointment_id, status,USER_ID, new ApiListener.AppintmentChangeListener() {
             @Override
             public void onAppintmentChangeSuccess(StatusMessage data) {
                 MyProgressBar.dismiss();

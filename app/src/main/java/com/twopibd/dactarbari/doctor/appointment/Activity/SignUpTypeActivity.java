@@ -90,7 +90,7 @@ public class SignUpTypeActivity extends BaseActivity implements
         cachedCountryList.clear();
         cachedCountryList.addAll(list);
 
-        Toast.makeText(context, " country "+list.size(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context, " country "+list.size(), Toast.LENGTH_SHORT).show();
 
 
     }
@@ -100,10 +100,13 @@ public class SignUpTypeActivity extends BaseActivity implements
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
 
     }
+    public  void back(View view){
+        onBackPressed();
+    }
 
     @Override
     public void onHospitalLisDownloadSuccess(List<HospitalModel> list) {
-        Toast.makeText(context, "hospital "+list.size(), Toast.LENGTH_SHORT).show();
+       // Toast.makeText(context, "hospital "+list.size(), Toast.LENGTH_SHORT).show();
         cachedHospitalsList.clear();
         cachedHospitalsList.addAll(list);
         hospitalNameBodyMap.clear();
@@ -123,7 +126,7 @@ public class SignUpTypeActivity extends BaseActivity implements
 
     @Override
     public void onDepartmentLisDownloadSuccess(List<DepartmentModel> list) {
-        Toast.makeText(context, "department "+list.size(), Toast.LENGTH_SHORT).show();
+       // Toast.makeText(context, "department "+list.size(), Toast.LENGTH_SHORT).show();
         cachedDeparmentsList.clear();
         cachedDeparmentsList.addAll(list);
 

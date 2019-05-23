@@ -25,12 +25,14 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.twopibd.dactarbari.doctor.appointment.Data.DataStore.KEY;
+import static com.twopibd.dactarbari.doctor.appointment.Data.DataStore.USER_ID;
+
 public class PatientNewActivity extends AppCompatActivity implements ApiListener.appoinetmentsDownloadListener {
     @BindView(R.id.recycler_view)
     RecyclerView recycler_view;
 
     Context context = this;
-    String USER_ID, key;
     SessionManager sessionManager;
 
     @Override
@@ -41,8 +43,8 @@ public class PatientNewActivity extends AppCompatActivity implements ApiListener
         init_lookingFor();
         sessionManager = new SessionManager(this);
         USER_ID = sessionManager.getUserId();
-        key = sessionManager.getToken();
-        Api.getInstance().getAppointmentsByDoctor(key, USER_ID, "patient", "0", this);
+        KEY = sessionManager.getToken();
+        Api.getInstance().getAppointmentsByDoctor(KEY, USER_ID, "patient", "0", this);
 
     }
 

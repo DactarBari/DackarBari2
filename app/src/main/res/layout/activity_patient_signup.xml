@@ -5,14 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.PatientSignupActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginLeft="15dp">
+            android:layout_marginLeft="0dp"
+            android:background="@android:color/white"
+            android:paddingLeft="15dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -38,6 +42,9 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textSize="10dp"
+
                     android:text="Back" />
 
             </LinearLayout>
@@ -51,6 +58,7 @@
                 android:text="Sign Up"
                 android:textSize="15dp" />
         </RelativeLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
@@ -60,11 +68,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingRight="10dp"
             android:paddingLeft="10dp"
+            android:paddingRight="10dp"
 
             >
-
 
 
             <LinearLayout
@@ -84,13 +91,14 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:id="@+id/ed_name"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/ed_height"
                     android:background="@drawable/ed_selector"
                     android:hint="Full Name"
-                    android:id="@+id/ed_name"
                     android:padding="10dp" />
             </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -110,6 +118,7 @@
                     android:layout_height="@dimen/spinner_height"
                     android:padding="10dp" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -127,11 +136,11 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:id="@+id/ed_mobile"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/ed_height"
                     android:background="@drawable/ed_selector"
                     android:hint="Mobile Number"
-                    android:id="@+id/ed_mobile"
                     android:padding="10dp" />
             </LinearLayout>
 
@@ -152,11 +161,11 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:id="@+id/ed_password"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/ed_height"
                     android:background="@drawable/ed_selector"
                     android:hint="Password"
-                    android:id="@+id/ed_password"
                     android:padding="10dp" />
             </LinearLayout>
 
@@ -177,11 +186,11 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:id="@+id/ed_confirmPass"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/ed_height"
                     android:background="@drawable/ed_selector"
                     android:hint="Confirm Password"
-                    android:id="@+id/ed_confirmPass"
                     android:padding="10dp" />
             </LinearLayout>
 
@@ -202,11 +211,11 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:id="@+id/ed_email"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/ed_height"
                     android:background="@drawable/ed_selector"
                     android:hint="Email"
-                    android:id="@+id/ed_email"
                     android:padding="10dp" />
             </LinearLayout>
 
@@ -227,11 +236,11 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:id="@+id/ed_house"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/ed_height"
                     android:background="@drawable/ed_selector"
                     android:hint="House No"
-                    android:id="@+id/ed_house"
                     android:padding="10dp" />
             </LinearLayout>
 
@@ -252,13 +261,14 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:id="@+id/ed_street"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/ed_height"
                     android:background="@drawable/ed_selector"
                     android:hint="Street Address"
-                    android:id="@+id/ed_street"
                     android:padding="10dp" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -276,11 +286,11 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:id="@+id/ed_area"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/ed_height"
                     android:background="@drawable/ed_selector"
                     android:hint="Area"
-                    android:id="@+id/ed_area"
                     android:padding="10dp" />
             </LinearLayout>
 
@@ -301,11 +311,11 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:id="@+id/ed_city"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/ed_height"
                     android:background="@drawable/ed_selector"
                     android:hint="City Name"
-                    android:id="@+id/ed_city"
                     android:padding="10dp" />
             </LinearLayout>
 
@@ -326,11 +336,11 @@
                     android:textStyle="bold" />
 
                 <EditText
+                    android:id="@+id/ed_postCode"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/ed_height"
                     android:background="@drawable/ed_selector"
                     android:hint="Post Code"
-                    android:id="@+id/ed_postCode"
                     android:padding="10dp" />
             </LinearLayout>
 
@@ -365,37 +375,33 @@
             </LinearLayout>
 
 
-
-
-
-
-
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
                 <CheckBox
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:autoLink="web"
-                    android:gravity="center"
 
-                    android:text="I am not a robot"
-                    android:layout_height="wrap_content" />
+                    android:gravity="center"
+                    android:text="I am not a robot" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
                 <CheckBox
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:autoLink="web"
-                    android:gravity="center"
 
-                    android:text="@string/terms_and_conditions"
-                    android:layout_height="wrap_content" />
+                    android:gravity="center"
+                    android:text="@string/terms_and_conditions" />
 
             </LinearLayout>
 
@@ -404,8 +410,8 @@
                 android:layout_height="@dimen/ed_height"
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="20dp"
-                android:onClick="SignUpPatient"
                 android:layout_marginRight="50dp"
+                android:onClick="SignUpPatient"
                 app:cardBackgroundColor="@color/colorPrimary"
                 app:cardCornerRadius="5dp">
 

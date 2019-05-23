@@ -229,28 +229,59 @@ public class MyDialogList {
         tv_done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                capacity = Integer.parseInt(ed_capacity.getText().toString().trim());
-                if (endTime > startTime) {
-                    if (((endTime - startTime) % capacity) == 0) {
-                        day.setPatient_capacity(ed_capacity.getText().toString().trim());
-                        scheduleDialogListener.onYesDialogClicked(true, day);
-                        dialog.dismiss();
+                String cap=ed_capacity.getText().toString().trim();
+                if (cap.length()>0) {
+                    capacity = Integer.parseInt(cap);
+                    if (endTime > startTime) {
+                        if (((endTime - startTime) % capacity) == 0) {
+                            day.setPatient_capacity(ed_capacity.getText().toString().trim());
+                            scheduleDialogListener.onYesDialogClicked(true, day);
+                            dialog.dismiss();
+                        } else if (endTime<1440){
+
+                            int timeToLeft = ((endTime - startTime) % capacity);
+                            int timetoAdd = capacity - timeToLeft;
+
+                            if ((endTime+timetoAdd)<1440) {
+                                endTime += timetoAdd;
+                                int newHour = Integer.parseInt(convertTime(endTime));
+                                int newMinute = endTime - (newHour * 60);
+
+                                String formatedTime = formateDate(newHour, newMinute);
+                                day.setEnd_time("" + newHour + ":" + doubleDigit(newMinute));
+
+                                tv_end_time.setText("" + newHour + ":" + doubleDigit(newMinute));
+                                // Toast.makeText(activity, ""+(endTime/(24*60)), Toast.LENGTH_SHORT).show();
+                            }else {
+                                int timeToLeft1 = ((endTime - startTime) % capacity);
+                                int timetominus = capacity - timeToLeft1;
+                                startTime-=timetominus;
+
+                                int newHour = Integer.parseInt(convertTime(startTime));
+                                int newMinute = startTime - (newHour * 60);
+                                day.setStart_time("" + newHour + ":" + doubleDigit(newMinute));
+
+                                tv_start_time.setText("" + newHour + ":" + doubleDigit(newMinute));
+                            }
+
+                        }else {
+                            int timeToLeft = ((endTime - startTime) % capacity);
+                            int timetominus = capacity - timeToLeft;
+                            startTime-=timetominus;
+
+                            int newHour = Integer.parseInt(convertTime(startTime));
+                            int newMinute = startTime - (newHour * 60);
+                            day.setStart_time("" + newHour + ":" + doubleDigit(newMinute));
+
+                            tv_start_time.setText("" + newHour + ":" + doubleDigit(newMinute));
+
+                        }
                     } else {
-
-                        int timeToLeft = ((endTime - startTime) % capacity);
-                        int timetoAdd = capacity - timeToLeft;
-                        endTime += timetoAdd;
-                        int newHour = Integer.parseInt(convertTime(endTime));
-                        int newMinute = endTime - (newHour * 60);
-
-                        String formatedTime = formateDate(newHour, newMinute);
-                        day.setEnd_time("" + newHour + ":" + doubleDigit(newMinute));
-
-                        tv_end_time.setText("" + newHour + ":" + doubleDigit(newMinute));
-
+                        Toast.makeText(activity, "You cannot select end time less than start time", Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    Toast.makeText(activity, "You cannot select end time less than start time", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(activity, "Please insert patient capacity", Toast.LENGTH_SHORT).show();
+
                 }
 
 

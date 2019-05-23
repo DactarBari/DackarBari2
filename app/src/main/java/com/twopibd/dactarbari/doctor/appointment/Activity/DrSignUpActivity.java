@@ -323,8 +323,8 @@ public class DrSignUpActivity extends AppCompatActivity implements SelectedHospi
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i > 0) {
-                    selectedDepartment = "" + Data.cachedDeparmentsList.get(i).getId();
-                    Toast.makeText(context, selectedDepartment, Toast.LENGTH_SHORT).show();
+                    selectedDepartment = "" + Data.cachedDeparmentsList.get(i-1).getId();
+                   // Toast.makeText(context, selectedDepartment, Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -637,7 +637,7 @@ public class DrSignUpActivity extends AppCompatActivity implements SelectedHospi
         //Toast.makeText(context, data.getMessage(), Toast.LENGTH_LONG).show();
         //Gson gson = new Gson();
         try {
-            MyDialog.getInstance().with(DrSignUpActivity.this).autoBack(false).autoDismiss(false).message(data.getMessage()).show();
+            MyDialog.getInstance().with(DrSignUpActivity.this).autoBack(true).autoDismiss(false).message(data.getMessage()).show();
 
         }catch (Exception e){
             Toast.makeText(context, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();

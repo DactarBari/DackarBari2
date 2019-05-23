@@ -599,8 +599,8 @@ public class Api {
 
     }
 
-    public void changeAppintmentStatus(String token, String id, String status, final ApiListener.AppintmentChangeListener listener) {
-        ApiClient.getApiInterface().changeAppintmentStatus(token, id, status).enqueue(new Callback<StatusMessage>() {
+    public void changeAppintmentStatus(String token, String id, String status,String insert_by, final ApiListener.AppintmentChangeListener listener) {
+        ApiClient.getApiInterface().changeAppintmentStatus(token, id, status,insert_by).enqueue(new Callback<StatusMessage>() {
             @Override
             public void onResponse(Call<StatusMessage> call, Response<StatusMessage> response) {
                 listener.onAppintmentChangeSuccess(response.body());

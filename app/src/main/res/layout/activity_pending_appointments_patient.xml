@@ -36,6 +36,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:fontFamily="@font/montserrat_regular"
+                android:textSize="10dp"
 
                 android:text="Back" />
 
@@ -48,7 +49,8 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="Pending"
-            android:textSize="15dp" />
+            android:fontFamily="@font/montserrat_regular"
+            android:textSize="16dp" />
     </RelativeLayout>
 
     <View
@@ -78,7 +80,7 @@
             />
         <TextView
             android:layout_width="wrap_content"
-            android:text="No Item Found"
+            android:text="No Pending Appointment Found"
             android:layout_gravity="center"
             android:layout_height="wrap_content"
             />

@@ -24,12 +24,12 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ConfirmedAppointmentsPatientActivity extends AppCompatActivity implements ApiListener.appoinetmentsDownloadListener{
+public class ConfirmedAppointmentsPatientActivity extends AppCompatActivity implements ApiListener.appoinetmentsDownloadListener {
     @BindView(R.id.recycler_view)
     RecyclerView recycler_view;
     SessionManager sessionManager;
-    String USER_ID,key;
-    Context context=this;
+    String USER_ID, key;
+    Context context = this;
     @BindView(R.id.liner_no_item)
     LinearLayout liner_no_item;
 
@@ -38,23 +38,25 @@ public class ConfirmedAppointmentsPatientActivity extends AppCompatActivity impl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmed_appointments_patient);
         ButterKnife.bind(this);
-        sessionManager=new SessionManager(this);
-        USER_ID=sessionManager.getUserId();
-        key=sessionManager.getToken();
-        Api.getInstance().getAppointmentsByDoctor(key,USER_ID,"patient","1",this);
+        sessionManager = new SessionManager(this);
+        USER_ID = sessionManager.getUserId();
+        key = sessionManager.getToken();
+        Api.getInstance().getAppointmentsByDoctor(key, USER_ID, "patient", "1", this);
     }
+
     @Override
     public void onAppointmentDownloadSuccess(List<AppointmentModels> data) {
-        // Toast.makeText(this, ""+data.size(), Toast.LENGTH_SHORT).show();
-        ConfirmedAppointmentAdapterPatient mAdapter = new ConfirmedAppointmentAdapterPatient(data);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
-        recycler_view.setLayoutManager(mLayoutManager);
-        recycler_view.setItemAnimator(new DefaultItemAnimator());
-        //recycler_view.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL, false));
-        recycler_view.setAdapter(mAdapter);
-        if (data.size()>0){
+
+        if (data != null && data.size() > 0) {
             liner_no_item.setVisibility(View.GONE);
-        }else {
+            // Toast.makeText(this, ""+data.size(), Toast.LENGTH_SHORT).show();
+            ConfirmedAppointmentAdapterPatient mAdapter = new ConfirmedAppointmentAdapterPatient(data);
+            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
+            recycler_view.setLayoutManager(mLayoutManager);
+            recycler_view.setItemAnimator(new DefaultItemAnimator());
+            //recycler_view.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL, false));
+            recycler_view.setAdapter(mAdapter);
+        } else {
             liner_no_item.setVisibility(View.VISIBLE);
 
         }

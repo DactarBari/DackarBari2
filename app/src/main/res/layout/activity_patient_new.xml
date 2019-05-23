@@ -104,18 +104,21 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:onClick="mapActivity"
+                    android:background="@drawable/bg_unselected"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_height="wrap_content">
 
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/bg_unselected"
+                        android:layout_marginLeft="35dp"
+
                         android:lines="1"
                         android:padding="15dp"
-                        android:text="Explor doctor chambers in map" />
+
+                        android:text="Explore doctor chambers" />
 
                     <ImageView
                         android:layout_width="20dp"
@@ -126,6 +129,14 @@
                         android:alpha="0.5"
                         android:padding="3dp"
                         android:src="@drawable/right_arrow" />
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
+                        android:alpha="1"
+                        android:padding="0dp"
+                        android:src="@drawable/globe" />
                 </RelativeLayout>
 
 
@@ -156,17 +167,19 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:onClick="ConfirmedAppointmentsPatientActivity"
+                    android:background="@drawable/bg_unselected"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_height="wrap_content">
 
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="35dp"
                         android:layout_marginRight="10dp"
-                        android:background="@drawable/bg_unselected"
                         android:padding="15dp"
-                        android:text="Comfirmed Appointments" />
+                        android:text="Confirmed" />
 
                     <ImageView
                         android:layout_width="20dp"
@@ -177,21 +190,32 @@
                         android:alpha="0.5"
                         android:padding="3dp"
                         android:src="@drawable/right_arrow" />
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
+                        android:alpha="1"
+                        android:padding="0dp"
+                        android:src="@drawable/tick_green" />
                 </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:onClick="openPendingPatient"
+                    android:background="@drawable/bg_unselected"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_height="wrap_content">
 
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="35dp"
                         android:layout_marginRight="10dp"
-                        android:background="@drawable/bg_unselected"
+
                         android:padding="15dp"
-                        android:text="Pending Appointments" />
+                        android:text="Pending" />
 
                     <ImageView
                         android:layout_width="20dp"
@@ -202,6 +226,14 @@
                         android:alpha="0.5"
                         android:padding="3dp"
                         android:src="@drawable/right_arrow" />
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
+                        android:alpha="1"
+                        android:padding="0dp"
+                        android:src="@drawable/hourglass" />
                 </RelativeLayout>
 
             </LinearLayout>
@@ -229,15 +261,17 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:onClick="Logout"
+                    android:background="@drawable/bg_unselected"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_height="wrap_content">
 
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="35dp"
                         android:layout_marginRight="10dp"
-                        android:background="@drawable/bg_unselected"
                         android:padding="15dp"
                         android:text="Logout" />
 
@@ -250,6 +284,14 @@
                         android:alpha="0.5"
                         android:padding="3dp"
                         android:src="@drawable/right_arrow" />
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
+                        android:alpha="1"
+                        android:padding="0dp"
+                        android:src="@drawable/exit" />
                 </RelativeLayout>
 
 

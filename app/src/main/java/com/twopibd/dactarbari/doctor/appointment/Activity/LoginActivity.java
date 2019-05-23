@@ -113,7 +113,6 @@ public class LoginActivity extends AppCompatActivity implements ApiListener.Logi
                 sessionManager.set_userPhoto(response.getUserInfo().getPhoto());
                 sessionManager.set_userEmail(ed_phone.getText().toString().trim());
                 sessionManager.set_userPassword(ed_password.getText().toString().trim());
-                Toast.makeText(this, response.getUserInfo().getUserType(), Toast.LENGTH_SHORT).show();
 
                 if (sessionManager.getUserType().equals(Constants.TYPE_DOCTOR)) {
                     startActivity(new Intent(this, HomeActivityDoctor.class));

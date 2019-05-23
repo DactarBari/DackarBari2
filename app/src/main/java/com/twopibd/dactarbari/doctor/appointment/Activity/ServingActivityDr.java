@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.twopibd.dactarbari.doctor.appointment.Api.Api;
 import com.twopibd.dactarbari.doctor.appointment.Api.ApiListener;
+import com.twopibd.dactarbari.doctor.appointment.Data.DataStore;
 import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentSearchModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.StatusMessage;
 import com.twopibd.dactarbari.doctor.appointment.R;
@@ -57,6 +58,8 @@ public class ServingActivityDr extends AppCompatActivity implements ApiListener.
         tv_date.setText(data.getDate());
         tv_address.setText(data.getChamberAddress());
         tv_sloat.setText(changeDateformate1(data.getSlotStartTime()) + "--" + changeDateformate1(data.getSlotEndTime()));
+        tv_status.setText(DataStore.convertAppointmentStatus(""+data.getStatus()));
+        //Toast.makeText(context, ""+data.getStatus(), Toast.LENGTH_SHORT).show();
     }
 
     public void back(View view) {

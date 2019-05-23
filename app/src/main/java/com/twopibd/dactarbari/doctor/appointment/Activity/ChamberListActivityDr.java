@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.twopibd.dactarbari.doctor.appointment.Adapter.ChamberListAdapterDoctor;
@@ -30,6 +31,8 @@ public class ChamberListActivityDr extends AppCompatActivity implements ApiListe
     String key;
     @BindView(R.id.recycler_view)
     RecyclerView recycler_view;
+    @BindView(R.id.liner_no_item)
+    LinearLayout liner_no_item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,16 +52,22 @@ public class ChamberListActivityDr extends AppCompatActivity implements ApiListe
 
     @Override
     public void ondrChamberDownloadSuccess(List<ChamberModel> data) {
-        MyProgressDialog.destroy();
-        ChamberListAdapterDoctor  mAdapter = new ChamberListAdapterDoctor(data);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        StaggeredGridLayoutManager   _sGridLayoutManager = new StaggeredGridLayoutManager(2,
-                StaggeredGridLayoutManager.VERTICAL);
-        recycler_view.setLayoutManager(_sGridLayoutManager);
-        recycler_view.setItemAnimator(new DefaultItemAnimator());
-        //recycler_view.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL,false));
+        if (data != null &&data.size()>0) {
+            MyProgressDialog.destroy();
+            ChamberListAdapterDoctor mAdapter = new ChamberListAdapterDoctor(data);
+            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+            StaggeredGridLayoutManager _sGridLayoutManager = new StaggeredGridLayoutManager(2,
+                    StaggeredGridLayoutManager.VERTICAL);
+            recycler_view.setLayoutManager(_sGridLayoutManager);
+            recycler_view.setItemAnimator(new DefaultItemAnimator());
+            //recycler_view.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL,false));
 
-        recycler_view.setAdapter(mAdapter);
+            recycler_view.setAdapter(mAdapter);
+            liner_no_item.setVisibility(View.GONE);
+
+        } else {
+            liner_no_item.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

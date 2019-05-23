@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.twopibd.dactarbari.doctor.appointment.Activity.AddWeeklyChamberActivity;
 import com.twopibd.dactarbari.doctor.appointment.Api.Api;
 import com.twopibd.dactarbari.doctor.appointment.Api.ApiListener;
 import com.twopibd.dactarbari.doctor.appointment.Data.DataStore;
@@ -42,7 +43,7 @@ public class NewScheduleAddAdapterDoctor extends RecyclerView.Adapter<NewSchedul
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView tv_day, tv_start, tv_end, tv_capacity;
-        ImageView circleImageView;
+        ImageView img_delete;
         RelativeLayout relative_container;
 
 
@@ -52,6 +53,7 @@ public class NewScheduleAddAdapterDoctor extends RecyclerView.Adapter<NewSchedul
             tv_start = (TextView) view.findViewById(R.id.tv_start);
             tv_end = (TextView) view.findViewById(R.id.tv_end);
             tv_capacity = (TextView) view.findViewById(R.id.tv_capacity);
+            img_delete = (ImageView) view.findViewById(R.id.img_delete);
 
 
         }
@@ -59,18 +61,20 @@ public class NewScheduleAddAdapterDoctor extends RecyclerView.Adapter<NewSchedul
 
 
     public NewScheduleAddAdapterDoctor(Context con) {
-        this.context=con;
+        this.context = con;
 
 
     }
-    public void addToAdapter(Day data ) {
+
+    public void addToAdapter(Day data) {
         newSchedulelist.add(data);
-        notifyItemInserted(newSchedulelist.size()-1);
-        Gson gson=new Gson();
-      //  Toast.makeText(context, gson.toJson(newSchedulelist), Toast.LENGTH_LONG).show();
+        notifyItemInserted(newSchedulelist.size() - 1);
+        Gson gson = new Gson();
+        //  Toast.makeText(context, gson.toJson(newSchedulelist), Toast.LENGTH_LONG).show();
 
     }
-    public  List<Day> getList(){
+
+    public List<Day> getList() {
         return newSchedulelist;
     }
 
@@ -86,28 +90,36 @@ public class NewScheduleAddAdapterDoctor extends RecyclerView.Adapter<NewSchedul
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         final Day movie = newSchedulelist.get(position);
         context = holder.tv_day.getContext();
-        SessionManager sessionManager=new SessionManager(context);
-        String key=sessionManager.getToken();
-        holder.tv_day.setText(DataStore.convertToWeekDay(""+(Integer.parseInt(movie.getDay())-1)));
+        SessionManager sessionManager = new SessionManager(context);
+        String key = sessionManager.getToken();
+        holder.tv_day.setText(DataStore.convertToWeekDay("" + (Integer.parseInt(movie.getDay()) - 1)));
         holder.tv_start.setText(movie.getStart_time());
         holder.tv_end.setText(movie.getEnd_time());
-        holder.tv_capacity.setText(""+movie.getPatient_capacity());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.tv_capacity.setText("" + movie.getPatient_capacity());
+        holder.img_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // list.remove(position);
-              //  notifyItemRemoved(position);
-               // notifyItemRangeChanged(position,list.size());
-               // notifyDataSetChanged();
-               // Toast.makeText(context, ""+position, Toast.LENGTH_SHORT).show();
+                // list.remove(position);
+                //  notifyItemRemoved(position);
+                // notifyItemRangeChanged(position,list.size());
+                // notifyDataSetChanged();
+                AddWeeklyChamberActivity.daysToAdd.remove(position);
+                AddWeeklyChamberActivity.day_.remove(position);
+                AddWeeklyChamberActivity.start_.remove(position);
+                AddWeeklyChamberActivity.end_.remove(position);
+                AddWeeklyChamberActivity.capacity_.remove(position);
+                newSchedulelist.clear();
+                for (int i = 0; i < AddWeeklyChamberActivity.day_.size(); i++) {
+                    newSchedulelist.add(new Day(AddWeeklyChamberActivity.day_.get(i), AddWeeklyChamberActivity.start_.get(i), AddWeeklyChamberActivity.end_.get(i), AddWeeklyChamberActivity.capacity_.get(i)));
+                }
+                notifyDataSetChanged();
+
 
             }
         });
 
 
-
     }
-
 
 
     @Override
