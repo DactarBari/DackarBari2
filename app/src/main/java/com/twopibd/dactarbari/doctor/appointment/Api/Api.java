@@ -106,9 +106,9 @@ public class Api {
         });
     }
 
-    public void track(String token, String track_id, final ApiListener.drTrackIdListener listener) {
+    public void track(String token, String track_id, String userId, final ApiListener.drTrackIdListener listener) {
 
-        ApiClient.getApiInterface().searchAppointments(token, track_id).enqueue(new Callback<List<AppointmentSearchModel>>() {
+        ApiClient.getApiInterface().searchAppointments(token, track_id,userId).enqueue(new Callback<List<AppointmentSearchModel>>() {
             @Override
             public void onResponse(@NonNull Call<List<AppointmentSearchModel>> call, @NonNull Response<List<AppointmentSearchModel>> response) {
                 if (response != null) {

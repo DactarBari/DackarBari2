@@ -1,69 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="8dp"
-    android:layout_height="wrap_content">
+    android:padding="8dp">
+
     <TextView
-        android:layout_width="wrap_content"
-        android:text="Dr Ripon Deb Nath"
         android:id="@+id/tv_name"
-        android:layout_height="wrap_content"
-        />
-    <TextView
         android:layout_width="wrap_content"
-        android:text="Dermatologist"
-        android:id="@+id/tv_department"
-        android:fontFamily="@font/montserrat_regular"
         android:layout_height="wrap_content"
-        />
+        android:text="Dr Ripon Deb Nath" />
+
+    <TextView
+        android:id="@+id/tv_department"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dermatologist" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
         <ImageView
-            android:layout_width="50dp"
-            android:src="#cccccc"
             android:id="@+id/image"
+            android:layout_width="50dp"
             android:layout_height="50dp"
-            />
+            android:src="#cccccc" />
 
         <LinearLayout
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:background="@drawable/stroke_white"
 
-            android:layout_height="wrap_content">
+            android:background="@drawable/stroke_white">
+
             <TextView
-                android:layout_width="wrap_content"
-                android:text="Book"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:paddingLeft="25dp"
-                android:paddingRight="25dp"
                 android:id="@+id/cardBook"
-
-                android:layout_centerVertical="true"
-
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />
+                android:layout_centerVertical="true"
+                android:paddingLeft="25dp"
+                android:paddingTop="8dp"
+                android:paddingRight="25dp"
+
+                android:paddingBottom="8dp"
+
+                android:text="Book" />
         </LinearLayout>
 
 
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_hospitals"
+        android:text="Ibn Sina Hospital"
+        android:textSize="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <TextView
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Chamber Address"
-        android:textSize="10dp"
-        android:layout_height="wrap_content"
-        />
+        android:textColor="@android:color/darker_gray"
+        android:textSize="10dp" />
+
     <TextView
-        android:layout_width="wrap_content"
-        android:text="23/5, Farmgate, Dhaka-1209"
-        android:textSize="10dp"
         android:id="@+id/tv_address"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
+        android:text="23/5, Farmgate, Dhaka-1209"
+        android:textSize="10dp" />
 </LinearLayout>

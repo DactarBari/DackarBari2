@@ -38,7 +38,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:fontFamily="@font/montserrat_regular"
                 android:textSize="10dp"
 
                 android:text="Back" />
@@ -52,7 +51,6 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="Chambers"
-            android:fontFamily="@font/montserrat_regular"
             android:textSize="16dp" />
     </RelativeLayout>
     <View
@@ -100,7 +98,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_bold"
                     android:text="Chamber List"
                     android:textColor="@color/colorPrimary"
                     android:textSize="14dp" />
@@ -109,7 +106,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="View and edit old chamber schedule"
-                    android:fontFamily="@font/montserrat_regular"
                     android:lines="1"
 
                     android:textColor="@android:color/darker_gray" />
@@ -154,7 +150,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_bold"
                     android:text="Add"
                     android:textColor="@color/colorPrimary"
                     android:textSize="14dp" />
@@ -163,7 +158,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Create your new chamber"
-                    android:fontFamily="@font/montserrat_regular"
 
                     android:textColor="@android:color/darker_gray" />
             </LinearLayout>

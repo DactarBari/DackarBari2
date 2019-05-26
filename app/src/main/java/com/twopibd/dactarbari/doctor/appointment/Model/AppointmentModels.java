@@ -41,6 +41,9 @@ private String updatedAt;
 @SerializedName("doctor_name")
 @Expose
 private String doctor_name;
+@SerializedName("doctor_photo")
+@Expose
+private String doctor_photo;
 @SerializedName("chamber_address")
 @Expose
 private String chamber_address;
@@ -158,5 +161,13 @@ this.doctorId = doctorId;
 
     public void setChamber_address(String chamber_address) {
         this.chamber_address = chamber_address;
+    }
+
+    public String getDoctor_photo() {
+        return doctor_photo;
+    }
+
+    public void setDoctor_photo(String doctor_photo) {
+        this.doctor_photo = doctor_photo;
     }
 }

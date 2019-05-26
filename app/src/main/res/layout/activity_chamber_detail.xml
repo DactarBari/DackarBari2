@@ -39,7 +39,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:fontFamily="@font/montserrat_regular"
                 android:textSize="10dp"
 
                 android:text="Back" />
@@ -53,7 +52,6 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:id="@+id/tv_name"
-            android:fontFamily="@font/montserrat_regular"
             android:textSize="16dp" />
     </RelativeLayout>
     <View

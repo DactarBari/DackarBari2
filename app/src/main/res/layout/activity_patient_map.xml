@@ -58,7 +58,6 @@
                                 android:layout_height="match_parent"
                                 android:layout_marginLeft="45dp"
                                 android:layout_marginRight="40dp"
-                                android:fontFamily="@font/montserrat_regular"
                                 android:gravity="center_vertical"
                                 android:lines="1"
                                 android:id="@+id/ed_search"
@@ -109,7 +108,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:fontFamily="@font/montserrat_regular"
                         android:text="See All"
                         android:textColor="@android:color/white" />
                 </RelativeLayout>

@@ -111,7 +111,7 @@ public class HomeActivityDoctor extends AppCompatActivity implements ApiListener
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 String track_id = charSequence.toString();
                 if (track_id.length() > 0) {
-                    Api.getInstance().track(KEY, track_id, new ApiListener.drTrackIdListener() {
+                    Api.getInstance().track(KEY, track_id, USER_ID,new ApiListener.drTrackIdListener() {
                         @Override
                         public void onTrackIdSuccess(List<AppointmentSearchModel> data) {
                             //Toast.makeText(context, ""+data.size(), Toast.LENGTH_SHORT).show();

@@ -38,7 +38,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:fontFamily="@font/montserrat_regular"
                 android:textSize="10dp"
 
                 android:text="Back" />
@@ -52,7 +51,6 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="Schedule Type"
-            android:fontFamily="@font/montserrat_regular"
             android:textSize="16dp" />
     </RelativeLayout>
     <View
@@ -95,7 +93,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_bold"
                     android:text="Daily"
                     android:textColor="@color/colorPrimary"
                     android:textSize="14dp" />
@@ -104,7 +101,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Setup your schedule in daily pattern"
-                    android:fontFamily="@font/montserrat_regular"
 
                     android:textColor="@android:color/darker_gray" />
             </LinearLayout>
@@ -142,7 +138,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_bold"
                     android:text="Weekly"
                     android:textColor="@color/colorPrimary"
                     android:textSize="14dp" />
@@ -151,7 +146,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Setup your schedule in weekly pattern"
-                    android:fontFamily="@font/montserrat_regular"
 
                     android:textColor="@android:color/darker_gray" />
             </LinearLayout>
@@ -188,7 +182,6 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_bold"
                     android:text="Monthly"
                     android:textColor="@color/colorPrimary"
                     android:textSize="14dp" />
@@ -197,7 +190,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Setup your schedule in monthly pattern"
-                    android:fontFamily="@font/montserrat_regular"
 
                     android:textColor="@android:color/darker_gray" />
             </LinearLayout>

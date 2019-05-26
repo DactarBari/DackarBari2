@@ -90,14 +90,12 @@
                     android:id="@+id/tv_lastDegree"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_regular"
                     android:textColor="@android:color/white" />
 
                 <TextView
                     android:id="@+id/tv_department"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_regular"
                     android:textColor="@android:color/white"
                     android:textSize="12dp" />
 
@@ -105,7 +103,6 @@
                     android:id="@+id/tv_hospitals"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_light"
                     android:gravity="center"
                     android:textColor="@android:color/white"
                     android:textSize="10dp" />
@@ -114,7 +111,6 @@
                     android:id="@+id/tv_country"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_light"
                     android:gravity="center"
                     android:textColor="@android:color/white"
                     android:textSize="10dp" />
@@ -126,7 +122,6 @@
                 android:layout_alignParentRight="true"
                 android:layout_margin="20dp"
                 android:background="@drawable/primary_round"
-                android:fontFamily="@font/montserrat_regular"
                 android:paddingLeft="10dp"
                 android:paddingTop="5dp"
                 android:paddingRight="10dp"

@@ -49,7 +49,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:text="Appointment With "
-                android:fontFamily="@font/montserrat_regular"
                 android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
                 />
@@ -65,7 +64,6 @@
                 android:text="Appointment Date and time"
                 android:paddingLeft="5dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_regular"
 
                 />
             <TextView

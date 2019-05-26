@@ -8,7 +8,7 @@
         <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
         <item name="android:textSize">13dp</item>
         <item name="android:windowSoftInputMode">stateHidden</item>
-        <item name="android:fontFamily">@font/montserrat_bold</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
         <item name="editTextBackground">@android:color/white</item>
         <!--<item name="android:titleTextStyle">@style/TitleBarTextAppearance</item>-->
 
@@ -23,7 +23,7 @@
         <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
         <item name="android:textSize">13dp</item>
         <item name="android:windowSoftInputMode">stateHidden</item>
-        <item name="android:fontFamily">@font/montserrat_bold</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
         <item name="editTextBackground">@android:color/white</item>
         <!--<item name="android:titleTextStyle">@style/TitleBarTextAppearance</item>-->
 
@@ -32,7 +32,7 @@
 
     </style>
     <style name="TitleBarTextAppearance" parent="android:TextAppearance">
-        <item name="android:fontFamily">@font/montserrat_light</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
         <item name="android:textSize">23sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@android:color/white</item>
@@ -50,7 +50,7 @@
 
     </style>
     <style name="titleTextFont" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:fontFamily">@font/montserrat_bold</item>
+        <item name="android:fontFamily">@font/montserrat_medium</item>
 
     </style>
 

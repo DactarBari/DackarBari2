@@ -38,7 +38,7 @@ public class PendingAppointmentAdapterPatient extends RecyclerView.Adapter<Pendi
     Context context;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView tv_name, tv_address, tv_problem, tv_date,tv_refID,tv_time;
+        public TextView tv_name, tv_address, tv_problem, tv_date,tv_refID,tv_time,tv_dr;
         ImageView img_delete;
 
 
@@ -51,6 +51,7 @@ public class PendingAppointmentAdapterPatient extends RecyclerView.Adapter<Pendi
             tv_refID = (TextView) view.findViewById(R.id.tv_refID);
             img_delete = (ImageView) view.findViewById(R.id.img_delete);
             tv_time = (TextView) view.findViewById(R.id.tv_time);
+            tv_dr = (TextView) view.findViewById(R.id.tv_dr);
 
 
         }
@@ -80,6 +81,8 @@ public class PendingAppointmentAdapterPatient extends RecyclerView.Adapter<Pendi
         holder.tv_refID.setText(""+movie.getId());
         holder.tv_problem.setText(movie.getCurrentProblems());
         holder.tv_time.setText(movie.getSlotStartTime());
+        holder.tv_dr.setText(movie.getDoctor_name());
+
         holder.img_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

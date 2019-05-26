@@ -42,11 +42,12 @@ public class PendingAppointmentsPatientActivity extends AppCompatActivity implem
         USER_ID = sessionManager.getUserId();
         key = sessionManager.getToken();
         Api.getInstance().getAppointmentsByDoctor(key, USER_ID, "patient", "0", this);
+        //Toast.makeText(context, USER_ID, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onAppointmentDownloadSuccess(List<AppointmentModels> data) {
-        // Toast.makeText(this, ""+data.size(), Toast.LENGTH_SHORT).show();
+         //Toast.makeText(this, ""+data.size(), Toast.LENGTH_SHORT).show();
 
 
         if (data != null && data.size() > 0) {
@@ -59,7 +60,6 @@ public class PendingAppointmentsPatientActivity extends AppCompatActivity implem
             recycler_view.setAdapter(mAdapter);
         } else {
             liner_no_item.setVisibility(View.VISIBLE);
-
         }
 
     }

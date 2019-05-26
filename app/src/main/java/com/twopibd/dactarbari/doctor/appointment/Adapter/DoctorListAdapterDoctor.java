@@ -37,7 +37,7 @@ public class DoctorListAdapterDoctor extends RecyclerView.Adapter<DoctorListAdap
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView tv_name, tv_department, tv_address;
         ImageView image;
-        TextView cardBook;
+        TextView cardBook,tv_hospitals;
 
 
         public MyViewHolder(View view) {
@@ -47,6 +47,7 @@ public class DoctorListAdapterDoctor extends RecyclerView.Adapter<DoctorListAdap
             tv_address = (TextView) view.findViewById(R.id.tv_address);
             image = (ImageView) view.findViewById(R.id.image);
             cardBook = (TextView) view.findViewById(R.id.cardBook);
+            tv_hospitals = (TextView) view.findViewById(R.id.tv_hospitals);
 
 
         }
@@ -83,6 +84,16 @@ public class DoctorListAdapterDoctor extends RecyclerView.Adapter<DoctorListAdap
 
             }
         });
+        String hospitals="";
+        for (int i=0;i<data.getCurrentHospitals().size();i++){
+            hospitals+=data.getCurrentHospitals().get(i).getName();
+            if (!(i==(data.getCurrentHospitals().size()-1))){
+                hospitals+="\n";
+
+            }
+
+        }
+        holder.tv_hospitals.setText(hospitals);
 
 
     }

@@ -39,7 +39,6 @@
                 android:layout_marginLeft="10dp"
                 android:textSize="10dp"
                 android:layout_gravity="center"
-                android:fontFamily="@font/montserrat_regular"
 
                 android:text="Back" />
 
@@ -52,7 +51,6 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="Chamber Details"
-            android:fontFamily="@font/montserrat_regular"
             android:textSize="16dp" />
         <ImageView
             android:layout_width="50dp"

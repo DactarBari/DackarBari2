@@ -48,8 +48,7 @@ import retrofit2.http.Query;
 public interface ApiInterface {
 
 
-    @GET("global/api/AppsLogin/{userName}/{password}")
-    Call<JsonElement> loginNishi(@Path("userName") String userName, @Path("password") String password);
+
 
 
     @FormUrlEncoded
@@ -74,7 +73,7 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("view-patient-appointment-details-via-track-id")
-    Call<List<AppointmentSearchModel>> searchAppointments(@Header("Authorization") String token, @Field("track_id") String track_id);
+    Call<List<AppointmentSearchModel>> searchAppointments(@Header("Authorization") String token, @Field("track_id") String track_id, @Field("doctor_id") String doctor_id);
 
     @FormUrlEncoded
     @POST("add-doctor-serve-info")

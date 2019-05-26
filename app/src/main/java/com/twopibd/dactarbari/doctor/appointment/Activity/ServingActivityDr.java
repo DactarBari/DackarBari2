@@ -59,7 +59,6 @@ public class ServingActivityDr extends AppCompatActivity implements ApiListener.
         tv_address.setText(data.getChamberAddress());
         tv_sloat.setText(changeDateformate1(data.getSlotStartTime()) + "--" + changeDateformate1(data.getSlotEndTime()));
         tv_status.setText(DataStore.convertAppointmentStatus(""+data.getStatus()));
-        //Toast.makeText(context, ""+data.getStatus(), Toast.LENGTH_SHORT).show();
     }
 
     public void back(View view) {

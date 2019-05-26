@@ -40,7 +40,6 @@
                 android:text="appointments"
                 android:textSize="10dp"
                 android:id="@+id/tv_type"
-                android:fontFamily="@font/montserrat_regular"
                 android:layout_height="wrap_content"
                 />
         </LinearLayout>
