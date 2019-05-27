@@ -89,4 +89,7 @@ public class ServingActivityDr extends AppCompatActivity implements ApiListener.
 
 
     }
+
+    public void openHistory(View view) {
+    }
 }

@@ -16,14 +16,15 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.7"
+            android:layout_weight="0.8"
+            android:textColor="@android:color/darker_gray"
             android:text="Ref #" />
 
         <TextView
             android:id="@+id/tv_refID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.3"
+            android:layout_weight="0.2"
             android:text="123" />
     </LinearLayout>
 
@@ -39,14 +40,16 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.7"
+            android:layout_weight="0.8"
+            android:textColor="@android:color/darker_gray"
+
             android:text="Name" />
 
         <TextView
             android:id="@+id/tv_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.3"
+            android:layout_weight="0.2"
             android:text="123" />
     </LinearLayout>
 

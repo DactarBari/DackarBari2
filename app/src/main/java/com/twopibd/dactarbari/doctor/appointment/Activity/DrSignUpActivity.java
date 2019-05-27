@@ -35,12 +35,15 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
+import com.twopibd.dactarbari.doctor.appointment.Adapter.SelectedDegreeAdapter;
 import com.twopibd.dactarbari.doctor.appointment.Adapter.SelectedHospitalsAdapter;
 import com.twopibd.dactarbari.doctor.appointment.Api.Api;
 import com.twopibd.dactarbari.doctor.appointment.Api.ApiListener;
 import com.twopibd.dactarbari.doctor.appointment.Data.Data;
 import com.twopibd.dactarbari.doctor.appointment.Data.DataStore;
+import com.twopibd.dactarbari.doctor.appointment.Model.QualificationModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.SelectedHospitalsModel;
+import com.twopibd.dactarbari.doctor.appointment.Model.SelectedQualificationModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.StatusMessage;
 import com.twopibd.dactarbari.doctor.appointment.Model.StatusResponse;
 import com.twopibd.dactarbari.doctor.appointment.Model.Test;
@@ -50,6 +53,7 @@ import com.twopibd.dactarbari.doctor.appointment.Utils.MyDialog;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -62,11 +66,15 @@ import static com.twopibd.dactarbari.doctor.appointment.Data.DataStore.photoMode
 
 public class DrSignUpActivity extends AppCompatActivity implements SelectedHospitalsAdapter.HospitalClickListener,
         ApiListener.drBasicInfoPostListener,
-        ApiListener.StringRequestListener {
+        ApiListener.StringRequestListener ,SelectedDegreeAdapter.DegreeClickListener {
     @BindView(R.id.spinnerCountry)
     Spinner spinnerCountry;
+    @BindView(R.id.spinnerTitle)
+    Spinner spinnerTitle;
     @BindView(R.id.autoCompletePrevHospital)
     AutoCompleteTextView autoCompletePrevHospital;
+    @BindView(R.id.autoCompleteQualification)
+    AutoCompleteTextView autoCompleteQualification;
     @BindView(R.id.autoCompleteCurrentHospital)
     AutoCompleteTextView autoCompleteCurrentHospital;
     @BindView(R.id.spinnerType)
@@ -78,14 +86,19 @@ public class DrSignUpActivity extends AppCompatActivity implements SelectedHospi
     Context context = this;
     @BindView(R.id.image)
     ImageView image;
+
     @BindView(R.id.recycler_view)
     RecyclerView recycler_view;
+    @BindView(R.id.recycler_viewQualification)
+    RecyclerView recycler_viewQualification;
     @BindView(R.id.recycler_view_currentHospital)
     RecyclerView recycler_view_currentHospital;
     SelectedHospitalsAdapter mAdapter;
+    SelectedDegreeAdapter DegreemAdapter;
     SelectedHospitalsAdapter mAdapterCurrentHospital;
     List<SelectedHospitalsModel> Selectedlist = new ArrayList<>();
     List<SelectedHospitalsModel> SelectedlistCurrent = new ArrayList<>();
+    public static List<SelectedQualificationModel> SelectedQualifications = new ArrayList<>();
     @BindView(R.id.ed_name)
     EditText ed_name;
     @BindView(R.id.ed_mobile)
@@ -106,14 +119,16 @@ public class DrSignUpActivity extends AppCompatActivity implements SelectedHospi
     EditText ed_area;
     @BindView(R.id.ed_postCode)
     EditText ed_postCode;
-    @BindView(R.id.ed_qualification)
-    EditText ed_qualification;
+
     Uri resultUri;
     String selectedCountry = "";
     String selectedGender = "";
     String selectedType = "";
     String selectedDepartment = "";
+    String selectedTitle = "";
     ProgressDialog progressDialog;
+
+    public static List<QualificationModel> MEDICAL_DEGREE = new ArrayList<>();
 
 
     @Override
@@ -127,10 +142,96 @@ public class DrSignUpActivity extends AppCompatActivity implements SelectedHospi
         initDepartmentSpinner();
         initPreviousSelectedHospitals();
         initCurrentSelectedHospitals();
+        initQualification();
         initGenderSpinner();
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait");
         setEmailUniqueListener();
+        init_title_spinner();
+    }
+
+    private void initQualification() {
+        MEDICAL_DEGREE.add(new QualificationModel("1", "MBBS"));
+        MEDICAL_DEGREE.add(new QualificationModel("2", "BDS"));
+        MEDICAL_DEGREE.add(new QualificationModel("3", "BAMS"));
+        MEDICAL_DEGREE.add(new QualificationModel("4", "BUMS"));
+        MEDICAL_DEGREE.add(new QualificationModel("5", "BHMS"));
+
+        List<String> Qualifications = new ArrayList<>();
+        for (int i = 0; i < MEDICAL_DEGREE.size(); i++) {
+            //  Selectedlist.add(new SelectedHospitalsModel(Data.cachedHospitalsList.get(i), false));
+            Qualifications.add(MEDICAL_DEGREE.get(i).getName());
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                (this, android.R.layout.simple_list_item_1, Qualifications);
+        autoCompleteQualification.setAdapter(adapter);
+        setAutoCompleteAdapterQualification();
+
+        DegreemAdapter = new SelectedDegreeAdapter(context ,this);
+        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
+        recycler_viewQualification.setLayoutManager(staggeredGridLayoutManager);
+        recycler_viewQualification.setItemAnimator(new DefaultItemAnimator());
+        recycler_viewQualification.setAdapter(DegreemAdapter);
+
+
+    }
+
+    private void setAutoCompleteAdapterQualification() {
+        autoCompleteQualification.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selection = (String) parent.getItemAtPosition(position);
+                SelectedQualifications.add(new SelectedQualificationModel(true,MEDICAL_DEGREE.get(position)));
+                DegreemAdapter.notifyItemInserted(SelectedQualifications.size() - 1);
+                autoCompleteQualification.setText("");
+
+
+            }
+        });
+        autoCompleteQualification.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus)
+                    autoCompleteQualification.showDropDown();
+
+            }
+        });
+
+        autoCompleteQualification.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                autoCompleteQualification.showDropDown();
+                return false;
+            }
+        });
+    }
+
+    private void init_title_spinner() {
+        List<String> title = new ArrayList<>();
+        title.add("Select");
+        title.add("Mr");
+        title.add("Mrs");
+        title.add("Dr");
+        title.add("Other");
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, title);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerTitle.setAdapter(dataAdapter);
+        spinnerTitle.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i > 0) {
+                    selectedTitle = title.get(i);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
     }
 
     private void initGenderSpinner() {
@@ -272,7 +373,7 @@ public class DrSignUpActivity extends AppCompatActivity implements SelectedHospi
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i > 0) {
-                    selectedCountry = Data.cachedCountryList.get(i-1).getCode();
+                    selectedCountry = Data.cachedCountryList.get(i - 1).getCode();
                 }
             }
 
@@ -323,8 +424,8 @@ public class DrSignUpActivity extends AppCompatActivity implements SelectedHospi
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i > 0) {
-                    selectedDepartment = "" + Data.cachedDeparmentsList.get(i-1).getId();
-                   // Toast.makeText(context, selectedDepartment, Toast.LENGTH_SHORT).show();
+                    selectedDepartment = "" + Data.cachedDeparmentsList.get(i - 1).getId();
+                    // Toast.makeText(context, selectedDepartment, Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -443,7 +544,8 @@ public class DrSignUpActivity extends AppCompatActivity implements SelectedHospi
         String street = ed_street.getText().toString().trim();
         String city = ed_city.getText().toString().trim();
         String postCode = ed_postCode.getText().toString().trim();
-        String qualification = ed_qualification.getText().toString().trim();
+        String qualification ="";
+
 
         if (resultUri != null) {
             File f = new File(resultUri.getPath());
@@ -562,6 +664,7 @@ public class DrSignUpActivity extends AppCompatActivity implements SelectedHospi
 
 
     }
+
     private void setEmailUniqueListener() {
         ed_email.addTextChangedListener(new TextWatcher() {
             @Override
@@ -590,7 +693,7 @@ public class DrSignUpActivity extends AppCompatActivity implements SelectedHospi
                             public void onEmailCheckSuccess(StatusMessage response) {
                                 try {
                                     if (response.getStatus()) {
-                                       // Toast.makeText(context, "Email Ok", Toast.LENGTH_SHORT).show();
+                                        // Toast.makeText(context, "Email Ok", Toast.LENGTH_SHORT).show();
                                     } else {
                                         MyDialog.getInstance().with(DrSignUpActivity.this).autoBack(false).autoDismiss(false).message(response.getMessage()).show();
                                         ed_email.setError(response.getMessage());
@@ -625,6 +728,7 @@ public class DrSignUpActivity extends AppCompatActivity implements SelectedHospi
     public static boolean isValidEmail(CharSequence target) {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
+
     private RequestBody c_m_b(String aThis) {
         return
                 RequestBody.create(
@@ -639,7 +743,7 @@ public class DrSignUpActivity extends AppCompatActivity implements SelectedHospi
         try {
             MyDialog.getInstance().with(DrSignUpActivity.this).autoBack(true).autoDismiss(false).message(data.getMessage()).show();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             Toast.makeText(context, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
         }
 
@@ -648,7 +752,7 @@ public class DrSignUpActivity extends AppCompatActivity implements SelectedHospi
     @Override
     public void onBasicInfoPostFailed(String msg) {
         progressDialog.dismiss();
-        Toast.makeText(context,  msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
 
     }
 
@@ -664,5 +768,10 @@ public class DrSignUpActivity extends AppCompatActivity implements SelectedHospi
 
     public void back(View view) {
         onBackPressed();
+    }
+
+    @Override
+    public void onDegreeSelected(SelectedQualificationModel data) {
+        Toast.makeText(context, data.getQualificationModel().getName(), Toast.LENGTH_SHORT).show();
     }
 }

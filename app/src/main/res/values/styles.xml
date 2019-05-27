@@ -11,7 +11,7 @@
         <item name="android:fontFamily">@font/montserrat_medium</item>
         <item name="editTextBackground">@android:color/white</item>
         <!--<item name="android:titleTextStyle">@style/TitleBarTextAppearance</item>-->
-
+        <item name="android:dropDownListViewStyle">@style/SpinnerStyle</item>
 
         <item name="colorAccent">@color/colorAccent</item>
     </style>
@@ -26,7 +26,7 @@
         <item name="android:fontFamily">@font/montserrat_medium</item>
         <item name="editTextBackground">@android:color/white</item>
         <!--<item name="android:titleTextStyle">@style/TitleBarTextAppearance</item>-->
-
+        <item name="android:dropDownListViewStyle">@style/SpinnerStyle</item>
         <item name="colorAccent">@color/colorAccent</item>
 
 
@@ -44,7 +44,10 @@
         <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
 
     </style>
-
+    <style name="SpinnerStyle" parent="Widget.AppCompat.ListView.DropDown">
+        <item name="android:divider">#d1d1d1</item>
+        <item name="android:dividerHeight">0.5dp</item>
+    </style>
     <style name="MyCustomTabText" parent="@android:style/TextAppearance.Widget.TabWidget">
         <item name="android:textStyle">bold</item>
 

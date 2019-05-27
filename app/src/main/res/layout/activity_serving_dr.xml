@@ -230,7 +230,10 @@
                     android:lines="3"
                     android:hint="Comments"
                     android:gravity="start"
-                    android:padding="10dp" />
+                    android:focusedByDefault="false"
+
+                    android:padding="10dp" >
+                </EditText>
             </LinearLayout>
 
             <LinearLayout
@@ -249,6 +252,8 @@
                     android:background="@drawable/ed_selector"
                     android:inputType="number"
                     android:hint="Received fees"
+                    android:focusedByDefault="false"
+
                     android:padding="10dp" />
                 <TextView
                     android:layout_width="wrap_content"
