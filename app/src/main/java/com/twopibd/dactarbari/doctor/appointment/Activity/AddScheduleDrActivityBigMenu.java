@@ -20,7 +20,8 @@ public class AddScheduleDrActivityBigMenu extends BaseActivity {
     }
 
     public void addWeeklySchedule(View view) {
-        startActivity(new Intent(this,AddWeeklyChamberActivity.class));
+       // startActivity(new Intent(this,AddWeeklyChamberActivity.class));
+        startActivity(new Intent(this,ChamberAddCommonInfoActivity.class));
 
     }
 

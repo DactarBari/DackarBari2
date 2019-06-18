@@ -9,16 +9,20 @@ import android.graphics.Shader;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 import android.os.Build;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,15 +32,20 @@ import com.applikeysolutions.cosmocalendar.model.Day;
 import com.google.android.gms.maps.model.LatLng;
 import com.squareup.picasso.Picasso;
 import com.twopibd.dactarbari.doctor.appointment.Adapter.AppointmentSearchDrAdapter;
+import com.twopibd.dactarbari.doctor.appointment.Adapter.AssistantListAdapter;
+import com.twopibd.dactarbari.doctor.appointment.Adapter.ChamberListAdapterDoctor;
 import com.twopibd.dactarbari.doctor.appointment.Adapter.ConfirmedAppointmentAdapterPatient;
 import com.twopibd.dactarbari.doctor.appointment.Api.Api;
 import com.twopibd.dactarbari.doctor.appointment.Api.ApiListener;
 import com.twopibd.dactarbari.doctor.appointment.Data.Constants;
+import com.twopibd.dactarbari.doctor.appointment.Data.Data;
 import com.twopibd.dactarbari.doctor.appointment.Fragments.HomeFragment;
 import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentModels;
 import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentSearchModel;
+import com.twopibd.dactarbari.doctor.appointment.Model.AssistantOnlineModel;
 import com.twopibd.dactarbari.doctor.appointment.R;
 import com.twopibd.dactarbari.doctor.appointment.Utils.SessionManager;
+import com.twopibd.dactarbari.doctor.appointment.Widgets.CustomDrawerButton;
 import com.twopibd.dactarbari.doctor.appointment.Widgets.DividerItemDecoration;
 
 import java.util.ArrayList;
@@ -46,12 +55,31 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-import static com.twopibd.dactarbari.doctor.appointment.Data.DataStore.KEY;
-import static com.twopibd.dactarbari.doctor.appointment.Data.DataStore.USER_ID;
+import static com.twopibd.dactarbari.doctor.appointment.Data.Data.TOKEN;
+import static com.twopibd.dactarbari.doctor.appointment.Data.Data.USER_ID;
 
-public class HomeActivityDoctor extends AppCompatActivity implements ApiListener.appoinetmentsDownloadListener {
+public class HomeActivityDoctor extends BaseActivity implements ApiListener.appoinetmentsDownloadListener,ApiListener.MyAssistantsListDownloadListener {
+    @BindView(R.id.v_1)
+    View v_1;
+    @BindView(R.id.v_2)
+    View v_2;
+    @BindView(R.id.v_3)
+    View v_3;
+    @BindView(R.id.v_4)
+    View v_4;
+
     @BindView(R.id.tv_name)
     TextView tv_name;
+    @BindView(R.id.linerProfileBody)
+    LinearLayout linerProfileBody;
+    @BindView(R.id.linear_home)
+    LinearLayout linear_home;
+    @BindView(R.id.linear_assistant_)
+    LinearLayout linear_assistant_;
+    @BindView(R.id.schroll_1)
+    ScrollView schroll_1;
+    @BindView(R.id.schroll_2)
+    ScrollView schroll_2;
     @BindView(R.id.divider)
     View divider;
     @BindView(R.id.ed_search)
@@ -60,12 +88,17 @@ public class HomeActivityDoctor extends AppCompatActivity implements ApiListener
     TextView tv_pending;
     @BindView(R.id.recycler_view)
     RecyclerView recycler_view;
+    @BindView(R.id.recycler_view_assistantList)
+    RecyclerView recycler_view_assistantList;
     @BindView(R.id.tv_confirmed)
     TextView tv_confirmed;
     @BindView(R.id.profile_image)
     CircleImageView profile_image;
     SessionManager sessionManager;
-
+    @BindView(R.id.customDrawer)
+    CustomDrawerButton customDrawerButton;
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawer_layout;
     Context context = this;
     public static List<AppointmentModels> PENDING_LIST = new ArrayList<>();
     public static List<AppointmentModels> CONFIRMED_LIST = new ArrayList<>();
@@ -80,17 +113,80 @@ public class HomeActivityDoctor extends AppCompatActivity implements ApiListener
         setContentView(R.layout.activity_home_doctor);
         ButterKnife.bind(this);
         sessionManager = new SessionManager(this);
-        KEY=sessionManager.getToken();
         USER_ID=sessionManager.getUserId();
+        TOKEN=sessionManager.getToken();
+        Data.sessionManager=sessionManager;
         init_display();
-        Api.getInstance().getAppointmentsByDoctor(KEY, USER_ID, "doctor", "0", this);
+        Api.getInstance().getAppointmentsByDoctor(TOKEN, USER_ID, "doctor", "0", this);
         initRecycler();
         init_search();
         //Toast.makeText(context, sessionManager.getUserId(), Toast.LENGTH_SHORT).show();
+        init_1();
+        init_navigation();
+        Api.getInstance().getMyAssistantsList(TOKEN,USER_ID,this);
+       // Toast.makeText(context, KEY, Toast.LENGTH_SHORT).show();
+        init_1_0_0_0();
 
+        customDrawerButton.setDrawerLayout( drawer_layout );
+        customDrawerButton.getDrawerLayout().addDrawerListener( customDrawerButton );
+        customDrawerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                customDrawerButton.changeState();
+            }
+        });
 
     }
 
+    private void init_1_0_0_0() {
+        v_1.setBackgroundColor(Color.parseColor("#cccccc"));
+     //   v_1.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
+        v_2.setBackgroundColor(Color.WHITE);
+        v_3.setBackgroundColor(Color.WHITE);
+        v_4.setBackgroundColor(Color.WHITE);
+    }
+    private void init_0_1_0_0() {
+        v_1.setBackgroundColor(Color.WHITE);
+        v_2.setBackgroundColor(Color.parseColor("#cccccc"));
+       // v_2.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
+        v_3.setBackgroundColor(Color.WHITE);
+        v_4.setBackgroundColor(Color.WHITE);
+
+    }
+    private void init_navigation() {
+        linear_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                init_1();
+                linear_home.setAlpha(1);
+                linear_assistant_.setAlpha(0.5f);
+                init_1_0_0_0();
+
+            }
+        });
+        linear_assistant_.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                init_2();
+                linear_assistant_.setAlpha(1);
+                linear_home.setAlpha(0.5f);
+                init_0_1_0_0();
+
+            }
+        });
+    }
+
+    private void init_1() {
+        schroll_1.setVisibility(View.VISIBLE);
+        schroll_2.setVisibility(View.GONE);
+        linerProfileBody.setVisibility(View.VISIBLE);
+    }
+    private void init_2() {
+        schroll_1.setVisibility(View.GONE);
+        schroll_2.setVisibility(View.VISIBLE);
+        linerProfileBody.setVisibility(View.GONE);
+
+    }
     private void initRecycler() {
         mAdapter = new AppointmentSearchDrAdapter(searchModelList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
@@ -111,7 +207,7 @@ public class HomeActivityDoctor extends AppCompatActivity implements ApiListener
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 String track_id = charSequence.toString();
                 if (track_id.length() > 0) {
-                    Api.getInstance().track(KEY, track_id, USER_ID,new ApiListener.drTrackIdListener() {
+                    Api.getInstance().track(TOKEN, track_id, USER_ID,new ApiListener.drTrackIdListener() {
                         @Override
                         public void onTrackIdSuccess(List<AppointmentSearchModel> data) {
                             //Toast.makeText(context, ""+data.size(), Toast.LENGTH_SHORT).show();
@@ -213,7 +309,7 @@ public class HomeActivityDoctor extends AppCompatActivity implements ApiListener
             PENDING_LIST = data;
             state++;
             tv_pending.setText("" + data.size());
-            Api.getInstance().getAppointmentsByDoctor(KEY, USER_ID, "doctor", "1", this);
+            Api.getInstance().getAppointmentsByDoctor(TOKEN, USER_ID, "doctor", "1", this);
 
         } else if (data!=null&& state == 1) {
             tv_confirmed.setText("" + data.size());
@@ -231,5 +327,31 @@ public class HomeActivityDoctor extends AppCompatActivity implements ApiListener
     public void onAppointmentDownloadFailed(String msg) {
         Toast.makeText(context,"here 1"+ msg, Toast.LENGTH_SHORT).show();
 
+    }
+
+    @Override
+    public void onAssistantsListDownloadSuccess(List<AssistantOnlineModel> data) {
+        if (data!=null){
+            AssistantListAdapter mAdapter = new AssistantListAdapter(data);
+            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+            StaggeredGridLayoutManager _sGridLayoutManager = new StaggeredGridLayoutManager(2,
+                    StaggeredGridLayoutManager.VERTICAL);
+            recycler_view_assistantList.setLayoutManager(mLayoutManager);
+            recycler_view_assistantList.setItemAnimator(new DefaultItemAnimator());
+            //recycler_view.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL,false));
+
+            recycler_view_assistantList.setAdapter(mAdapter);
+        }else Toast.makeText(context, "here", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onAssistantsListDownloadFailed(String msg) {
+        Toast.makeText(context,
+                "Assistant download failed", Toast.LENGTH_SHORT).show();
+
+    }
+
+    public void createAssistantActivity(View view) {
+        startActivity(new Intent(this,CreateAssistantActivity.class));
     }
 }

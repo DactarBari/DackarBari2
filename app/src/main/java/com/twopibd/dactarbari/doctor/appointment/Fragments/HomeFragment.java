@@ -26,26 +26,21 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.GroundOverlay;
 import com.google.android.gms.maps.model.GroundOverlayOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.twopibd.dactarbari.doctor.appointment.Activity.LoginActivity;
 import com.twopibd.dactarbari.doctor.appointment.Activity.PatientProfileUpdateActivity;
-import com.twopibd.dactarbari.doctor.appointment.Adapter.ChamberListAdapterDoctor;
 import com.twopibd.dactarbari.doctor.appointment.Adapter.NearbyDrListAdapterPatient;
-import com.twopibd.dactarbari.doctor.appointment.Api.Api;
 import com.twopibd.dactarbari.doctor.appointment.Api.ApiListener;
 import com.twopibd.dactarbari.doctor.appointment.Api.Listener_;
-import com.twopibd.dactarbari.doctor.appointment.Data.DataStore;
 import com.twopibd.dactarbari.doctor.appointment.Model.SearchModel;
 import com.twopibd.dactarbari.doctor.appointment.R;
-import com.twopibd.dactarbari.doctor.appointment.Utils.CustomDrawerButton;
 import com.twopibd.dactarbari.doctor.appointment.Utils.SessionManager;
+import com.twopibd.dactarbari.doctor.appointment.Widgets.CustomDrawerButton;
 
 import java.util.List;
 

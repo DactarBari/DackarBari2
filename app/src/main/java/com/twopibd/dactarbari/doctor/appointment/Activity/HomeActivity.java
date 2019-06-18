@@ -12,22 +12,16 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.twopibd.dactarbari.doctor.appointment.Api.Api;
-import com.twopibd.dactarbari.doctor.appointment.Api.ApiListener;
 import com.twopibd.dactarbari.doctor.appointment.Fragments.AppointmentsListPatient;
 import com.twopibd.dactarbari.doctor.appointment.Fragments.NotificationFragment;
-import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentResponse;
 import com.twopibd.dactarbari.doctor.appointment.R;
-import com.twopibd.dactarbari.doctor.appointment.Utils.CustomDrawerButton;
 import com.twopibd.dactarbari.doctor.appointment.Utils.SessionManager;
+import com.twopibd.dactarbari.doctor.appointment.Widgets.CustomDrawerButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
-
-import static com.twopibd.dactarbari.doctor.appointment.Data.ListenerPatientsData.PatientALLDataDownloadListener;
-import static com.twopibd.dactarbari.doctor.appointment.Data.ListenerPatientsData.PatientNotificationDataDownloadListener;
 
 
 public class HomeActivity extends AppCompatActivity {

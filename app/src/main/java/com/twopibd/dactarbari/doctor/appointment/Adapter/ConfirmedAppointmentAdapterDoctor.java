@@ -24,8 +24,10 @@ import com.twopibd.dactarbari.doctor.appointment.Widgets.MyDialogList;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.twopibd.dactarbari.doctor.appointment.Data.DataStore.KEY;
-import static com.twopibd.dactarbari.doctor.appointment.Data.DataStore.USER_ID;
+import static android.provider.Contacts.SettingsColumns.KEY;
+import static com.twopibd.dactarbari.doctor.appointment.Data.Data.USER_ID;
+import static com.twopibd.dactarbari.doctor.appointment.Data.Data.TOKEN;
+
 
 /**
  * Created by mukul on 3/10/2019.
@@ -89,7 +91,7 @@ public class ConfirmedAppointmentAdapterDoctor extends RecyclerView.Adapter<Conf
                         if (result) {
 
                             SessionManager sessionManager = new SessionManager(context);
-                            changeState(KEY, "" + movie.getId(), position, "3",USER_ID);
+                            changeState(TOKEN, "" + movie.getId(), position, "3",USER_ID);
                         } else {
 //                            SessionManager sessionManager=new SessionManager(context);
 //                            KEY=sessionManager.getToken();

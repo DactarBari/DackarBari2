@@ -1,4 +1,4 @@
-package com.twopibd.dactarbari.doctor.appointment.Utils;
+package com.twopibd.dactarbari.doctor.appointment.Widgets;
 
 /**
  * Created by mkl on 7/10/2018.

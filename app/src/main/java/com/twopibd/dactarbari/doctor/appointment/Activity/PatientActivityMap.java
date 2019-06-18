@@ -10,26 +10,17 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
@@ -38,23 +29,18 @@ import com.google.android.gms.maps.model.GroundOverlay;
 import com.google.android.gms.maps.model.GroundOverlayOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.gson.JsonElement;
 import com.twopibd.dactarbari.doctor.appointment.Adapter.NearbyDrListAdapterPatient;
-import com.twopibd.dactarbari.doctor.appointment.Adapter.SearchAdapterDoctor;
 import com.twopibd.dactarbari.doctor.appointment.Adapter.WhatYouAreLookingAdapterPatient;
 import com.twopibd.dactarbari.doctor.appointment.Api.Api;
-import com.twopibd.dactarbari.doctor.appointment.Api.ApiClient;
 import com.twopibd.dactarbari.doctor.appointment.Api.ApiListener;
 import com.twopibd.dactarbari.doctor.appointment.Api.Listener_;
-import com.twopibd.dactarbari.doctor.appointment.Data.Data;
 import com.twopibd.dactarbari.doctor.appointment.Data.DataStore;
 import com.twopibd.dactarbari.doctor.appointment.Model.DepartmentModel;
-import com.twopibd.dactarbari.doctor.appointment.Model.DoctorModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.FeatureType;
 import com.twopibd.dactarbari.doctor.appointment.Model.SearchModel;
 import com.twopibd.dactarbari.doctor.appointment.R;
-import com.twopibd.dactarbari.doctor.appointment.Utils.CustomDrawerButton;
 import com.twopibd.dactarbari.doctor.appointment.Utils.SessionManager;
+import com.twopibd.dactarbari.doctor.appointment.Widgets.CustomDrawerButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,11 +48,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-import static com.twopibd.dactarbari.doctor.appointment.Data.Data.USER_ID;
 
 public class PatientActivityMap extends GPSOpenActivity implements ApiListener.drSearchListener,
         OnMapReadyCallback,

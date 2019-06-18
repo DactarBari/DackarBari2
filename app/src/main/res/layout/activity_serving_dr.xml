@@ -6,12 +6,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Activity.ServingActivityDr">
-
+<android.support.design.widget.AppBarLayout
+    android:layout_width="match_parent"
+    android:background="@drawable/toolbar_gradient"
+    android:layout_height="70dp">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:paddingLeft="15dp"
-        android:background="@android:color/white"
+        android:layout_height="45dp"
+        android:paddingLeft="010dp"
+        android:layout_marginTop="25dp"
         android:layout_marginLeft="0dp">
 
         <LinearLayout
@@ -39,6 +42,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:textSize="10dp"
+                android:textColor="@android:color/white"
+
 
                 android:text="Back" />
 
@@ -51,16 +56,16 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text="Serving Report"
+            android:textColor="@android:color/white"
 
             android:textSize="15dp" />
 
 
     </RelativeLayout>
+</android.support.design.widget.AppBarLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@android:color/darker_gray" />
+
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -86,133 +91,128 @@
                 android:layout_marginTop="00dp"
                 android:layout_marginBottom="10dp"
                 android:background="@android:color/darker_gray"/>
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/shadow_low"
                 android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:paddingTop="10dp"
 
-                android:textColor="@android:color/darker_gray"
-                android:text="Patient Name" />
+                    android:textColor="@android:color/darker_gray"
+                    android:text="Patient Name" />
 
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="asdadasdads"
-                />
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="asdadasdads"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@android:color/darker_gray"
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.25dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@android:color/darker_gray"/>
+                    android:text="Problems" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:textColor="@android:color/darker_gray"
+                <TextView
+                    android:id="@+id/tv_problem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
 
-                android:text="Time Slot" />
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:background="@drawable/shadow_low"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tv_sloat"
-                android:text="asdasdadadas"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                 />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.25dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@android:color/darker_gray"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:textColor="@android:color/darker_gray"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@android:color/darker_gray"
+                    android:text="Time Slot" />
 
-                android:text="Date" />
+                <TextView
+                    android:id="@+id/tv_sloat"
+                    android:text="asdasdadadas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@android:color/darker_gray"
 
-            <TextView
-                android:id="@+id/tv_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-            />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.25dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@android:color/darker_gray"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:textColor="@android:color/darker_gray"
+                    android:text="Date" />
 
-                android:text="Chamber Address" />
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:text="01-05-2017"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    />
 
-            <TextView
-                android:id="@+id/tv_address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.25dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@android:color/darker_gray"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:textColor="@android:color/darker_gray"
+            </LinearLayout>
 
-                android:text="Problems" />
 
-            <TextView
-                android:id="@+id/tv_problem"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
 
-                 />
-            <View
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0.25dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@android:color/darker_gray"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:textColor="@android:color/darker_gray"
+                android:background="@drawable/shadow_low"
+                android:orientation="vertical"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@android:color/darker_gray"
+                    android:text="Chamber Address" />
 
-                android:text="Appointment Status" />
+                <TextView
+                    android:id="@+id/tv_address"
+                    android:text="Address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@android:color/darker_gray"
 
-            <TextView
-                android:id="@+id/tv_status"
-                android:text="served"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.25dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@android:color/darker_gray"/>
+                    android:text="Appointment Status" />
+
+                <TextView
+                    android:id="@+id/tv_status"
+                    android:text="served"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    />
+            </LinearLayout>
+
+
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -224,8 +224,8 @@
                     android:id="@+id/ed_comment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="05dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="00dp"
+                    android:layout_marginRight="5dp"
                     android:background="@drawable/ed_selector"
                     android:lines="3"
                     android:hint="Comments"
@@ -247,8 +247,8 @@
                     android:id="@+id/ed_fees"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height_45"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="0dp"
                     android:background="@drawable/ed_selector"
                     android:inputType="number"
                     android:hint="Received fees"

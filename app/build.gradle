@@ -4,7 +4,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.twopibd.dactarbari.doctor.appointment"
-        minSdkVersion 19
+        minSdkVersion 22
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -49,5 +49,6 @@ dependencies {
     implementation 'io.nlopez.smartlocation:library:3.3.3'
     implementation 'com.google.android.gms:play-services-maps:11.4.2'
     implementation 'com.github.badoualy:datepicker-timeline:c6dcd05737'
+    implementation 'com.gauravk.bubblenavigation:bubblenavigation:1.0.7'
 
 }

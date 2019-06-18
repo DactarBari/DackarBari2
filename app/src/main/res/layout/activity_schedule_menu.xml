@@ -5,58 +5,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    tools:context=".Activity.ScheduleMenuActivity"
     >
 
+<android.support.design.widget.AppBarLayout
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="0dp"
-        android:background="@android:color/white"
-        android:paddingLeft="15dp">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="@dimen/height_50"
+            android:src="@drawable/left_white"
+            android:padding="17dp"
+            android:layout_marginLeft="15dp"
+            android:layout_height="@dimen/height_50"
             android:onClick="back"
 
-
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-
-                android:layout_centerVertical="true"
-                android:layout_gravity="center"
-                android:alpha="0.5"
-                android:padding="2dp"
-                android:src="@drawable/left_arrow_key" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:textSize="10dp"
-
-                android:text="Back" />
-
-        </LinearLayout>
-
-
+            />
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:layout_width="match_parent"
+            android:text="Chamber"
+            android:textSize="16dp"
+            android:textColor="@android:color/white"
             android:layout_centerVertical="true"
-            android:text="Chambers"
-            android:textSize="16dp" />
+            android:gravity="center_vertical"
+            android:layout_marginLeft="70dp"
+            android:textStyle="bold"
+            android:layout_height="match_parent"
+            />
     </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@android:color/darker_gray" />
+</android.support.design.widget.AppBarLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
@@ -67,27 +46,16 @@
             android:layout_height="@dimen/menu_height"
             android:layout_marginBottom="10dp"
             android:onClick="ViewScheduleDr"
-            android:background="@drawable/bg_unselected">
+            android:background="@drawable/low_elevation">
 
-            <RelativeLayout
-                android:layout_width="@dimen/menu_height"
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="13dp"
+                android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:layout_height="@dimen/menu_height">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:padding="12dp"
-                    android:visibility="gone"
-                    android:src="@drawable/circle_stroke_primary" />
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:padding="15dp"
-                    android:src="@drawable/list_green_" />
-
-
-            </RelativeLayout>
+                android:layout_centerVertical="true"
+                android:src="@drawable/list_green_" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -99,14 +67,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Chamber List"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="14dp" />
+                    android:textColor="@color/texColor"
+                    android:textSize="12dp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="View and edit old chamber schedule"
                     android:lines="1"
+                    android:textSize="10dp"
 
                     android:textColor="@android:color/darker_gray" />
             </LinearLayout>
@@ -118,28 +87,15 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/menu_height"
             android:onClick="addScheduleDr"
-            android:background="@drawable/bg_unselected">
+            android:background="@drawable/low_elevation">
 
-            <RelativeLayout
-                android:layout_width="@dimen/menu_height"
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="12dp"
                 android:layout_marginLeft="10dp"
-
-                android:layout_height="@dimen/menu_height">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:padding="12dp"
-                    android:visibility="gone"
-                    android:src="@drawable/circle_stroke_primary" />
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:padding="17dp"
-                    android:src="@drawable/plus_green" />
-
-
-            </RelativeLayout>
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/plus_green" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -151,13 +107,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Add"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="14dp" />
+                    android:textColor="@color/texColor"
+                    android:textSize="12dp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Create your new chamber"
+                    android:textSize="10dp"
 
                     android:textColor="@android:color/darker_gray" />
             </LinearLayout>

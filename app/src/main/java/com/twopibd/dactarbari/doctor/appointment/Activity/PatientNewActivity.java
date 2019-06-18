@@ -8,6 +8,8 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.twopibd.dactarbari.doctor.appointment.Adapter.PatientPendingHorizontalAdapterDoctor;
@@ -25,12 +27,28 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.twopibd.dactarbari.doctor.appointment.Data.DataStore.KEY;
-import static com.twopibd.dactarbari.doctor.appointment.Data.DataStore.USER_ID;
+import static com.twopibd.dactarbari.doctor.appointment.Data.Data.TOKEN;
+import static com.twopibd.dactarbari.doctor.appointment.Data.Data.USER_ID;
 
-public class PatientNewActivity extends AppCompatActivity implements ApiListener.appoinetmentsDownloadListener {
+
+public class PatientNewActivity extends BaseActivity implements ApiListener.appoinetmentsDownloadListener {
     @BindView(R.id.recycler_view)
     RecyclerView recycler_view;
+
+    @BindView(R.id.srollView_1)
+    ScrollView srollView_1;
+    @BindView(R.id.srollView_2)
+    ScrollView srollView_2;
+
+
+    @BindView(R.id.linear_assistant)
+    LinearLayout linear_assistant;
+
+    @BindView(R.id.linear_appointment)
+    LinearLayout linear_appointment;
+
+
+
 
     Context context = this;
     SessionManager sessionManager;
@@ -43,9 +61,35 @@ public class PatientNewActivity extends AppCompatActivity implements ApiListener
         init_lookingFor();
         sessionManager = new SessionManager(this);
         USER_ID = sessionManager.getUserId();
-        KEY = sessionManager.getToken();
-        Api.getInstance().getAppointmentsByDoctor(KEY, USER_ID, "patient", "0", this);
+        Api.getInstance().getAppointmentsByDoctor(TOKEN, USER_ID, "patient", "0", this);
+        init_1();
+        setNavigationClickLIstener();
 
+
+    }
+
+    private void setNavigationClickLIstener() {
+        linear_appointment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                init_1();
+            }
+        });
+        linear_assistant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                init_2();
+            }
+        });
+    }
+
+    private void init_1() {
+        srollView_1.setVisibility(View.VISIBLE);
+        srollView_2.setVisibility(View.GONE);
+    }
+    private void init_2() {
+        srollView_1.setVisibility(View.GONE);
+        srollView_2.setVisibility(View.VISIBLE);
     }
 
     private void init_lookingFor() {
@@ -103,6 +147,11 @@ public class PatientNewActivity extends AppCompatActivity implements ApiListener
 
     public void ConfirmedAppointmentsPatientActivity(View view) {
         startActivity(new Intent(this, ConfirmedAppointmentsPatientActivity.class));
+
+    }
+
+    public void createAssistant(View view) {
+        startActivity(new Intent(this, CreateAssistantActivity.class));
 
     }
 }

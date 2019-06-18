@@ -25,8 +25,8 @@ import com.twopibd.dactarbari.doctor.appointment.Widgets.MyDialogList;
 
 import java.util.ArrayList;
 import java.util.List;
+import static com.twopibd.dactarbari.doctor.appointment.Data.Data.USER_ID;
 
-import static com.twopibd.dactarbari.doctor.appointment.Data.DataStore.USER_ID;
 
 
 /**
@@ -167,6 +167,7 @@ public class PendingAppointmentAdapterDoctor extends RecyclerView.Adapter<Pendin
             public void onrecomendationTestPostFailed(String msg) {
                 MyProgressBar.dismiss();
                 Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+
 
 
             }

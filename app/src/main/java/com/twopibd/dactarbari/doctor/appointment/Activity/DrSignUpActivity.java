@@ -5,7 +5,9 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.net.Uri;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -66,7 +68,7 @@ import static com.twopibd.dactarbari.doctor.appointment.Data.DataStore.photoMode
 
 public class DrSignUpActivity extends AppCompatActivity implements SelectedHospitalsAdapter.HospitalClickListener,
         ApiListener.drBasicInfoPostListener,
-        ApiListener.StringRequestListener ,SelectedDegreeAdapter.DegreeClickListener {
+        ApiListener.StringRequestListener, SelectedDegreeAdapter.DegreeClickListener {
     @BindView(R.id.spinnerCountry)
     Spinner spinnerCountry;
     @BindView(R.id.spinnerTitle)
@@ -99,8 +101,8 @@ public class DrSignUpActivity extends AppCompatActivity implements SelectedHospi
     List<SelectedHospitalsModel> Selectedlist = new ArrayList<>();
     List<SelectedHospitalsModel> SelectedlistCurrent = new ArrayList<>();
     public static List<SelectedQualificationModel> SelectedQualifications = new ArrayList<>();
-    @BindView(R.id.ed_name)
-    EditText ed_name;
+    @BindView(R.id.ed_firstName)
+    EditText ed_firstName;
     @BindView(R.id.ed_mobile)
     EditText ed_mobile;
     @BindView(R.id.ed_password)
@@ -119,6 +121,10 @@ public class DrSignUpActivity extends AppCompatActivity implements SelectedHospi
     EditText ed_area;
     @BindView(R.id.ed_postCode)
     EditText ed_postCode;
+    @BindView(R.id.ed_last_name)
+    EditText ed_last_name;
+    @BindView(R.id.ed_confirm_email)
+    EditText ed_confirm_email;
 
     Uri resultUri;
     String selectedCountry = "";
@@ -127,6 +133,8 @@ public class DrSignUpActivity extends AppCompatActivity implements SelectedHospi
     String selectedDepartment = "";
     String selectedTitle = "";
     ProgressDialog progressDialog;
+    String QualificationString="";
+    String device_ID=null;
 
     public static List<QualificationModel> MEDICAL_DEGREE = new ArrayList<>();
 
@@ -148,6 +156,8 @@ public class DrSignUpActivity extends AppCompatActivity implements SelectedHospi
         progressDialog.setMessage("Please wait");
         setEmailUniqueListener();
         init_title_spinner();
+        device_ID = Settings.Secure.getString(context.getContentResolver(),
+                Settings.Secure.ANDROID_ID);
     }
 
     private void initQualification() {
@@ -167,7 +177,7 @@ public class DrSignUpActivity extends AppCompatActivity implements SelectedHospi
         autoCompleteQualification.setAdapter(adapter);
         setAutoCompleteAdapterQualification();
 
-        DegreemAdapter = new SelectedDegreeAdapter(context ,this);
+        DegreemAdapter = new SelectedDegreeAdapter(context, this);
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
         recycler_viewQualification.setLayoutManager(staggeredGridLayoutManager);
         recycler_viewQualification.setItemAnimator(new DefaultItemAnimator());
@@ -181,9 +191,10 @@ public class DrSignUpActivity extends AppCompatActivity implements SelectedHospi
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selection = (String) parent.getItemAtPosition(position);
-                SelectedQualifications.add(new SelectedQualificationModel(true,MEDICAL_DEGREE.get(position)));
+                SelectedQualifications.add(new SelectedQualificationModel(true, MEDICAL_DEGREE.get(position)));
                 DegreemAdapter.notifyItemInserted(SelectedQualifications.size() - 1);
                 autoCompleteQualification.setText("");
+                QualificationString+=MEDICAL_DEGREE.get(position)+",";
 
 
             }
@@ -490,6 +501,7 @@ public class DrSignUpActivity extends AppCompatActivity implements SelectedHospi
     private void openCamera() {
         CropImage.activity()
                 .setGuidelines(CropImageView.Guidelines.ON)
+
                 .start(this);
     }
 
@@ -515,7 +527,7 @@ public class DrSignUpActivity extends AppCompatActivity implements SelectedHospi
 
 
         String TYPE_DOCTOR = "doctor";
-        String name = ed_name.getText().toString().trim();
+        String name = selectedTitle + " " + ed_firstName.getText().toString().trim() + " " + ed_last_name.getText().toString().trim();
         String gender = selectedGender;
         String country = selectedCountry;
         String type = selectedType;
@@ -544,7 +556,7 @@ public class DrSignUpActivity extends AppCompatActivity implements SelectedHospi
         String street = ed_street.getText().toString().trim();
         String city = ed_city.getText().toString().trim();
         String postCode = ed_postCode.getText().toString().trim();
-        String qualification ="";
+        String qualification = QualificationString;
 
 
         if (resultUri != null) {
@@ -557,7 +569,7 @@ public class DrSignUpActivity extends AppCompatActivity implements SelectedHospi
                 if (!gender.isEmpty()) {
                     if (!gender.isEmpty()) {
                         if (!mobile.isEmpty()) {
-                            if (!email.isEmpty()) {
+                            if (isBothEmailValid()) {
                                 if (!password.isEmpty()) {
                                     if (!house.isEmpty()) {
                                         if (!street.isEmpty()) {
@@ -641,7 +653,7 @@ public class DrSignUpActivity extends AppCompatActivity implements SelectedHospi
 
                                 }
                             } else {
-                                MyDialog.getInstance().with(DrSignUpActivity.this).autoBack(false).autoDismiss(false).message("Select your Email").show();
+                                MyDialog.getInstance().with(DrSignUpActivity.this).autoBack(false).autoDismiss(false).message("Please provide  your correct Email in both field").show();
 
                             }
                         } else {
@@ -663,6 +675,16 @@ public class DrSignUpActivity extends AppCompatActivity implements SelectedHospi
         }
 
 
+    }
+
+    private boolean isBothEmailValid() {
+        boolean status=false;
+        String firstEmail=ed_email.getText().toString().trim();
+        String secondEmail=ed_confirm_email.getText().toString().trim();
+        if (firstEmail!=null && secondEmail!=null && isValidEmail(firstEmail)&&isValidEmail(secondEmail))
+            status=true;
+        else status=false;
+        return status;
     }
 
     private void setEmailUniqueListener() {

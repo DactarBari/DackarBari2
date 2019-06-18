@@ -3,10 +3,12 @@ package com.twopibd.dactarbari.doctor.appointment.Api;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.JsonElement;
+import com.twopibd.dactarbari.doctor.appointment.Model.AdminHomeResponse;
 import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentModels;
 import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentResponse;
 import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentSearchModel;
+import com.twopibd.dactarbari.doctor.appointment.Model.AssistantOnlineModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.BasicInfoModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.ChamberInfo;
 import com.twopibd.dactarbari.doctor.appointment.Model.ChamberModel;
@@ -37,6 +39,14 @@ public class ApiListener {
     public interface drSchedulePostListener {
         void ondrSchedulePostSuccess(StatusMessage data);
         void ondrSchedulePostFailed(String msg);
+    }
+    public interface MyAssistantsListDownloadListener {
+        void onAssistantsListDownloadSuccess(List<AssistantOnlineModel> data);
+        void onAssistantsListDownloadFailed(String msg);
+    }
+    public interface AdminHomeListener {
+        void onAdminHomeSuccess(AdminHomeResponse data);
+        void onAdminHomeFailed(String msg);
     }
     public interface drTrackIdListener {
         void onTrackIdSuccess(List<AppointmentSearchModel> data);
@@ -118,6 +128,10 @@ public class ApiListener {
         void onSearchSuccess(List<DoctorModel> list);
 
         void onSuccessFailed(String msg);
+    }
+    public interface assistantCreateListener {
+        void onAssistantCreateSuccess(StatusMessage data);
+        void onAssistantCreateFailed(String msg);
     }
 
     public interface profileGet {

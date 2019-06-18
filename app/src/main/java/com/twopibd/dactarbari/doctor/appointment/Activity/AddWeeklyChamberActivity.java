@@ -49,14 +49,8 @@ import static com.twopibd.dactarbari.doctor.appointment.Data.Data.newSchedulelis
 public class AddWeeklyChamberActivity extends AppCompatActivity implements ApiListener.drSchedulePostListener, MyDialogList.ScheduleDialogListener {
 
 
-    @BindView(R.id.ed_address)
-    EditText ed_address;
 
-    @BindView(R.id.tv_locationPicked)
-    TextView tv_locationPicked;
 
-    @BindView(R.id.ed_fees)
-    EditText ed_fees;
     @BindView(R.id.recycler_view)
     RecyclerView recycler_view;
     public static List<DaysTimeModel> Dayslist = new ArrayList<>();
@@ -83,17 +77,7 @@ public class AddWeeklyChamberActivity extends AppCompatActivity implements ApiLi
         key = sessionManager.getToken();
         newSchedulelist.clear();
         init_days_();
-        locationPickListener.setlocationPickerListener(new ApiListener.LocationPicked() {
-            @Override
-            public void onPicked(boolean isPicked) {
-                //Toast.makeText(AddWeeklyChamberActivity.this, "locaton picked", Toast.LENGTH_SHORT).show();
-                address = Data.getAddress(context, DataStore.selectedLocation);
-                tv_locationPicked.setText(address);
-                ed_address.setText(address);
-                chamber_latitude = "" + DataStore.selectedLocation.latitude;
-                chamber_longitude = "" + DataStore.selectedLocation.longitude;
-            }
-        });
+
 
     }
 
@@ -112,8 +96,8 @@ public class AddWeeklyChamberActivity extends AppCompatActivity implements ApiLi
     public void SaveSchedule(View view) {
         MyProgressDialog.with(this);
 
-        String address = ed_address.getText().toString().trim();
-        String fees = ed_fees.getText().toString().trim();
+        String address = ChamberAddCommonInfoActivity.ADDRESS;
+        String fees = ChamberAddCommonInfoActivity.FEES;
 
 
         Gson gson = new Gson();
@@ -137,7 +121,8 @@ public class AddWeeklyChamberActivity extends AppCompatActivity implements ApiLi
     public void ondrSchedulePostSuccess(StatusMessage data) {
         MyProgressDialog.destroy();
         Toast.makeText(this, data.getMessage(), Toast.LENGTH_SHORT).show();
-        onBackPressed();
+        startActivity(new Intent(context,HomeActivityDoctor.class));
+        finishAffinity();
 
 
     }

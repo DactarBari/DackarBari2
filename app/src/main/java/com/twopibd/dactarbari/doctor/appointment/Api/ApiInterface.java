@@ -2,9 +2,11 @@ package com.twopibd.dactarbari.doctor.appointment.Api;
 
 
 import com.google.gson.JsonElement;
+import com.twopibd.dactarbari.doctor.appointment.Model.AdminHomeResponse;
 import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentModels;
 import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentResponse;
 import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentSearchModel;
+import com.twopibd.dactarbari.doctor.appointment.Model.AssistantOnlineModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.BasicInfoModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.ChamberInfo;
 import com.twopibd.dactarbari.doctor.appointment.Model.ChamberModel;
@@ -48,9 +50,6 @@ import retrofit2.http.Query;
 public interface ApiInterface {
 
 
-
-
-
     @FormUrlEncoded
     @POST("searchDoctor.php")
     Call<List<DoctorModel>> searchChamber(@Field("dr_name") String dr_name,
@@ -60,16 +59,38 @@ public interface ApiInterface {
                                           @Field("day") String day);
 
     @FormUrlEncoded
+    @POST("register-doctor-assistant")
+    Call<StatusMessage> createAssistant(@Header("Authorization") String token,
+                                        @Field("user_type") String user_type,
+                                        @Field("name") String name,
+                                        @Field("gender") String gender,
+                                        @Field("email") String email,
+                                        @Field("password") String password,
+                                        @Field("mobile") String mobile,
+                                        @Field("country") String country,
+                                        @Field("house_no") String house_no,
+                                        @Field("street_address") String street_address,
+                                        @Field("area") String area,
+                                        @Field("city") String city,
+                                        @Field("postcode") String postcode,
+                                        @Field("doctor_id") String doctor_id);
+
+    @FormUrlEncoded
     @POST("getMyAppointmentsDoctor.php")
     Call<AppointmentResponse> myAppointmentsbyDoctor(@Field("dr_id") String dr_id);
 
     @FormUrlEncoded
     @POST("update-chamber-status")
-    Call<StatusMessage> changeChamberStatus(@Header("Authorization") String token,@Field("chamber_id") String chamber_id,@Field("status") String status);
+    Call<StatusMessage> changeChamberStatus(@Header("Authorization") String token, @Field("chamber_id") String chamber_id, @Field("status") String status);
+
+    @FormUrlEncoded
+    @POST("doctor-assistant-list")
+    Call<List<AssistantOnlineModel>> getAssistantList(@Header("Authorization") String token,@Field("doctor_id") String doctor_id);
 
     @FormUrlEncoded
     @POST("check-chamber-status")
-    Call<StatusMessage> CheckChamberStatus(@Header("Authorization") String token,@Field("chamber_id") String chamber_id);
+    Call<StatusMessage> CheckChamberStatus(@Header("Authorization") String token, @Field("chamber_id") String chamber_id);
+
 
     @FormUrlEncoded
     @POST("view-patient-appointment-details-via-track-id")

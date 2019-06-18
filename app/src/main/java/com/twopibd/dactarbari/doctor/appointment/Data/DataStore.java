@@ -25,7 +25,6 @@ import java.util.Map;
  */
 
 public class DataStore {
-    public static String USER_ID, KEY;
     public static LatLng selectedLocation = null;
     public static AppointmentSearchModel selectedSearchAppointmentModel = null;
     public static DepartmentModel departmentID = null;

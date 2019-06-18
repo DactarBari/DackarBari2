@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/drawer_layout"
+    tools:context=".Activity.AssistantHomeActivity">
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:visibility="visible"
+        android:background="@drawable/toolbar_gradient"
+        android:layout_height="75dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="25dp"
+            android:layout_height="50dp">
+            <com.twopibd.dactarbari.doctor.appointment.Widgets.CustomDrawerButton
+                android:layout_width="30dp"
+                android:src="@drawable/menu_white"
+                android:padding="7dp"
+                android:id="@+id/customDrawer"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_height="30dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:src="@drawable/menu_white"
+                android:padding="5dp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:text="Assistant Home"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="55dp"
+                android:layout_height="30dp"
+                />
+        </RelativeLayout>
+
+    </android.support.design.widget.AppBarLayout>
+    <FrameLayout
+        android:id="@+id/frame_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    <android.support.design.widget.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_gravity="bottom"
+        android:background="@android:color/white"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/linear_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25"
+                    android:orientation="vertical">
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:id="@+id/v_1"
+                        android:visibility="gone"
+
+                        android:background="@color/colorPrimary"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="25sp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="6dp"
+                        android:padding="3dp"
+                        android:src="@drawable/home_black_" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Appointments"
+                        android:textColor="@android:color/black"
+                        android:textSize="10dp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/linear_2"
+                    android:layout_weight="0.25"
+                    android:alpha="0.5"
+                    android:orientation="vertical">
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:id="@+id/v_2"
+                        android:visibility="gone"
+
+
+                        android:background="@color/colorPrimary"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="25sp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="6dp"
+                        android:padding="3dp"
+
+                        android:src="@drawable/assistant_" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="My Doctor"
+                        android:textColor="@android:color/black"
+
+                        android:textSize="10dp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25"
+                    android:alpha="0.5"
+                    android:orientation="vertical">
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:id="@+id/v_3"
+                        android:visibility="gone"
+
+                        android:background="@color/colorPrimary"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="25sp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="6dp"
+                        android:padding="3dp"
+
+                        android:src="@drawable/drugs" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Reporting"
+                        android:textColor="@android:color/black"
+
+                        android:textSize="10dp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linear_assistant"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25"
+                    android:alpha="0.5"
+
+                    android:orientation="vertical">
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:id="@+id/v_4"
+                        android:visibility="gone"
+
+                        android:background="@color/colorPrimary"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="25sp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="6dp"
+                        android:padding="3dp"
+
+                        android:src="@drawable/settings_gears" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Setting"
+                        android:textColor="@android:color/black"
+
+                        android:textSize="10dp" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </android.support.design.widget.BottomNavigationView>
+    </android.support.design.widget.CoordinatorLayout>
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginBottom="20dp"
+                android:padding="10dp"
+                android:text="Assistant menu"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                android:visibility="visible" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginLeft="15dp"
+                android:onClick="logout"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:src="#cccccc"
+                    android:layout_gravity="center"
+                    android:layout_height="20dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Logout"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    />
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+
+    </android.support.design.widget.NavigationView>
+
+</android.support.v4.widget.DrawerLayout>

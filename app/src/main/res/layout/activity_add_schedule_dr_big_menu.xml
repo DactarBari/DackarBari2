@@ -7,56 +7,36 @@
     android:orientation="vertical"
     tools:context=".Activity.AddScheduleDrActivityBigMenu"
     >
-    <RelativeLayout
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="0dp"
-        android:background="@android:color/white"
-        android:paddingLeft="15dp">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:onClick="back"
-
-
-            android:orientation="horizontal">
+        android:layout_height="50dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="@dimen/height_50"
+                android:src="@drawable/left_white"
+                android:padding="17dp"
+                android:layout_marginLeft="15dp"
+                android:layout_height="@dimen/height_50"
+                android:onClick="back"
 
-                android:layout_centerVertical="true"
-                android:layout_gravity="center"
-                android:alpha="0.5"
-                android:padding="2dp"
-                android:src="@drawable/left_arrow_key" />
-
+                />
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="Schedule Type"
+                android:textSize="16dp"
+                android:textColor="@android:color/white"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:textSize="10dp"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="70dp"
+                android:textStyle="bold"
+                android:layout_height="match_parent"
+                />
+        </RelativeLayout>
+    </android.support.design.widget.AppBarLayout>
 
-                android:text="Back" />
-
-        </LinearLayout>
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="Schedule Type"
-            android:textSize="16dp" />
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@android:color/darker_gray" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,22 +47,15 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/menu_height"
             android:onClick="addDailySchedule"
-            android:background="@drawable/bg_unselected">
+            android:background="@drawable/low_elevation">
 
-            <RelativeLayout
-                android:layout_width="@dimen/menu_height"
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="11dp"
                 android:layout_marginLeft="10dp"
-
-                android:layout_height="@dimen/menu_height">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:padding="12dp"
-                    android:src="@drawable/calender_365" />
-
-
-            </RelativeLayout>
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/calender_365" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -112,22 +85,15 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/menu_height"
             android:onClick="addWeeklySchedule"
-            android:background="@drawable/bg_unselected">
+            android:background="@drawable/low_elevation">
 
-            <RelativeLayout
-                android:layout_width="@dimen/menu_height"
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="10dp"
                 android:layout_marginLeft="10dp"
-
-                android:layout_height="@dimen/menu_height">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:padding="12dp"
-                    android:src="@drawable/seven_day" />
-
-
-            </RelativeLayout>
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/seven_day" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -156,22 +122,15 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/menu_height"
             android:onClick="addMonthlySchedule"
-            android:background="@drawable/bg_unselected">
+            android:background="@drawable/low_elevation">
 
-            <RelativeLayout
-                android:layout_width="@dimen/menu_height"
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="10dp"
                 android:layout_marginLeft="10dp"
-
-                android:layout_height="@dimen/menu_height">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:padding="12dp"
-                    android:src="@drawable/monthly_12" />
-
-
-            </RelativeLayout>
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/monthly_12" />
 
             <LinearLayout
                 android:layout_width="match_parent"

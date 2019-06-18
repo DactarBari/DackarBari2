@@ -25,7 +25,8 @@ import com.twopibd.dactarbari.doctor.appointment.Widgets.MyDialogList;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.twopibd.dactarbari.doctor.appointment.Data.DataStore.USER_ID;
+import static com.twopibd.dactarbari.doctor.appointment.Data.Data.USER_ID;
+
 
 /**
  * Created by mukul on 3/10/2019.

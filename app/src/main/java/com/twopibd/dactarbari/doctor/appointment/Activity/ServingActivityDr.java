@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
 import static com.twopibd.dactarbari.doctor.appointment.Data.DataStore.changeDateformate1;
 import static com.twopibd.dactarbari.doctor.appointment.Data.DataStore.selectedSearchAppointmentModel;
 
-public class ServingActivityDr extends AppCompatActivity implements ApiListener.servePostListener {
+public class ServingActivityDr extends BaseActivity implements ApiListener.servePostListener {
     @BindView(R.id.tv_name)
     TextView tv_name;
     @BindView(R.id.ed_comment)

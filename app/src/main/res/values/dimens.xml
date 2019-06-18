@@ -10,9 +10,11 @@
     <dimen name="tv_width">120dp</dimen>
     <dimen name="arrow_margin_right">5dp</dimen>
     <dimen name="app_bar_height">50dp</dimen>
-    <dimen name="menu_height">70dp</dimen>
+    <dimen name="menu_height">60dp</dimen>
     <dimen name="patient_bottom_navigation_icon_size">23dp</dimen>
     <dimen name="dimen_home_float_size">50dp</dimen>
     <dimen name="dimen_home_float_size_extended">70dp</dimen>
+    <dimen name="low_elevation">0.8dp</dimen>
+    <dimen name="editTextRadious">0dp</dimen>
 
 </resources>

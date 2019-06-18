@@ -26,5 +26,7 @@ public class ScheduleMenuActivity extends BaseActivity {
         startActivity(new Intent(this, ChamberListActivityDr.class));
     }
 
-
+    public void back(View view) {
+        onBackPressed();
+    }
 }

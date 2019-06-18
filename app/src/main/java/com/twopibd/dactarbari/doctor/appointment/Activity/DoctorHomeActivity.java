@@ -13,15 +13,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.twopibd.dactarbari.doctor.appointment.Api.Api;
-import com.twopibd.dactarbari.doctor.appointment.Api.ApiListener;
+import com.twopibd.dactarbari.doctor.appointment.Data.Data;
 import com.twopibd.dactarbari.doctor.appointment.Fragments.AppointmentsListFragment;
 import com.twopibd.dactarbari.doctor.appointment.Fragments.NewAppointListFragment;
-import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentResponse;
 import com.twopibd.dactarbari.doctor.appointment.R;
-import com.twopibd.dactarbari.doctor.appointment.Utils.CustomDrawerButton;
-import com.twopibd.dactarbari.doctor.appointment.Utils.MyDialog;
 import com.twopibd.dactarbari.doctor.appointment.Utils.SessionManager;
+import com.twopibd.dactarbari.doctor.appointment.Widgets.CustomDrawerButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +26,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.twopibd.dactarbari.doctor.appointment.Data.lis.Confirmedlistener;
-import static com.twopibd.dactarbari.doctor.appointment.Data.lis.Pendinglistener;
+import static com.twopibd.dactarbari.doctor.appointment.Data.Data.TOKEN;
+import static com.twopibd.dactarbari.doctor.appointment.Data.Data.USER_ID;
 
 
 public class DoctorHomeActivity extends AppCompatActivity {
@@ -48,6 +45,9 @@ public class DoctorHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_home);
         sessionManager=new SessionManager(this);
+        TOKEN=sessionManager.getToken();
+        USER_ID=sessionManager.getUserId();
+        Data.sessionManager=sessionManager;
         ButterKnife.bind(this);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);

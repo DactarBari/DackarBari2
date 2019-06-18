@@ -57,6 +57,12 @@ public class LoginActivity extends AppCompatActivity implements ApiListener.Logi
             }else  if (sessionManager.getUserType().equals(Constants.TYPE_PATIENT)){
                 startActivity(new Intent(this,PatientNewActivity.class));
                 finish();
+            }else  if (sessionManager.getUserType().equals(Constants.TYPE_ASSISTANT)){
+                startActivity(new Intent(this,AssistantHomeActivity.class));
+                finish();
+            }else {
+                Toast.makeText(this, "Unknown user type.Please login again", Toast.LENGTH_SHORT).show();
+
             }
         }
     }
@@ -118,10 +124,16 @@ public class LoginActivity extends AppCompatActivity implements ApiListener.Logi
                     startActivity(new Intent(this, HomeActivityDoctor.class));
                     finish();
 
-                }else {
+                }else if (sessionManager.getUserType().equals(Constants.TYPE_PATIENT)){
                     startActivity(new Intent(this, PatientNewActivity.class));
                     finish();
+                }else if (sessionManager.getUserType().equals(Constants.TYPE_ASSISTANT)){
+                    startActivity(new Intent(this, AssistantHomeActivity.class));
+                    finish();
+                }else {
+                    Toast.makeText(this, "Unknown user type.Please login again", Toast.LENGTH_SHORT).show();
                 }
+
 
             } else {
                 MyDialog.getInstance().with(LoginActivity.this)

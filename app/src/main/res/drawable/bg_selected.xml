@@ -12,7 +12,7 @@
 
             <solid android:color="#0222b14c" />
 
-            <corners android:radius="3dp" />
+            <corners android:radius="@dimen/editTextRadious" />
         </shape>
     </item>
     <item>
@@ -25,7 +25,7 @@
 
             <solid android:color="#0522b14c" />
 
-            <corners android:radius="3dp" />
+            <corners android:radius="@dimen/editTextRadious" />
         </shape>
     </item>
     <item>
@@ -38,7 +38,7 @@
 
             <solid android:color="#1022b14c" />
 
-            <corners android:radius="3dp" />
+            <corners android:radius="@dimen/editTextRadious" />
         </shape>
     </item>
     <item>
@@ -51,7 +51,7 @@
 
             <solid android:color="#1222b14c" />
 
-            <corners android:radius="3dp" />
+            <corners android:radius="@dimen/editTextRadious" />
         </shape>
     </item>
     <item>
@@ -64,7 +64,7 @@
 
             <solid android:color="#1522b14c" />
 
-            <corners android:radius="3dp" />
+            <corners android:radius="@dimen/editTextRadious" />
         </shape>
     </item>
     <item>
@@ -77,7 +77,7 @@
 
             <solid android:color="#2022b14c" />
 
-            <corners android:radius="3dp" />
+            <corners android:radius="@dimen/editTextRadious" />
         </shape>
     </item>
 
@@ -86,7 +86,7 @@
         <shape>
             <solid android:color="@android:color/white" />
 
-            <corners android:radius="3dp" />
+            <corners android:radius="@dimen/editTextRadious" />
         </shape>
     </item>
 

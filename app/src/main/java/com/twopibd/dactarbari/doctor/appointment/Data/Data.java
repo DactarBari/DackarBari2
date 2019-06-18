@@ -20,6 +20,7 @@ import com.twopibd.dactarbari.doctor.appointment.Model.DoctorModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.HospitalModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.RecomentationModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.SpacialistModel;
+import com.twopibd.dactarbari.doctor.appointment.Utils.SessionManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,6 +35,8 @@ import java.util.Map;
 
 public class Data {
     public static List<Day> newSchedulelist=new ArrayList<>();
+    public static SessionManager sessionManager;
+    public  static String TOKEN,USER_ID;
     public static String getAddress(Context context, LatLng latLng) {
        Double lat=latLng.latitude;
        Double lng=latLng.longitude;
@@ -79,7 +82,6 @@ public class Data {
     public static ChamberModel chamberModel ;
 
     public static List<Day> days = new ArrayList<>();
-    public static String USER_ID;
     public static String USER_NAME;
     public static String TEMP_LINK;
 

@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.8"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="@android:color/white"
             android:text="Ref #" />
 
         <TextView
@@ -25,6 +25,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
+            android:textColor="@android:color/white"
+
             android:text="123" />
     </LinearLayout>
 
@@ -41,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.8"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="@android:color/white"
 
             android:text="Name" />
 
@@ -50,6 +52,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
+            android:textColor="@android:color/white"
+
             android:text="123" />
     </LinearLayout>
 
@@ -59,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:padding="10dp"
-        android:textColor="@color/red"
+        android:textColor="@android:color/white"
         android:text="Sorry, No result found."
         android:visibility="gone" />
 

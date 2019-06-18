@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="#ffffff"
+    android:clipToPadding="false"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingTop="5dp"
+    android:paddingRight="00dp"
+    android:paddingBottom="5dp">
+
+
+    <LinearLayout
+        android:id="@+id/notification_row"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingTop="0dp"
+        android:paddingRight="0dp"
+        android:paddingBottom="0dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="10dp"
+            android:src="@drawable/user_gray" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:text="Aminul Islam"
+
+                    android:textColor="#2E86C1"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:text="Police@gmail.com"
+                    android:textColor="@android:color/black"
+
+                    android:textSize="10dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:text="01620645499"
+                    android:textColor="#9b9a9a"
+
+                    android:textSize="11dp" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+
+
+    <ImageView
+        android:id="@+id/img_edit"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:padding="15dp"
+        android:src="@drawable/edit_black"
+        android:textColor="#E74C3C"
+        android:textSize="12dp"
+
+        android:layout_marginRight="40dp"
+        android:alpha="0.7"
+        android:textStyle="bold" />
+    <ImageView
+        android:id="@+id/img_delete"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:padding="15dp"
+
+        android:src="@drawable/delete"
+        android:textColor="#E74C3C"
+        android:textSize="12dp"
+        android:alpha="0.7"
+        android:textStyle="bold" />
+</RelativeLayout>

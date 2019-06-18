@@ -5,9 +5,11 @@ import android.support.annotation.NonNull;
 import com.google.gson.JsonElement;
 import com.twopibd.dactarbari.doctor.appointment.Activity.DrSignUpActivity;
 import com.twopibd.dactarbari.doctor.appointment.Activity.PatientProfileUpdateActivity;
+import com.twopibd.dactarbari.doctor.appointment.Model.AdminHomeResponse;
 import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentModels;
 import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentResponse;
 import com.twopibd.dactarbari.doctor.appointment.Model.AppointmentSearchModel;
+import com.twopibd.dactarbari.doctor.appointment.Model.AssistantOnlineModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.BasicInfoModel;
 import com.twopibd.dactarbari.doctor.appointment.Model.ChamberInfo;
 import com.twopibd.dactarbari.doctor.appointment.Model.ChamberModel;
@@ -67,6 +69,27 @@ public class Api {
             }
         });
     }
+    public void getMyAssistantsList(String TOKEN, String DR_ID,final ApiListener.MyAssistantsListDownloadListener listener) {
+
+        ApiClient.getApiInterface().getAssistantList(TOKEN,DR_ID).enqueue(new Callback<List<AssistantOnlineModel>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<AssistantOnlineModel>> call, @NonNull Response<List<AssistantOnlineModel>> response) {
+                if (response != null) {
+                    listener.onAssistantsListDownloadSuccess(response.body());
+
+                }else {
+                    listener.onAssistantsListDownloadFailed("Error in API");
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<AssistantOnlineModel>> call, @NonNull Throwable t) {
+                listener.onAssistantsListDownloadFailed(t.getLocalizedMessage());
+            }
+        });
+    }
 
     public void chamberStatusChange(String token, String chamber_id, String status, final ApiListener.drChamberStatusChangeListener loginUserListener) {
 
@@ -85,6 +108,11 @@ public class Api {
                 loginUserListener.onChamberStatusChangeFailed(t.getLocalizedMessage());
             }
         });
+    }
+
+    public void getAdminHome(String token, String status, final ApiListener.AdminHomeListener listener) {
+
+//
     }
 
     public void getChamberStatus(String token, String chamber_id, final ApiListener.drCheckChamberStatusListener loginUserListener) {
@@ -155,6 +183,29 @@ public class Api {
             @Override
             public void onFailure(Call<List<DoctorModel>> call, Throwable t) {
                 doctorSearchListener.onSuccessFailed(t.getLocalizedMessage());
+
+            }
+        });
+
+    }
+
+    public void assistantRegister(String token,String user_type, String name, String gender, String email,String password, String mobile,String country,String house_no, String street_address,String area,String city,String postcode,String doctor_id,final ApiListener.assistantCreateListener listener) {
+        ApiClient.getApiInterface().createAssistant(token,user_type,name,gender,email,password,mobile,country,house_no,street_address,area,city,postcode,doctor_id).enqueue(new Callback<StatusMessage>() {
+            @Override
+            public void onResponse(Call<StatusMessage> call, Response<StatusMessage> response) {
+                if (response!=null && response.isSuccessful()==true && response.body()!=null){
+                    listener.onAssistantCreateSuccess(response.body());
+
+                }else {
+                    listener.onAssistantCreateFailed("Error on API");
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<StatusMessage> call, Throwable t) {
+                listener.onAssistantCreateFailed(t.getLocalizedMessage());
 
             }
         });
