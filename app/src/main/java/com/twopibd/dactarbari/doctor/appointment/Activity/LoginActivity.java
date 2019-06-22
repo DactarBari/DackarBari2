@@ -40,6 +40,8 @@ public class LoginActivity extends AppCompatActivity implements ApiListener.Logi
     String DOCTOR = "d";
     String PATIENT = "p";
 
+    //chaged by dr
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
