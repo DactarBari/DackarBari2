@@ -48,6 +48,8 @@ public class LoginActivity extends AppCompatActivity implements ApiListener.Logi
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait");
 
+        Toast.makeText(this, "mukul", Toast.LENGTH_SHORT).show();
+
 
         if(sessionManager.getLoggedIn()){
             if (sessionManager.getUserType().equals(Constants.TYPE_DOCTOR)){
