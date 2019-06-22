@@ -40,10 +40,7 @@ public class LoginActivity extends AppCompatActivity implements ApiListener.Logi
     String DOCTOR = "d";
     String PATIENT = "p";
 
-    //hellow mukul
 
-
-    //changes okokok
 
 
     @Override
