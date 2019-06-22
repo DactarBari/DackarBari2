@@ -39,13 +39,7 @@ public class LoginActivity extends AppCompatActivity implements ApiListener.Logi
     SessionManager sessionManager;
     String DOCTOR = "d";
     String PATIENT = "p";
-    //changed by mukul
 
-    //chaged by dr
-
-    //changed by sajib vai
-
-    // for marging
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
