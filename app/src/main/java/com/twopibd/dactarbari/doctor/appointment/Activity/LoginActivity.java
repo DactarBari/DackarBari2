@@ -52,6 +52,7 @@ public class LoginActivity extends AppCompatActivity implements ApiListener.Logi
 
 
 
+
         if(sessionManager.getLoggedIn()){
             if (sessionManager.getUserType().equals(Constants.TYPE_DOCTOR)){
                 startActivity(new Intent(this,HomeActivityDoctor.class));
