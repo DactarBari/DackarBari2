@@ -45,6 +45,8 @@ public class LoginActivity extends AppCompatActivity implements ApiListener.Logi
 
     //changed by sajib vai
 
+    // for marging
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
