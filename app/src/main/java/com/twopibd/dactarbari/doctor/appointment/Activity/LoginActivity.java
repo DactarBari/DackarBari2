@@ -47,9 +47,8 @@ public class LoginActivity extends AppCompatActivity implements ApiListener.Logi
         ButterKnife.bind(this);
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait");
-        //hesdfsdf
+        Toast.makeText(this, "zz", Toast.LENGTH_SHORT).show();
 
-        //heyheyhey
 
 
 
