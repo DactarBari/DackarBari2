@@ -51,8 +51,9 @@ public class AssistantAppointmentsFragment extends Fragment {
     }
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
+        adapter.addFragment(new PendingAppointmentsListFragment(), "New Request");
         adapter.addFragment(new ConfirmedAppointmentsListFragment(), "Confirmed");
-        adapter.addFragment(new PendingAppointmentsListFragment(), "Pending");
+
         viewPager.setAdapter(adapter);
     }
 

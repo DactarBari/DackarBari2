@@ -1,6 +1,7 @@
 package com.twopibd.dactarbari.doctor.appointment.Activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,10 +27,8 @@ import static com.twopibd.dactarbari.doctor.appointment.Data.DataStore.selectedS
 public class ServingActivityDr extends BaseActivity implements ApiListener.servePostListener {
     @BindView(R.id.tv_name)
     TextView tv_name;
-    @BindView(R.id.ed_comment)
-    EditText ed_comment;
-    @BindView(R.id.ed_fees)
-    EditText ed_fees;
+
+
     @BindView(R.id.tv_problem)
     TextView tv_problem;
     @BindView(R.id.tv_address)
@@ -66,11 +65,8 @@ public class ServingActivityDr extends BaseActivity implements ApiListener.serve
     }
 
     public void servePost(View view) {
-        String appointment_id = "" + data.getId();
-        String comment = ed_comment.getText().toString().trim();
-        String fees = ed_fees.getText().toString().trim();
-        MyProgressBar.with(context).show();
-        Api.getInstance().postServeInfo(KEY, appointment_id, comment, fees, this);
+        startActivity(new Intent(this,PrescriptionGivingActivity.class));
+
     }
 
     @Override

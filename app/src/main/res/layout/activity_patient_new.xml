@@ -255,71 +255,8 @@
                                 android:textSize="10dp" />
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            android:background="@drawable/low_elevation"
-                            android:gravity="center"
-
-                            android:orientation="vertical">
-
-                            <RelativeLayout
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center">
 
 
-                                <ImageView
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
-                                    android:layout_gravity="center"
-                                    android:padding="3dp"
-                                    android:src="@drawable/pharmacy_" />
-                            </RelativeLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:paddingTop="0dp"
-                                android:text="Pharmacy"
-                                android:textColor="@color/texColor"
-
-                                android:textSize="10dp" />
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            android:background="@drawable/low_elevation"
-                            android:gravity="center"
-                            android:onClick="createAssistant"
-
-                            android:orientation="vertical">
-
-                            <RelativeLayout
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_gravity="center">
-
-
-                                <ImageView
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
-                                    android:layout_gravity="center"
-                                    android:padding="3dp"
-                                    android:src="@drawable/pharmacy_" />
-                            </RelativeLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:paddingTop="0dp"
-                                android:text="Assistant"
-                                android:textColor="@color/texColor"
-
-                                android:textSize="10dp" />
-                        </LinearLayout>
 
                     </LinearLayout>
                 </HorizontalScrollView>
@@ -555,106 +492,122 @@
 
         </LinearLayout>
     </ScrollView>
-    <LinearLayout
+
+
+    <android.support.design.widget.BottomNavigationView
         android:layout_width="match_parent"
+        android:layout_gravity="bottom"
+        android:background="@android:color/white"
         android:layout_alignParentBottom="true"
-        android:background="#12CCCCCC"
-        android:orientation="vertical"
-        android:layout_height="50dp">
-        <include
-            layout="@layout/divider"/>
+        android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:orientation="vertical"
+            android:layout_height="50dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_weight="0.25"
-                android:orientation="vertical"
-                android:id="@+id/linear_appointment"
                 android:layout_height="match_parent">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:src="@drawable/doctor"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="5dp"
-                    android:layout_height="25dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:text="Appointment"
-                    android:textSize="10dp"
-                    android:layout_gravity="center"
-                    android:layout_height="wrap_content"
-                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_weight="0.25"
+                    android:orientation="vertical"
+                    android:id="@+id/linear_appointment"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:src="@drawable/time_date"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:layout_height="25dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="Appointment"
+                        android:textSize="10dp"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        />
 
 
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_weight="0.25"
+                    android:orientation="vertical"
+                    android:alpha="0.5"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:src="@drawable/drugs"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:layout_height="25dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="Medications"
+                        android:textSize="10dp"
+                        android:layout_gravity="center"
+                        android:textColor="@android:color/black"
+                        android:layout_height="wrap_content"
+                        />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_weight="0.25"
+                    android:orientation="vertical"                    android:alpha="0.5"
+
+
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:src="@drawable/pharmacy_black"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:layout_height="25dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="Pharmacy"
+                        android:textSize="10dp"
+                        android:layout_gravity="center"
+                        android:textColor="@android:color/black"
+                        android:layout_height="wrap_content"
+                        />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_weight="0.25"
+                    android:orientation="vertical"
+                    android:id="@+id/linear_assistant"
+                    android:alpha="0.5"
+
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:src="@drawable/settings_gears"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:layout_height="25dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="Setting"
+                        android:textColor="@android:color/black"
+                        android:textSize="10dp"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        />
+
+
+                </LinearLayout>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_weight="0.25"
-                android:orientation="vertical"
-                android:layout_height="match_parent">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:src="@drawable/doctor"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="5dp"
-                    android:layout_height="25dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:text="Medications"
-                    android:textSize="10dp"
-                    android:layout_gravity="center"
-                    android:layout_height="wrap_content"
-                    />
 
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_weight="0.25"
-                android:orientation="vertical"
-                android:layout_height="match_parent">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:src="@drawable/doctor"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="5dp"
-                    android:layout_height="25dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:text="Pharmacy"
-                    android:textSize="10dp"
-                    android:layout_gravity="center"
-                    android:layout_height="wrap_content"
-                    />
-
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_weight="0.25"
-                android:orientation="vertical"
-                android:id="@+id/linear_assistant"
-                android:layout_height="match_parent">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:src="@drawable/doctor"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="5dp"
-                    android:layout_height="25dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:text="Assistant"
-                    android:textSize="10dp"
-                    android:layout_gravity="center"
-                    android:layout_height="wrap_content"
-                    />
-
-
-            </LinearLayout>
         </LinearLayout>
 
-    </LinearLayout>
+
+    </android.support.design.widget.BottomNavigationView>
 
 
 

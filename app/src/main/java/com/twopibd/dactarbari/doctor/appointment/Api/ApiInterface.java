@@ -110,6 +110,9 @@ public interface ApiInterface {
     @GET("department-list")
     Call<List<DepartmentModel>> getDepartmentList();
 
+    @GET("test")
+    Call<String> getINT();
+
     @FormUrlEncoded
     @POST("getMyAppointments.php")
     Call<AppointmentResponse> myAppointmentsbyPatient(@Field("patient_id") String patient_id);

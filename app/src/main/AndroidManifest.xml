@@ -21,7 +21,10 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.AssistantHomeActivity"></activity>
+        <activity android:name=".Activity.PrescriptionActivityPatient"></activity>
+        <activity android:name=".Activity.PatientDiseaseSumActivity" />
+        <activity android:name=".Activity.PrescriptionGivingActivity" />
+        <activity android:name=".Activity.AssistantHomeActivity" />
         <activity android:name=".Activity.CreateAssistantActivity" />
         <activity android:name=".Activity.ChamberAddCommonInfoActivity" />
         <activity android:name=".Activity.ServingActivityDr" />

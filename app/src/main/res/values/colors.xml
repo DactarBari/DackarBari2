@@ -11,6 +11,8 @@
     <color name="white">#FFFFFF</color>
     <color name="gray_txt_clr">#A7A7A7</color>
     <color name="primary_lite">#1722B14C</color>
+    <color name="textText">#636363</color>
+
 
 
 </resources>

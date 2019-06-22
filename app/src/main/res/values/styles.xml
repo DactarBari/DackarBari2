@@ -13,6 +13,7 @@
         <!--<item name="android:titleTextStyle">@style/TitleBarTextAppearance</item>-->
         <item name="android:dropDownListViewStyle">@style/SpinnerStyle</item>
         <item name="colorAccent">@color/colorAccent</item>
+
     </style>
 
     <style name="NoTitleBar" parent="Theme.AppCompat.Light.NoActionBar">
@@ -27,6 +28,7 @@
         <!--<item name="android:titleTextStyle">@style/TitleBarTextAppearance</item>-->
         <item name="android:dropDownListViewStyle">@style/SpinnerStyle</item>
         <item name="colorAccent">@color/colorAccent</item>
+
 
     </style>
     <style name="TitleBarTextAppearance" parent="android:TextAppearance">

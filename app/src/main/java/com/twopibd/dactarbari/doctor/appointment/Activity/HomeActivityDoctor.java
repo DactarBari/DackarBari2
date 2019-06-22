@@ -9,7 +9,9 @@ import android.graphics.Shader;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -36,6 +38,7 @@ import com.twopibd.dactarbari.doctor.appointment.Adapter.AssistantListAdapter;
 import com.twopibd.dactarbari.doctor.appointment.Adapter.ChamberListAdapterDoctor;
 import com.twopibd.dactarbari.doctor.appointment.Adapter.ConfirmedAppointmentAdapterPatient;
 import com.twopibd.dactarbari.doctor.appointment.Api.Api;
+import com.twopibd.dactarbari.doctor.appointment.Api.ApiClient;
 import com.twopibd.dactarbari.doctor.appointment.Api.ApiListener;
 import com.twopibd.dactarbari.doctor.appointment.Data.Constants;
 import com.twopibd.dactarbari.doctor.appointment.Data.Data;
@@ -54,11 +57,14 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.twopibd.dactarbari.doctor.appointment.Data.Data.TOKEN;
 import static com.twopibd.dactarbari.doctor.appointment.Data.Data.USER_ID;
 
-public class HomeActivityDoctor extends BaseActivity implements ApiListener.appoinetmentsDownloadListener,ApiListener.MyAssistantsListDownloadListener {
+public class HomeActivityDoctor extends BaseActivity implements ApiListener.appoinetmentsDownloadListener, ApiListener.MyAssistantsListDownloadListener, SwipeRefreshLayout.OnRefreshListener {
     @BindView(R.id.v_1)
     View v_1;
     @BindView(R.id.v_2)
@@ -67,6 +73,8 @@ public class HomeActivityDoctor extends BaseActivity implements ApiListener.appo
     View v_3;
     @BindView(R.id.v_4)
     View v_4;
+    @BindView(R.id.swipe)
+    SwipeRefreshLayout swipe;
 
     @BindView(R.id.tv_name)
     TextView tv_name;
@@ -113,22 +121,14 @@ public class HomeActivityDoctor extends BaseActivity implements ApiListener.appo
         setContentView(R.layout.activity_home_doctor);
         ButterKnife.bind(this);
         sessionManager = new SessionManager(this);
-        USER_ID=sessionManager.getUserId();
-        TOKEN=sessionManager.getToken();
-        Data.sessionManager=sessionManager;
+        USER_ID = sessionManager.getUserId();
+        TOKEN = sessionManager.getToken();
+        Data.sessionManager = sessionManager;
         init_display();
-        Api.getInstance().getAppointmentsByDoctor(TOKEN, USER_ID, "doctor", "0", this);
-        initRecycler();
-        init_search();
-        //Toast.makeText(context, sessionManager.getUserId(), Toast.LENGTH_SHORT).show();
-        init_1();
-        init_navigation();
-        Api.getInstance().getMyAssistantsList(TOKEN,USER_ID,this);
-       // Toast.makeText(context, KEY, Toast.LENGTH_SHORT).show();
-        init_1_0_0_0();
 
-        customDrawerButton.setDrawerLayout( drawer_layout );
-        customDrawerButton.getDrawerLayout().addDrawerListener( customDrawerButton );
+
+        customDrawerButton.setDrawerLayout(drawer_layout);
+        customDrawerButton.getDrawerLayout().addDrawerListener(customDrawerButton);
         customDrawerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,23 +136,29 @@ public class HomeActivityDoctor extends BaseActivity implements ApiListener.appo
             }
         });
 
+        swipe.setOnRefreshListener(this);
+        onRefresh();
+
+
     }
 
     private void init_1_0_0_0() {
         v_1.setBackgroundColor(Color.parseColor("#cccccc"));
-     //   v_1.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
+        //   v_1.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
         v_2.setBackgroundColor(Color.WHITE);
         v_3.setBackgroundColor(Color.WHITE);
         v_4.setBackgroundColor(Color.WHITE);
     }
+
     private void init_0_1_0_0() {
         v_1.setBackgroundColor(Color.WHITE);
         v_2.setBackgroundColor(Color.parseColor("#cccccc"));
-       // v_2.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
+        // v_2.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
         v_3.setBackgroundColor(Color.WHITE);
         v_4.setBackgroundColor(Color.WHITE);
 
     }
+
     private void init_navigation() {
         linear_home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -181,12 +187,14 @@ public class HomeActivityDoctor extends BaseActivity implements ApiListener.appo
         schroll_2.setVisibility(View.GONE);
         linerProfileBody.setVisibility(View.VISIBLE);
     }
+
     private void init_2() {
         schroll_1.setVisibility(View.GONE);
         schroll_2.setVisibility(View.VISIBLE);
         linerProfileBody.setVisibility(View.GONE);
 
     }
+
     private void initRecycler() {
         mAdapter = new AppointmentSearchDrAdapter(searchModelList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(context);
@@ -207,7 +215,7 @@ public class HomeActivityDoctor extends BaseActivity implements ApiListener.appo
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 String track_id = charSequence.toString();
                 if (track_id.length() > 0) {
-                    Api.getInstance().track(TOKEN, track_id, USER_ID,new ApiListener.drTrackIdListener() {
+                    Api.getInstance().track(TOKEN, track_id, USER_ID, new ApiListener.drTrackIdListener() {
                         @Override
                         public void onTrackIdSuccess(List<AppointmentSearchModel> data) {
                             //Toast.makeText(context, ""+data.size(), Toast.LENGTH_SHORT).show();
@@ -218,14 +226,13 @@ public class HomeActivityDoctor extends BaseActivity implements ApiListener.appo
                                 mAdapter.notifyDataSetChanged();
                                 divider.setVisibility(View.VISIBLE);
                             } else {
-                               divider.setVisibility(View.VISIBLE);
+                                divider.setVisibility(View.VISIBLE);
                                 searchModelList.clear();
-                                AppointmentSearchModel model=new AppointmentSearchModel();
+                                AppointmentSearchModel model = new AppointmentSearchModel();
                                 model.setId(0);
                                 model.setAppointmentFor("No result found");
                                 searchModelList.add(model);
                                 mAdapter.notifyDataSetChanged();
-
 
 
                             }
@@ -305,17 +312,17 @@ public class HomeActivityDoctor extends BaseActivity implements ApiListener.appo
 
     @Override
     public void onAppointmentDownloadSuccess(List<AppointmentModels> data) {
-        if (data!=null&& state == 0) {
+        if (data != null && state == 0) {
             PENDING_LIST = data;
             state++;
             tv_pending.setText("" + data.size());
             Api.getInstance().getAppointmentsByDoctor(TOKEN, USER_ID, "doctor", "1", this);
 
-        } else if (data!=null&& state == 1) {
+        } else if (data != null && state == 1) {
             tv_confirmed.setText("" + data.size());
             CONFIRMED_LIST = data;
             state = 0;
-        }else if (data==null){
+        } else if (data == null) {
             tv_pending.setText("0");
             tv_confirmed.setText("0");
 
@@ -325,13 +332,15 @@ public class HomeActivityDoctor extends BaseActivity implements ApiListener.appo
 
     @Override
     public void onAppointmentDownloadFailed(String msg) {
-        Toast.makeText(context,"here 1"+ msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "here 1" + msg, Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
     public void onAssistantsListDownloadSuccess(List<AssistantOnlineModel> data) {
-        if (data!=null){
+        swipe.setRefreshing(false);
+
+        if (data != null) {
             AssistantListAdapter mAdapter = new AssistantListAdapter(data);
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
             StaggeredGridLayoutManager _sGridLayoutManager = new StaggeredGridLayoutManager(2,
@@ -341,17 +350,30 @@ public class HomeActivityDoctor extends BaseActivity implements ApiListener.appo
             //recycler_view.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL,false));
 
             recycler_view_assistantList.setAdapter(mAdapter);
-        }else Toast.makeText(context, "here", Toast.LENGTH_SHORT).show();
+        } else Toast.makeText(context, "Assistant download failed", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onAssistantsListDownloadFailed(String msg) {
+        swipe.setRefreshing(false);
         Toast.makeText(context,
                 "Assistant download failed", Toast.LENGTH_SHORT).show();
 
     }
 
     public void createAssistantActivity(View view) {
-        startActivity(new Intent(this,CreateAssistantActivity.class));
+        startActivity(new Intent(this, CreateAssistantActivity.class));
+    }
+
+    @Override
+    public void onRefresh() {
+        Api.getInstance().getAppointmentsByDoctor(TOKEN, USER_ID, "doctor", "0", this);
+        initRecycler();
+        init_search();
+        init_1();
+        init_navigation();
+        Api.getInstance().getMyAssistantsList(TOKEN, USER_ID, this);
+        init_1_0_0_0();
+
     }
 }

@@ -7,12 +7,12 @@
     android:background="@android:color/white"
     android:orientation="vertical"
     android:id="@+id/drawer_layout"
-    tools:openDrawer="start"
 
     tools:context=".Activity.HomeActivityDoctor">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
+        android:id="@+id/swipe"
         android:layout_height="wrap_content">
 
         <RelativeLayout
@@ -1283,7 +1283,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@drawable/gradient_transparent"
 
         android:fitsSystemWindows="true">
 
@@ -1303,7 +1302,7 @@
                 android:layout_height="wrap_content">
                 <ImageView
                     android:layout_width="20dp"
-                    android:src="@drawable/left_white"
+                    android:src="@drawable/left_back_black"
                     android:layout_height="20dp"
                     android:padding="3dp"
                     android:layout_gravity="center"
@@ -1314,7 +1313,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="Dr menu"
                     android:layout_gravity="center"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/colorPrimary"
                     android:textStyle="bold"
                     android:visibility="visible" />
             </LinearLayout>
@@ -1323,11 +1322,12 @@
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:layout_height="wrap_content">
                 <ImageView
                     android:layout_width="20dp"
-                    android:src="@drawable/left_white"
+                    android:src="@drawable/left_back_black"
                     android:layout_height="20dp"
                     android:padding="3dp"
                     android:layout_gravity="center"
@@ -1338,103 +1338,154 @@
                     android:layout_marginLeft="10dp"
                     android:text="Dr menu"
                     android:layout_gravity="center"
-                    android:textColor="@android:color/white"
-                    android:textStyle="bold"
-                    android:visibility="visible" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginLeft="15dp"
-                android:layout_marginBottom="10dp"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_width="20dp"
-                    android:src="@drawable/left_white"
-                    android:layout_height="20dp"
-                    android:padding="3dp"
-                    android:layout_gravity="center"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="Dr menu"
-                    android:layout_gravity="center"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/colorPrimary"
                     android:textStyle="bold"
                     android:visibility="visible" />
             </LinearLayout>
             <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginLeft="15dp"
-                android:layout_marginBottom="10dp"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_width="20dp"
-                    android:src="@drawable/left_white"
-                    android:layout_height="20dp"
-                    android:padding="3dp"
-                    android:layout_gravity="center"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="Dr menu"
-                    android:layout_gravity="center"
-                    android:textColor="@android:color/white"
-                    android:textStyle="bold"
-                    android:visibility="visible" />
-            </LinearLayout>
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="20dp"
+                android:src="@drawable/left_back_black"
+                android:layout_height="20dp"
+                android:padding="3dp"
+                android:layout_gravity="center"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Dr menu"
+                android:layout_gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                android:visibility="visible" />
+        </LinearLayout>
             <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginLeft="15dp"
-                android:layout_marginBottom="10dp"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_width="20dp"
-                    android:src="@drawable/left_white"
-                    android:layout_height="20dp"
-                    android:padding="3dp"
-                    android:layout_gravity="center"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="Dr menu"
-                    android:layout_gravity="center"
-                    android:textColor="@android:color/white"
-                    android:textStyle="bold"
-                    android:visibility="visible" />
-            </LinearLayout>
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="20dp"
+                android:src="@drawable/left_back_black"
+                android:layout_height="20dp"
+                android:padding="3dp"
+                android:layout_gravity="center"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Dr menu"
+                android:layout_gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                android:visibility="visible" />
+        </LinearLayout>
             <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginLeft="15dp"
-                android:layout_marginBottom="10dp"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_width="20dp"
-                    android:src="@drawable/left_white"
-                    android:layout_height="20dp"
-                    android:padding="3dp"
-                    android:layout_gravity="center"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="Dr menu"
-                    android:layout_gravity="center"
-                    android:textColor="@android:color/white"
-                    android:textStyle="bold"
-                    android:visibility="visible" />
-            </LinearLayout>
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="20dp"
+                android:src="@drawable/left_back_black"
+                android:layout_height="20dp"
+                android:padding="3dp"
+                android:layout_gravity="center"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Dr menu"
+                android:layout_gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                android:visibility="visible" />
+        </LinearLayout>
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="20dp"
+                android:src="@drawable/left_back_black"
+                android:layout_height="20dp"
+                android:padding="3dp"
+                android:layout_gravity="center"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Dr menu"
+                android:layout_gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                android:visibility="visible" />
+        </LinearLayout>
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="20dp"
+                android:src="@drawable/left_back_black"
+                android:layout_height="20dp"
+                android:padding="3dp"
+                android:layout_gravity="center"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Dr menu"
+                android:layout_gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                android:visibility="visible" />
+        </LinearLayout>
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="20dp"
+                android:src="@drawable/left_back_black"
+                android:layout_height="20dp"
+                android:padding="3dp"
+                android:layout_gravity="center"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Dr menu"
+                android:layout_gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                android:visibility="visible" />
+        </LinearLayout>
         </LinearLayout>
 
     </android.support.design.widget.NavigationView>

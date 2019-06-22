@@ -34,7 +34,7 @@ public class PendingAppointmentsListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        v = inflater.inflate(R.layout.fragment_appointments_list, container, false);
+        v = inflater.inflate(R.layout.assistant_new_request_fragment, container, false);
 
         ButterKnife.bind(this,v);
 
