@@ -48,12 +48,6 @@ public class LoginActivity extends AppCompatActivity implements ApiListener.Logi
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait");
         //hesdfsdf
-
-        //123
-
-
-
-
         if(sessionManager.getLoggedIn()){
             if (sessionManager.getUserType().equals(Constants.TYPE_DOCTOR)){
                 startActivity(new Intent(this,HomeActivityDoctor.class));
