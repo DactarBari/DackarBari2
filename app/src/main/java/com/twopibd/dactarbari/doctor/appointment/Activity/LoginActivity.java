@@ -39,10 +39,6 @@ public class LoginActivity extends AppCompatActivity implements ApiListener.Logi
     SessionManager sessionManager;
     String DOCTOR = "d";
     String PATIENT = "p";
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
