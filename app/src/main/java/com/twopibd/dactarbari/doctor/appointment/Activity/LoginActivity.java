@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity implements ApiListener.Logi
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait");
 
-        Toast.makeText(this, "ok111 cha 2", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "ok111 cha 2 pushed", Toast.LENGTH_SHORT).show();
 
 
 
